@@ -6,8 +6,8 @@ DatabaseConf:
   Host: 127.0.0.1
   Port: 3306
   DBName: simple_admin
-  Username: # set your username
-  Password: # set your password
+  Username: root
+  Password: "123456"
   MaxOpenConn: 100
   SSLMode: disable # disable or require
   CacheTime: 5
@@ -15,9 +15,9 @@ DatabaseConf:
 Log:
   ServiceName: coreRpcLogger
   Mode: file
-  Path: /home/data/logs/core/rpc
+  Path: /Volumes/XData/Work/logDev/logs/core/rpc
   Encoding: json
-  Level: info
+  Level: debug
   Compress: false
   KeepDays: 7
   StackCoolDownMillis: 100

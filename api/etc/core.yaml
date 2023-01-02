@@ -1,6 +1,6 @@
 Name: core.api
 Host: 0.0.0.0
-Port: 9100
+Port: ${PORT}
 Timeout: 30000
 
 Auth:
@@ -10,8 +10,8 @@ Auth:
 Log:
   ServiceName: coreApiLogger
   Mode: file
-  Path: /home/data/logs/core/api
-  Level: info
+  Path: /Volumes/XData/Work/logDev/logs/core/api
+  Level: debug
   Compress: false
   KeepDays: 7
   StackCoolDownMillis: 100
@@ -21,7 +21,8 @@ RedisConf:
   Type: node
 
 CoreRpc:
-  Target: k8s://default/core-rpc-svc:9101
+  Target: localhost:9101
+  #Target: k8s://default/core-rpc-svc:9101
 
 Captcha:
   KeyLong: 5
@@ -33,10 +34,10 @@ DatabaseConf:
   Host: 127.0.0.1
   Port: 3306
   DBName: simple_admin
-  Username: # set your username
-  Password: # set your password
+  Username: root
+  Password: "123456"
   MaxOpenConn: 100
-  SSLMode: disable
+  SSLMode: disable # disable or require
   CacheTime: 5
 
 Prometheus:
