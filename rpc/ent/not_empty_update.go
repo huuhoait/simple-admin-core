@@ -67,6 +67,54 @@ func (a *APIUpdateOne) SetNotEmptyMethod(value string) *APIUpdateOne {
 }
 
 // set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdate) SetNotEmptyObjectName(value string) *AuditUpdate {
+	if value != "" {
+		return a.SetObjectName(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdateOne) SetNotEmptyObjectName(value string) *AuditUpdateOne {
+	if value != "" {
+		return a.SetObjectName(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdate) SetNotEmptyActionName(value string) *AuditUpdate {
+	if value != "" {
+		return a.SetActionName(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdateOne) SetNotEmptyActionName(value string) *AuditUpdateOne {
+	if value != "" {
+		return a.SetActionName(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdate) SetNotEmptyChangedData(value string) *AuditUpdate {
+	if value != "" {
+		return a.SetChangedData(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdateOne) SetNotEmptyChangedData(value string) *AuditUpdateOne {
+	if value != "" {
+		return a.SetChangedData(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
 func (d *DepartmentUpdate) SetNotEmptyStatus(value uint8) *DepartmentUpdate {
 	if value != 0 {
 		return d.SetStatus(value)

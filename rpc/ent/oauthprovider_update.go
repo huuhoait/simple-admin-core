@@ -11,6 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/google/go-cmp/cmp"
+	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/suyuan32/simple-admin-core/rpc/ent/oauthprovider"
 	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
 )
@@ -187,6 +189,7 @@ func (opu *OauthProviderUpdate) sqlSave(ctx context.Context) (n int, err error) 
 		return 0, err
 	}
 	opu.mutation.done = true
+
 	return n, nil
 }
 
@@ -325,6 +328,23 @@ func (opuo *OauthProviderUpdateOne) sqlSave(ctx context.Context) (_node *OauthPr
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "OauthProvider.id" for update`)}
 	}
+
+	//0
+
+	//1
+
+	//2
+
+	// Load the old value of entity.
+
+	var _nodeOld *OauthProvider
+	if _nodeOld, err = opuo.mutation.oldValue(ctx); err != nil {
+		return nil, err
+	}
+	fmt.Println("*************************")
+	fmt.Println(_nodeOld)
+	fmt.Println("*************************")
+
 	_spec.Node.ID.Value = id
 	if fields := opuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
@@ -389,6 +409,31 @@ func (opuo *OauthProviderUpdateOne) sqlSave(ctx context.Context) (_node *OauthPr
 		}
 		return nil, err
 	}
+
+	//0
+
+	//1
+
+	//2
+
+	/* huuhoait edit */
+	var r DiffReporter
+	opts := []cmp.Option{
+		//cmpopts.IgnoreUnexported(Department{}),
+		cmpopts.IgnoreFields(OauthProvider{}, "config", "Edges", "CreatedAt", "UpdatedAt"),
+		cmp.Reporter(&r),
+	}
+	cmp.Diff(_nodeOld, _node, opts...)
+
+	opuo.mutation.Client().
+		Audit.Create().
+		SetObjectName("Department").
+		SetActionName("Update").
+		SetChangedData(r.String()).
+		SaveX(ctx)
+		/* huuhoait edit end*/
+
 	opuo.mutation.done = true
+
 	return _node, nil
 }

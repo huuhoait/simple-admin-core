@@ -7,6 +7,7 @@ import (
 
 	uuid "github.com/gofrs/uuid/v5"
 	"github.com/suyuan32/simple-admin-core/rpc/ent/api"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/audit"
 	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
 	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
 	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
@@ -43,6 +44,21 @@ func init() {
 	apiDescMethod := apiFields[3].Descriptor()
 	// api.DefaultMethod holds the default value on creation for the method field.
 	api.DefaultMethod = apiDescMethod.Default.(string)
+	auditMixin := schema.Audit{}.Mixin()
+	auditMixinFields0 := auditMixin[0].Fields()
+	_ = auditMixinFields0
+	auditFields := schema.Audit{}.Fields()
+	_ = auditFields
+	// auditDescCreatedAt is the schema descriptor for created_at field.
+	auditDescCreatedAt := auditMixinFields0[1].Descriptor()
+	// audit.DefaultCreatedAt holds the default value on creation for the created_at field.
+	audit.DefaultCreatedAt = auditDescCreatedAt.Default.(func() time.Time)
+	// auditDescUpdatedAt is the schema descriptor for updated_at field.
+	auditDescUpdatedAt := auditMixinFields0[2].Descriptor()
+	// audit.DefaultUpdatedAt holds the default value on creation for the updated_at field.
+	audit.DefaultUpdatedAt = auditDescUpdatedAt.Default.(func() time.Time)
+	// audit.UpdateDefaultUpdatedAt holds the default value on update for the updated_at field.
+	audit.UpdateDefaultUpdatedAt = auditDescUpdatedAt.UpdateDefault.(func() time.Time)
 	departmentMixin := schema.Department{}.Mixin()
 	departmentMixinFields0 := departmentMixin[0].Fields()
 	_ = departmentMixinFields0

@@ -16,6 +16,7 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"github.com/suyuan32/simple-admin-core/rpc/ent/api"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/audit"
 	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
 	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
 	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
@@ -35,6 +36,8 @@ type Client struct {
 	Schema *migrate.Schema
 	// API is the client for interacting with the API builders.
 	API *APIClient
+	// Audit is the client for interacting with the Audit builders.
+	Audit *AuditClient
 	// Department is the client for interacting with the Department builders.
 	Department *DepartmentClient
 	// Dictionary is the client for interacting with the Dictionary builders.
@@ -69,6 +72,7 @@ func NewClient(opts ...Option) *Client {
 func (c *Client) init() {
 	c.Schema = migrate.NewSchema(c.driver)
 	c.API = NewAPIClient(c.config)
+	c.Audit = NewAuditClient(c.config)
 	c.Department = NewDepartmentClient(c.config)
 	c.Dictionary = NewDictionaryClient(c.config)
 	c.DictionaryDetail = NewDictionaryDetailClient(c.config)
@@ -162,6 +166,7 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 		ctx:              ctx,
 		config:           cfg,
 		API:              NewAPIClient(cfg),
+		Audit:            NewAuditClient(cfg),
 		Department:       NewDepartmentClient(cfg),
 		Dictionary:       NewDictionaryClient(cfg),
 		DictionaryDetail: NewDictionaryDetailClient(cfg),
@@ -192,6 +197,7 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 		ctx:              ctx,
 		config:           cfg,
 		API:              NewAPIClient(cfg),
+		Audit:            NewAuditClient(cfg),
 		Department:       NewDepartmentClient(cfg),
 		Dictionary:       NewDictionaryClient(cfg),
 		DictionaryDetail: NewDictionaryDetailClient(cfg),
@@ -231,8 +237,8 @@ func (c *Client) Close() error {
 // In order to add hooks to a specific client, call: `client.Node.Use(...)`.
 func (c *Client) Use(hooks ...Hook) {
 	for _, n := range []interface{ Use(...Hook) }{
-		c.API, c.Department, c.Dictionary, c.DictionaryDetail, c.Menu, c.MenuParam,
-		c.OauthProvider, c.Position, c.Role, c.Token, c.User,
+		c.API, c.Audit, c.Department, c.Dictionary, c.DictionaryDetail, c.Menu,
+		c.MenuParam, c.OauthProvider, c.Position, c.Role, c.Token, c.User,
 	} {
 		n.Use(hooks...)
 	}
@@ -242,8 +248,8 @@ func (c *Client) Use(hooks ...Hook) {
 // In order to add interceptors to a specific client, call: `client.Node.Intercept(...)`.
 func (c *Client) Intercept(interceptors ...Interceptor) {
 	for _, n := range []interface{ Intercept(...Interceptor) }{
-		c.API, c.Department, c.Dictionary, c.DictionaryDetail, c.Menu, c.MenuParam,
-		c.OauthProvider, c.Position, c.Role, c.Token, c.User,
+		c.API, c.Audit, c.Department, c.Dictionary, c.DictionaryDetail, c.Menu,
+		c.MenuParam, c.OauthProvider, c.Position, c.Role, c.Token, c.User,
 	} {
 		n.Intercept(interceptors...)
 	}
@@ -254,6 +260,8 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 	switch m := m.(type) {
 	case *APIMutation:
 		return c.API.mutate(ctx, m)
+	case *AuditMutation:
+		return c.Audit.mutate(ctx, m)
 	case *DepartmentMutation:
 		return c.Department.mutate(ctx, m)
 	case *DictionaryMutation:
@@ -394,6 +402,124 @@ func (c *APIClient) mutate(ctx context.Context, m *APIMutation) (Value, error) {
 		return (&APIDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
 	default:
 		return nil, fmt.Errorf("ent: unknown API mutation op: %q", m.Op())
+	}
+}
+
+// AuditClient is a client for the Audit schema.
+type AuditClient struct {
+	config
+}
+
+// NewAuditClient returns a client for the Audit from the given config.
+func NewAuditClient(c config) *AuditClient {
+	return &AuditClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `audit.Hooks(f(g(h())))`.
+func (c *AuditClient) Use(hooks ...Hook) {
+	c.hooks.Audit = append(c.hooks.Audit, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `audit.Intercept(f(g(h())))`.
+func (c *AuditClient) Intercept(interceptors ...Interceptor) {
+	c.inters.Audit = append(c.inters.Audit, interceptors...)
+}
+
+// Create returns a builder for creating a Audit entity.
+func (c *AuditClient) Create() *AuditCreate {
+	mutation := newAuditMutation(c.config, OpCreate)
+	return &AuditCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of Audit entities.
+func (c *AuditClient) CreateBulk(builders ...*AuditCreate) *AuditCreateBulk {
+	return &AuditCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for Audit.
+func (c *AuditClient) Update() *AuditUpdate {
+	mutation := newAuditMutation(c.config, OpUpdate)
+	return &AuditUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *AuditClient) UpdateOne(a *Audit) *AuditUpdateOne {
+	mutation := newAuditMutation(c.config, OpUpdateOne, withAudit(a))
+	return &AuditUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *AuditClient) UpdateOneID(id uint64) *AuditUpdateOne {
+	mutation := newAuditMutation(c.config, OpUpdateOne, withAuditID(id))
+	return &AuditUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for Audit.
+func (c *AuditClient) Delete() *AuditDelete {
+	mutation := newAuditMutation(c.config, OpDelete)
+	return &AuditDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *AuditClient) DeleteOne(a *Audit) *AuditDeleteOne {
+	return c.DeleteOneID(a.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *AuditClient) DeleteOneID(id uint64) *AuditDeleteOne {
+	builder := c.Delete().Where(audit.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &AuditDeleteOne{builder}
+}
+
+// Query returns a query builder for Audit.
+func (c *AuditClient) Query() *AuditQuery {
+	return &AuditQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeAudit},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a Audit entity by its id.
+func (c *AuditClient) Get(ctx context.Context, id uint64) (*Audit, error) {
+	return c.Query().Where(audit.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *AuditClient) GetX(ctx context.Context, id uint64) *Audit {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// Hooks returns the client hooks.
+func (c *AuditClient) Hooks() []Hook {
+	return c.hooks.Audit
+}
+
+// Interceptors returns the client interceptors.
+func (c *AuditClient) Interceptors() []Interceptor {
+	return c.inters.Audit
+}
+
+func (c *AuditClient) mutate(ctx context.Context, m *AuditMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&AuditCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&AuditUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&AuditUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&AuditDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown Audit mutation op: %q", m.Op())
 	}
 }
 
@@ -1836,11 +1962,11 @@ func (c *UserClient) mutate(ctx context.Context, m *UserMutation) (Value, error)
 // hooks and interceptors per client, for fast access.
 type (
 	hooks struct {
-		API, Department, Dictionary, DictionaryDetail, Menu, MenuParam, OauthProvider,
-		Position, Role, Token, User []ent.Hook
+		API, Audit, Department, Dictionary, DictionaryDetail, Menu, MenuParam,
+		OauthProvider, Position, Role, Token, User []ent.Hook
 	}
 	inters struct {
-		API, Department, Dictionary, DictionaryDetail, Menu, MenuParam, OauthProvider,
-		Position, Role, Token, User []ent.Interceptor
+		API, Audit, Department, Dictionary, DictionaryDetail, Menu, MenuParam,
+		OauthProvider, Position, Role, Token, User []ent.Interceptor
 	}
 )

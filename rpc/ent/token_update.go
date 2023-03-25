@@ -169,6 +169,7 @@ func (tu *TokenUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		return 0, err
 	}
 	tu.mutation.done = true
+
 	return n, nil
 }
 
@@ -297,6 +298,13 @@ func (tuo *TokenUpdateOne) sqlSave(ctx context.Context) (_node *Token, err error
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Token.id" for update`)}
 	}
+
+	//0
+
+	//1
+
+	//2
+
 	_spec.Node.ID.Value = id
 	if fields := tuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
@@ -352,6 +360,14 @@ func (tuo *TokenUpdateOne) sqlSave(ctx context.Context) (_node *Token, err error
 		}
 		return nil, err
 	}
+
+	//0
+
+	//1
+
+	//2
+
 	tuo.mutation.done = true
+
 	return _node, nil
 }

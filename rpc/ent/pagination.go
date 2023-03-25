@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/suyuan32/simple-admin-core/rpc/ent/api"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/audit"
 	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
 	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
 	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
@@ -132,6 +133,85 @@ func (a *APIQuery) Page(
 		a = a.Order(pager.Order)
 	} else {
 		a = a.Order(DefaultAPIOrder)
+	}
+
+	a = a.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
+	list, err := a.All(ctx)
+	if err != nil {
+		return nil, err
+	}
+	ret.List = list
+
+	return ret, nil
+}
+
+type AuditPager struct {
+	Order  OrderFunc
+	Filter func(*AuditQuery) (*AuditQuery, error)
+}
+
+// AuditPaginateOption enables pagination customization.
+type AuditPaginateOption func(*AuditPager)
+
+// DefaultAuditOrder is the default ordering of Audit.
+var DefaultAuditOrder = Desc(audit.FieldID)
+
+func newAuditPager(opts []AuditPaginateOption) (*AuditPager, error) {
+	pager := &AuditPager{}
+	for _, opt := range opts {
+		opt(pager)
+	}
+	if pager.Order == nil {
+		pager.Order = DefaultAuditOrder
+	}
+	return pager, nil
+}
+
+func (p *AuditPager) ApplyFilter(query *AuditQuery) (*AuditQuery, error) {
+	if p.Filter != nil {
+		return p.Filter(query)
+	}
+	return query, nil
+}
+
+// AuditPageList is Audit PageList result.
+type AuditPageList struct {
+	List        []*Audit     `json:"list"`
+	PageDetails *PageDetails `json:"pageDetails"`
+}
+
+func (a *AuditQuery) Page(
+	ctx context.Context, pageNum uint64, pageSize uint64, opts ...AuditPaginateOption,
+) (*AuditPageList, error) {
+
+	pager, err := newAuditPager(opts)
+	if err != nil {
+		return nil, err
+	}
+
+	if a, err = pager.ApplyFilter(a); err != nil {
+		return nil, err
+	}
+
+	ret := &AuditPageList{}
+
+	ret.PageDetails = &PageDetails{
+		Page: pageNum,
+		Size: pageSize,
+	}
+
+	count, err := a.Clone().Count(ctx)
+
+	if err != nil {
+		return nil, err
+	}
+
+	ret.PageDetails.Total = uint64(count)
+
+	if pager.Order != nil {
+		a = a.Order(pager.Order)
+	} else {
+		a = a.Order(DefaultAuditOrder)
 	}
 
 	a = a.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
