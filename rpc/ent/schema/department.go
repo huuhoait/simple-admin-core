@@ -45,3 +45,27 @@ func (Department) Annotations() []schema.Annotation {
 		entsql.Annotation{Table: "sys_departments"},
 	}
 }
+
+/*
+func (Department) Hooks() []ent.Hook {
+	return []ent.Hook{
+		hook.On(VersionHook(), ent.OpUpdateOne),
+	}
+}
+
+func VersionHook() ent.Hook {
+
+	return func(next ent.Mutator) ent.Mutator {
+		// A hook that validates the "version" field is incremented by 1 on each update.
+		// Note that this is just a dummy example, and it doesn't promise consistency in
+		// the database.
+		return ent.MutateFunc(func(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+			fmt.Println("Hook update")
+			// Add an SQL predicate that validates the "version" column is equal
+			// to "oldV" (it wasn't changed during the mutation by other process).
+			return next.Mutate(ctx, m)
+		})
+	}
+}
+
+*/

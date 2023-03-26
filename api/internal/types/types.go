@@ -112,6 +112,52 @@ type BaseUUIDInfo struct {
 	UpdatedAt int64 `json:"updatedAt,optional"`
 }
 
+// The response data of Audit information | 角色信息
+// swagger:model AuditInfo
+type AuditInfo struct {
+	BaseInfo
+	// ObjectName| 展示名称
+	ObjectName string `json:"objectName,optional"`
+	// ActionName | 状态
+	ActionName string `json:"actionName,optional"`
+	// Name | 角色名称
+	ChangedData string `json:"changedData,optional"`
+	//Create User
+	CreatedBy string `json:"CreateBy,optional"`
+}
+
+// The response data of Audit list | 角色列表数据
+// swagger:model AuditListResp
+type AuditListResp struct {
+	BaseDataInfo
+	// Audit list data | 角色列表数据
+	Data AuditListInfo `json:"data"`
+}
+
+// Audit list data | 角色列表数据
+// swagger:model AuditListInfo
+type AuditListInfo struct {
+	BaseListInfo
+	// The API list data | 角色列表数据
+	Data []AuditInfo `json:"data"`
+}
+
+// Get Audit list request params | 角色列表请求参数
+// swagger:model AuditListReq
+type AuditListReq struct {
+	PageInfo
+	// Name | 角色名称
+	Name string `json:"name,optional"`
+}
+
+// Audit information response | 角色信息返回体
+// swagger:model AuditInfoResp
+type AuditInfoResp struct {
+	BaseDataInfo
+	// Audit information | 角色数据
+	Data AuditInfo `json:"data"`
+}
+
 // The response data of role information | 角色信息
 // swagger:model RoleInfo
 type RoleInfo struct {

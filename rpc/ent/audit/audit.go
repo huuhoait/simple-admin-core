@@ -21,6 +21,10 @@ const (
 	FieldActionName = "action_name"
 	// FieldChangedData holds the string denoting the changed_data field in the database.
 	FieldChangedData = "changed_data"
+	// FieldCreatedBy holds the string denoting the created_by field in the database.
+	FieldCreatedBy = "created_by"
+	// FieldUpdatedBy holds the string denoting the updated_by field in the database.
+	FieldUpdatedBy = "updated_by"
 	// Table holds the table name of the audit in the database.
 	Table = "sys_audits"
 )
@@ -33,6 +37,8 @@ var Columns = []string{
 	FieldObjectName,
 	FieldActionName,
 	FieldChangedData,
+	FieldCreatedBy,
+	FieldUpdatedBy,
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).

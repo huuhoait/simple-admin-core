@@ -663,6 +663,8 @@ type AuditMutation struct {
 	object_name   *string
 	action_name   *string
 	changed_data  *string
+	created_by    *string
+	updated_by    *string
 	clearedFields map[string]struct{}
 	done          bool
 	oldValue      func(context.Context) (*Audit, error)
@@ -953,6 +955,104 @@ func (m *AuditMutation) ResetChangedData() {
 	m.changed_data = nil
 }
 
+// SetCreatedBy sets the "created_by" field.
+func (m *AuditMutation) SetCreatedBy(s string) {
+	m.created_by = &s
+}
+
+// CreatedBy returns the value of the "created_by" field in the mutation.
+func (m *AuditMutation) CreatedBy() (r string, exists bool) {
+	v := m.created_by
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCreatedBy returns the old "created_by" field's value of the Audit entity.
+// If the Audit object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *AuditMutation) OldCreatedBy(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCreatedBy is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCreatedBy requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCreatedBy: %w", err)
+	}
+	return oldValue.CreatedBy, nil
+}
+
+// ClearCreatedBy clears the value of the "created_by" field.
+func (m *AuditMutation) ClearCreatedBy() {
+	m.created_by = nil
+	m.clearedFields[audit.FieldCreatedBy] = struct{}{}
+}
+
+// CreatedByCleared returns if the "created_by" field was cleared in this mutation.
+func (m *AuditMutation) CreatedByCleared() bool {
+	_, ok := m.clearedFields[audit.FieldCreatedBy]
+	return ok
+}
+
+// ResetCreatedBy resets all changes to the "created_by" field.
+func (m *AuditMutation) ResetCreatedBy() {
+	m.created_by = nil
+	delete(m.clearedFields, audit.FieldCreatedBy)
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (m *AuditMutation) SetUpdatedBy(s string) {
+	m.updated_by = &s
+}
+
+// UpdatedBy returns the value of the "updated_by" field in the mutation.
+func (m *AuditMutation) UpdatedBy() (r string, exists bool) {
+	v := m.updated_by
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUpdatedBy returns the old "updated_by" field's value of the Audit entity.
+// If the Audit object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *AuditMutation) OldUpdatedBy(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUpdatedBy is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUpdatedBy requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUpdatedBy: %w", err)
+	}
+	return oldValue.UpdatedBy, nil
+}
+
+// ClearUpdatedBy clears the value of the "updated_by" field.
+func (m *AuditMutation) ClearUpdatedBy() {
+	m.updated_by = nil
+	m.clearedFields[audit.FieldUpdatedBy] = struct{}{}
+}
+
+// UpdatedByCleared returns if the "updated_by" field was cleared in this mutation.
+func (m *AuditMutation) UpdatedByCleared() bool {
+	_, ok := m.clearedFields[audit.FieldUpdatedBy]
+	return ok
+}
+
+// ResetUpdatedBy resets all changes to the "updated_by" field.
+func (m *AuditMutation) ResetUpdatedBy() {
+	m.updated_by = nil
+	delete(m.clearedFields, audit.FieldUpdatedBy)
+}
+
 // Where appends a list predicates to the AuditMutation builder.
 func (m *AuditMutation) Where(ps ...predicate.Audit) {
 	m.predicates = append(m.predicates, ps...)
@@ -987,7 +1087,7 @@ func (m *AuditMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *AuditMutation) Fields() []string {
-	fields := make([]string, 0, 5)
+	fields := make([]string, 0, 7)
 	if m.created_at != nil {
 		fields = append(fields, audit.FieldCreatedAt)
 	}
@@ -1002,6 +1102,12 @@ func (m *AuditMutation) Fields() []string {
 	}
 	if m.changed_data != nil {
 		fields = append(fields, audit.FieldChangedData)
+	}
+	if m.created_by != nil {
+		fields = append(fields, audit.FieldCreatedBy)
+	}
+	if m.updated_by != nil {
+		fields = append(fields, audit.FieldUpdatedBy)
 	}
 	return fields
 }
@@ -1021,6 +1127,10 @@ func (m *AuditMutation) Field(name string) (ent.Value, bool) {
 		return m.ActionName()
 	case audit.FieldChangedData:
 		return m.ChangedData()
+	case audit.FieldCreatedBy:
+		return m.CreatedBy()
+	case audit.FieldUpdatedBy:
+		return m.UpdatedBy()
 	}
 	return nil, false
 }
@@ -1040,6 +1150,10 @@ func (m *AuditMutation) OldField(ctx context.Context, name string) (ent.Value, e
 		return m.OldActionName(ctx)
 	case audit.FieldChangedData:
 		return m.OldChangedData(ctx)
+	case audit.FieldCreatedBy:
+		return m.OldCreatedBy(ctx)
+	case audit.FieldUpdatedBy:
+		return m.OldUpdatedBy(ctx)
 	}
 	return nil, fmt.Errorf("unknown Audit field %s", name)
 }
@@ -1084,6 +1198,20 @@ func (m *AuditMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetChangedData(v)
 		return nil
+	case audit.FieldCreatedBy:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCreatedBy(v)
+		return nil
+	case audit.FieldUpdatedBy:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUpdatedBy(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Audit field %s", name)
 }
@@ -1113,7 +1241,14 @@ func (m *AuditMutation) AddField(name string, value ent.Value) error {
 // ClearedFields returns all nullable fields that were cleared during this
 // mutation.
 func (m *AuditMutation) ClearedFields() []string {
-	return nil
+	var fields []string
+	if m.FieldCleared(audit.FieldCreatedBy) {
+		fields = append(fields, audit.FieldCreatedBy)
+	}
+	if m.FieldCleared(audit.FieldUpdatedBy) {
+		fields = append(fields, audit.FieldUpdatedBy)
+	}
+	return fields
 }
 
 // FieldCleared returns a boolean indicating if a field with the given name was
@@ -1126,6 +1261,14 @@ func (m *AuditMutation) FieldCleared(name string) bool {
 // ClearField clears the value of the field with the given name. It returns an
 // error if the field is not defined in the schema.
 func (m *AuditMutation) ClearField(name string) error {
+	switch name {
+	case audit.FieldCreatedBy:
+		m.ClearCreatedBy()
+		return nil
+	case audit.FieldUpdatedBy:
+		m.ClearUpdatedBy()
+		return nil
+	}
 	return fmt.Errorf("unknown Audit nullable field %s", name)
 }
 
@@ -1147,6 +1290,12 @@ func (m *AuditMutation) ResetField(name string) error {
 		return nil
 	case audit.FieldChangedData:
 		m.ResetChangedData()
+		return nil
+	case audit.FieldCreatedBy:
+		m.ResetCreatedBy()
+		return nil
+	case audit.FieldUpdatedBy:
+		m.ResetUpdatedBy()
 		return nil
 	}
 	return fmt.Errorf("unknown Audit field %s", name)

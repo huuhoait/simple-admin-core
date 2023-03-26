@@ -66,6 +66,34 @@ func (ac *AuditCreate) SetChangedData(s string) *AuditCreate {
 	return ac
 }
 
+// SetCreatedBy sets the "created_by" field.
+func (ac *AuditCreate) SetCreatedBy(s string) *AuditCreate {
+	ac.mutation.SetCreatedBy(s)
+	return ac
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (ac *AuditCreate) SetNillableCreatedBy(s *string) *AuditCreate {
+	if s != nil {
+		ac.SetCreatedBy(*s)
+	}
+	return ac
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (ac *AuditCreate) SetUpdatedBy(s string) *AuditCreate {
+	ac.mutation.SetUpdatedBy(s)
+	return ac
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (ac *AuditCreate) SetNillableUpdatedBy(s *string) *AuditCreate {
+	if s != nil {
+		ac.SetUpdatedBy(*s)
+	}
+	return ac
+}
+
 // SetID sets the "id" field.
 func (ac *AuditCreate) SetID(u uint64) *AuditCreate {
 	ac.mutation.SetID(u)
@@ -185,6 +213,14 @@ func (ac *AuditCreate) createSpec() (*Audit, *sqlgraph.CreateSpec) {
 	if value, ok := ac.mutation.ChangedData(); ok {
 		_spec.SetField(audit.FieldChangedData, field.TypeString, value)
 		_node.ChangedData = value
+	}
+	if value, ok := ac.mutation.CreatedBy(); ok {
+		_spec.SetField(audit.FieldCreatedBy, field.TypeString, value)
+		_node.CreatedBy = value
+	}
+	if value, ok := ac.mutation.UpdatedBy(); ok {
+		_spec.SetField(audit.FieldUpdatedBy, field.TypeString, value)
+		_node.UpdatedBy = value
 	}
 	return _node, _spec
 }

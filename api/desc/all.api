@@ -1,4 +1,5 @@
 import "base.api"
+import "audit.api"
 import "role.api"
 import "user.api"
 import "menu.api"

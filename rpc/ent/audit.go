@@ -26,6 +26,10 @@ type Audit struct {
 	ActionName string `json:"action_name,omitempty"`
 	// Changed Data
 	ChangedData string `json:"changed_data,omitempty"`
+	// User Create
+	CreatedBy string `json:"created_by,omitempty"`
+	// User Update
+	UpdatedBy string `json:"updated_by,omitempty"`
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -35,7 +39,7 @@ func (*Audit) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case audit.FieldID:
 			values[i] = new(sql.NullInt64)
-		case audit.FieldObjectName, audit.FieldActionName, audit.FieldChangedData:
+		case audit.FieldObjectName, audit.FieldActionName, audit.FieldChangedData, audit.FieldCreatedBy, audit.FieldUpdatedBy:
 			values[i] = new(sql.NullString)
 		case audit.FieldCreatedAt, audit.FieldUpdatedAt:
 			values[i] = new(sql.NullTime)
@@ -90,6 +94,18 @@ func (a *Audit) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				a.ChangedData = value.String
 			}
+		case audit.FieldCreatedBy:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field created_by", values[i])
+			} else if value.Valid {
+				a.CreatedBy = value.String
+			}
+		case audit.FieldUpdatedBy:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field updated_by", values[i])
+			} else if value.Valid {
+				a.UpdatedBy = value.String
+			}
 		}
 	}
 	return nil
@@ -132,6 +148,12 @@ func (a *Audit) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("changed_data=")
 	builder.WriteString(a.ChangedData)
+	builder.WriteString(", ")
+	builder.WriteString("created_by=")
+	builder.WriteString(a.CreatedBy)
+	builder.WriteString(", ")
+	builder.WriteString("updated_by=")
+	builder.WriteString(a.UpdatedBy)
 	builder.WriteByte(')')
 	return builder.String()
 }

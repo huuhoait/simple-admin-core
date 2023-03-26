@@ -115,6 +115,38 @@ func (a *AuditUpdateOne) SetNotEmptyChangedData(value string) *AuditUpdateOne {
 }
 
 // set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdate) SetNotEmptyCreatedBy(value string) *AuditUpdate {
+	if value != "" {
+		return a.SetCreatedBy(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdateOne) SetNotEmptyCreatedBy(value string) *AuditUpdateOne {
+	if value != "" {
+		return a.SetCreatedBy(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdate) SetNotEmptyUpdatedBy(value string) *AuditUpdate {
+	if value != "" {
+		return a.SetUpdatedBy(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdateOne) SetNotEmptyUpdatedBy(value string) *AuditUpdateOne {
+	if value != "" {
+		return a.SetUpdatedBy(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
 func (d *DepartmentUpdate) SetNotEmptyStatus(value uint8) *DepartmentUpdate {
 	if value != 0 {
 		return d.SetStatus(value)

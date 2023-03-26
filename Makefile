@@ -36,8 +36,11 @@ gen-rpc-ent-logic:
 gen-swagger:
 	swagger generate spec --output=./core.yml --scan-models
 	@printf $(GREEN)"[SUCCESS] generate swagger successfully"
-
+gen-ui:
+    goctls frontend vben --api_file=/Volumes/XData/Work/Golang/simple-admin/simple-admin-core/api/desc/department.api --o=./ --folder_name=sys --prefix=sys-api --sub_folder=department
 serve-swagger:
 	lsof -i:36666 | awk 'NR!=1 {print $2}' | xargs killall -9 || true
 	swagger serve -F=swagger --port 36666 core.yml
 	@printf $(GREEN)"[SUCCESS] serve swagger-ui successfully"
+
+

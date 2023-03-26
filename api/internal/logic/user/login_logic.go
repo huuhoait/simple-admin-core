@@ -2,7 +2,7 @@ package user
 
 import (
 	"context"
-	"fmt"
+
 	"time"
 
 	"github.com/suyuan32/simple-admin-common/enum/errorcode"
@@ -37,8 +37,6 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err error) {
 
 	if ok := captcha.Store.Verify(req.CaptchaId, req.Captcha, true); ok {
-		fmt.Println("**********LOGOK:" + req.CaptchaId)
-		fmt.Println("**********req.Captcha:" + req.Captcha)
 
 		user, err := l.svcCtx.CoreRpc.GetUserByUsername(l.ctx,
 			&core.UsernameReq{

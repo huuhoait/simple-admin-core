@@ -7,6 +7,7 @@ import (
 	"context"
 
 	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/api"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/audit"
 	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/authority"
 	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/base"
 	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/department"
@@ -60,6 +61,16 @@ func (s *CoreServer) DeleteApi(ctx context.Context, in *core.IDsReq) (*core.Base
 	return l.DeleteApi(in)
 }
 
+func (s *CoreServer) GetAuditList(ctx context.Context, in *core.AuditListReq) (*core.AuditListResp, error) {
+	l := audit.NewGetAuditListLogic(ctx, s.svcCtx)
+	return l.GetAuditList(in)
+}
+
+func (s *CoreServer) GetAuditById(ctx context.Context, in *core.IDReq) (*core.AuditInfo, error) {
+	l := audit.NewGetAuditByIdLogic(ctx, s.svcCtx)
+	return l.GetAuditById(in)
+}
+
 func (s *CoreServer) GetMenuAuthority(ctx context.Context, in *core.IDReq) (*core.RoleMenuAuthorityResp, error) {
 	l := authority.NewGetMenuAuthorityLogic(ctx, s.svcCtx)
 	return l.GetMenuAuthority(in)
@@ -73,6 +84,11 @@ func (s *CoreServer) CreateOrUpdateMenuAuthority(ctx context.Context, in *core.R
 func (s *CoreServer) InitDatabase(ctx context.Context, in *core.Empty) (*core.BaseResp, error) {
 	l := base.NewInitDatabaseLogic(ctx, s.svcCtx)
 	return l.InitDatabase(in)
+}
+
+func (s *CoreServer) InitJobDatabase(ctx context.Context, in *core.Empty) (*core.BaseResp, error) {
+	l := base.NewInitJobDatabaseLogic(ctx, s.svcCtx)
+	return l.InitJobDatabase(in)
 }
 
 // Department management

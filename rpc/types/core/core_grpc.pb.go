@@ -33,12 +33,18 @@ type CoreClient interface {
 	GetApiById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*ApiInfo, error)
 	// group: api
 	DeleteApi(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+	// group: audit
+	GetAuditList(ctx context.Context, in *AuditListReq, opts ...grpc.CallOption) (*AuditListResp, error)
+	// group: audit
+	GetAuditById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*AuditInfo, error)
 	// group: authority
 	GetMenuAuthority(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*RoleMenuAuthorityResp, error)
 	// group: authority
 	CreateOrUpdateMenuAuthority(ctx context.Context, in *RoleMenuAuthorityReq, opts ...grpc.CallOption) (*BaseResp, error)
 	// group: base
 	InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
+	// group: base
+	InitJobDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
 	// Department management
 	// group: department
 	CreateDepartment(ctx context.Context, in *DepartmentInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
@@ -211,6 +217,24 @@ func (c *coreClient) DeleteApi(ctx context.Context, in *IDsReq, opts ...grpc.Cal
 	return out, nil
 }
 
+func (c *coreClient) GetAuditList(ctx context.Context, in *AuditListReq, opts ...grpc.CallOption) (*AuditListResp, error) {
+	out := new(AuditListResp)
+	err := c.cc.Invoke(ctx, "/core.Core/getAuditList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) GetAuditById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*AuditInfo, error) {
+	out := new(AuditInfo)
+	err := c.cc.Invoke(ctx, "/core.Core/getAuditById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *coreClient) GetMenuAuthority(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*RoleMenuAuthorityResp, error) {
 	out := new(RoleMenuAuthorityResp)
 	err := c.cc.Invoke(ctx, "/core.Core/getMenuAuthority", in, out, opts...)
@@ -232,6 +256,15 @@ func (c *coreClient) CreateOrUpdateMenuAuthority(ctx context.Context, in *RoleMe
 func (c *coreClient) InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
 	out := new(BaseResp)
 	err := c.cc.Invoke(ctx, "/core.Core/initDatabase", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coreClient) InitJobDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, "/core.Core/initJobDatabase", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -739,12 +772,18 @@ type CoreServer interface {
 	GetApiById(context.Context, *IDReq) (*ApiInfo, error)
 	// group: api
 	DeleteApi(context.Context, *IDsReq) (*BaseResp, error)
+	// group: audit
+	GetAuditList(context.Context, *AuditListReq) (*AuditListResp, error)
+	// group: audit
+	GetAuditById(context.Context, *IDReq) (*AuditInfo, error)
 	// group: authority
 	GetMenuAuthority(context.Context, *IDReq) (*RoleMenuAuthorityResp, error)
 	// group: authority
 	CreateOrUpdateMenuAuthority(context.Context, *RoleMenuAuthorityReq) (*BaseResp, error)
 	// group: base
 	InitDatabase(context.Context, *Empty) (*BaseResp, error)
+	// group: base
+	InitJobDatabase(context.Context, *Empty) (*BaseResp, error)
 	// Department management
 	// group: department
 	CreateDepartment(context.Context, *DepartmentInfo) (*BaseIDResp, error)
@@ -884,6 +923,12 @@ func (UnimplementedCoreServer) GetApiById(context.Context, *IDReq) (*ApiInfo, er
 func (UnimplementedCoreServer) DeleteApi(context.Context, *IDsReq) (*BaseResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteApi not implemented")
 }
+func (UnimplementedCoreServer) GetAuditList(context.Context, *AuditListReq) (*AuditListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuditList not implemented")
+}
+func (UnimplementedCoreServer) GetAuditById(context.Context, *IDReq) (*AuditInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuditById not implemented")
+}
 func (UnimplementedCoreServer) GetMenuAuthority(context.Context, *IDReq) (*RoleMenuAuthorityResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMenuAuthority not implemented")
 }
@@ -892,6 +937,9 @@ func (UnimplementedCoreServer) CreateOrUpdateMenuAuthority(context.Context, *Rol
 }
 func (UnimplementedCoreServer) InitDatabase(context.Context, *Empty) (*BaseResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitDatabase not implemented")
+}
+func (UnimplementedCoreServer) InitJobDatabase(context.Context, *Empty) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitJobDatabase not implemented")
 }
 func (UnimplementedCoreServer) CreateDepartment(context.Context, *DepartmentInfo) (*BaseIDResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDepartment not implemented")
@@ -1158,6 +1206,42 @@ func _Core_DeleteApi_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Core_GetAuditList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuditListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetAuditList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/core.Core/getAuditList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetAuditList(ctx, req.(*AuditListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_GetAuditById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).GetAuditById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/core.Core/getAuditById",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).GetAuditById(ctx, req.(*IDReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Core_GetMenuAuthority_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IDReq)
 	if err := dec(in); err != nil {
@@ -1208,6 +1292,24 @@ func _Core_InitDatabase_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CoreServer).InitDatabase(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Core_InitJobDatabase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoreServer).InitJobDatabase(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/core.Core/initJobDatabase",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoreServer).InitJobDatabase(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2212,6 +2314,14 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Core_DeleteApi_Handler,
 		},
 		{
+			MethodName: "getAuditList",
+			Handler:    _Core_GetAuditList_Handler,
+		},
+		{
+			MethodName: "getAuditById",
+			Handler:    _Core_GetAuditById_Handler,
+		},
+		{
 			MethodName: "getMenuAuthority",
 			Handler:    _Core_GetMenuAuthority_Handler,
 		},
@@ -2222,6 +2332,10 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "initDatabase",
 			Handler:    _Core_InitDatabase_Handler,
+		},
+		{
+			MethodName: "initJobDatabase",
+			Handler:    _Core_InitJobDatabase_Handler,
 		},
 		{
 			MethodName: "createDepartment",
