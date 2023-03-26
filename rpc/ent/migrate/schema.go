@@ -32,6 +32,23 @@ var (
 			},
 		},
 	}
+	// SysAuditsColumns holds the columns for the "sys_audits" table.
+	SysAuditsColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_at", Type: field.TypeTime},
+		{Name: "object_name", Type: field.TypeString},
+		{Name: "action_name", Type: field.TypeString},
+		{Name: "changed_data", Type: field.TypeString},
+		{Name: "created_by", Type: field.TypeString, Nullable: true},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true},
+	}
+	// SysAuditsTable holds the schema information for the "sys_audits" table.
+	SysAuditsTable = &schema.Table{
+		Name:       "sys_audits",
+		Columns:    SysAuditsColumns,
+		PrimaryKey: []*schema.Column{SysAuditsColumns[0]},
+	}
 	// SysDepartmentsColumns holds the columns for the "sys_departments" table.
 	SysDepartmentsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
@@ -382,6 +399,7 @@ var (
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
 		SysApisTable,
+		SysAuditsTable,
 		SysDepartmentsTable,
 		SysDictionariesTable,
 		SysDictionaryDetailsTable,
@@ -401,6 +419,9 @@ var (
 func init() {
 	SysApisTable.Annotation = &entsql.Annotation{
 		Table: "sys_apis",
+	}
+	SysAuditsTable.Annotation = &entsql.Annotation{
+		Table: "sys_audits",
 	}
 	SysDepartmentsTable.ForeignKeys[0].RefTable = SysDepartmentsTable
 	SysDepartmentsTable.Annotation = &entsql.Annotation{

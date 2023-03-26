@@ -16,6 +16,9 @@ type (
 	ApiInfo                  = core.ApiInfo
 	ApiListReq               = core.ApiListReq
 	ApiListResp              = core.ApiListResp
+	AuditInfo                = core.AuditInfo
+	AuditListReq             = core.AuditListReq
+	AuditListResp            = core.AuditListResp
 	BaseIDResp               = core.BaseIDResp
 	BaseMsg                  = core.BaseMsg
 	BaseResp                 = core.BaseResp
@@ -72,9 +75,12 @@ type (
 		GetApiList(ctx context.Context, in *ApiListReq, opts ...grpc.CallOption) (*ApiListResp, error)
 		GetApiById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*ApiInfo, error)
 		DeleteApi(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+		GetAuditList(ctx context.Context, in *AuditListReq, opts ...grpc.CallOption) (*AuditListResp, error)
+		GetAuditById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*AuditInfo, error)
 		GetMenuAuthority(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*RoleMenuAuthorityResp, error)
 		CreateOrUpdateMenuAuthority(ctx context.Context, in *RoleMenuAuthorityReq, opts ...grpc.CallOption) (*BaseResp, error)
 		InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
+		InitJobDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
 		// Department management
 		CreateDepartment(ctx context.Context, in *DepartmentInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
 		UpdateDepartment(ctx context.Context, in *DepartmentInfo, opts ...grpc.CallOption) (*BaseResp, error)
@@ -177,6 +183,16 @@ func (m *defaultCore) DeleteApi(ctx context.Context, in *IDsReq, opts ...grpc.Ca
 	return client.DeleteApi(ctx, in, opts...)
 }
 
+func (m *defaultCore) GetAuditList(ctx context.Context, in *AuditListReq, opts ...grpc.CallOption) (*AuditListResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetAuditList(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetAuditById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*AuditInfo, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetAuditById(ctx, in, opts...)
+}
+
 func (m *defaultCore) GetMenuAuthority(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*RoleMenuAuthorityResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.GetMenuAuthority(ctx, in, opts...)
@@ -190,6 +206,11 @@ func (m *defaultCore) CreateOrUpdateMenuAuthority(ctx context.Context, in *RoleM
 func (m *defaultCore) InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.InitDatabase(ctx, in, opts...)
+}
+
+func (m *defaultCore) InitJobDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.InitJobDatabase(ctx, in, opts...)
 }
 
 // Department management

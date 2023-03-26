@@ -1,0 +1,70 @@
+import "base.api"
+
+type (
+    // The response data of Audit information | 角色信息
+    AuditInfo {
+        BaseInfo
+
+        // ObjectName| 展示名称
+        ObjectName  string `json:"objectName,optional"`
+
+        // ActionName | 状态
+        ActionName  string `json:"actionName,optional"`
+
+        // Name | 角色名称
+        ChangedData  string `json:"changedData,optional"`
+
+        //Create User
+        CreatedBy string `json:"CreateBy,optional"`
+      
+    }
+
+    // The response data of Audit list | 角色列表数据
+    AuditListResp {
+        BaseDataInfo
+
+        // Audit list data | 角色列表数据
+        Data AuditListInfo `json:"data"`
+    }
+
+    // Audit list data | 角色列表数据
+    AuditListInfo {
+        BaseListInfo
+
+        // The API list data | 角色列表数据
+        Data  []AuditInfo  `json:"data"`
+    }
+
+    // Get Audit list request params | 角色列表请求参数
+    AuditListReq {
+        PageInfo
+
+        // Name | 角色名称
+        Name  string `json:"name,optional"`
+    }
+
+    // Audit information response | 角色信息返回体
+    AuditInfoResp {
+        BaseDataInfo
+
+        // Audit information | 角色数据
+        Data AuditInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: Audit
+    middleware: Authority
+)
+
+service core {
+
+    // Get Audit list | 获取角色列表
+    @handler getAuditList
+    post /audit/list (AuditListReq) returns (AuditListResp)
+
+    // Get Audit by ID | 通过ID获取角色
+    @handler getAuditById
+    post /audit (IDReq) returns (AuditInfoResp)
+}

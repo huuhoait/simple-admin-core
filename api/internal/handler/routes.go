@@ -4,6 +4,7 @@ package handler
 import (
 	"net/http"
 
+	Audit "github.com/suyuan32/simple-admin-core/api/internal/handler/Audit"
 	api "github.com/suyuan32/simple-admin-core/api/internal/handler/api"
 	authority "github.com/suyuan32/simple-admin-core/api/internal/handler/authority"
 	base "github.com/suyuan32/simple-admin-core/api/internal/handler/base"
@@ -39,6 +40,25 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: base.InitJobDatabaseHandler(serverCtx),
 			},
 		},
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Authority},
+			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/audit/list",
+					Handler: Audit.GetAuditListHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/audit",
+					Handler: Audit.GetAuditByIdHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 	)
 
 	server.AddRoutes(

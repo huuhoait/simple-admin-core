@@ -196,6 +196,119 @@ definitions:
                 x-go-name: Msg
         type: object
         x-go-package: github.com/suyuan32/simple-admin-core/api/internal/types
+    AuditInfo:
+        description: The response data of Audit information | 角色信息
+        properties:
+            CreateBy:
+                description: Create User
+                type: string
+                x-go-name: CreatedBy
+            actionName:
+                description: ActionName | 状态
+                type: string
+                x-go-name: ActionName
+            changedData:
+                description: Name | 角色名称
+                type: string
+                x-go-name: ChangedData
+            createdAt:
+                description: Create date | 创建日期
+                format: int64
+                type: integer
+                x-go-name: CreatedAt
+            id:
+                description: ID
+                format: uint64
+                type: integer
+                x-go-name: Id
+            objectName:
+                description: ObjectName| 展示名称
+                type: string
+                x-go-name: ObjectName
+            updatedAt:
+                description: Update date | 更新日期
+                format: int64
+                type: integer
+                x-go-name: UpdatedAt
+        type: object
+        x-go-package: github.com/suyuan32/simple-admin-core/api/internal/types
+    AuditInfoResp:
+        description: Audit information response | 角色信息返回体
+        properties:
+            code:
+                description: Error code | 错误代码
+                format: int64
+                type: integer
+                x-go-name: Code
+            data:
+                $ref: '#/definitions/AuditInfo'
+                description: Data | 数据
+                type: string
+                x-go-name: Data
+            msg:
+                description: Message | 提示信息
+                type: string
+                x-go-name: Msg
+        type: object
+        x-go-package: github.com/suyuan32/simple-admin-core/api/internal/types
+    AuditListInfo:
+        description: Audit list data | 角色列表数据
+        properties:
+            data:
+                description: The API list data | 角色列表数据
+                items:
+                    $ref: '#/definitions/AuditInfo'
+                type: array
+                x-go-name: Data
+            total:
+                description: The total number of data | 数据总数
+                format: uint64
+                type: integer
+                x-go-name: Total
+        type: object
+        x-go-package: github.com/suyuan32/simple-admin-core/api/internal/types
+    AuditListReq:
+        description: Get Audit list request params | 角色列表请求参数
+        properties:
+            name:
+                description: Name | 角色名称
+                type: string
+                x-go-name: Name
+            page:
+                description: Page number | 第几页
+                format: uint64
+                type: integer
+                x-go-name: Page
+            pageSize:
+                description: Page size | 单页数据行数
+                format: uint64
+                maximum: 100000
+                type: integer
+                x-go-name: PageSize
+        required:
+            - page
+            - pageSize
+        type: object
+        x-go-package: github.com/suyuan32/simple-admin-core/api/internal/types
+    AuditListResp:
+        description: The response data of Audit list | 角色列表数据
+        properties:
+            code:
+                description: Error code | 错误代码
+                format: int64
+                type: integer
+                x-go-name: Code
+            data:
+                $ref: '#/definitions/AuditListInfo'
+                description: Data | 数据
+                type: string
+                x-go-name: Data
+            msg:
+                description: Message | 提示信息
+                type: string
+                x-go-name: Msg
+        type: object
+        x-go-package: github.com/suyuan32/simple-admin-core/api/internal/types
     BaseDataInfo:
         description: The basic response with data | 基础带数据信息
         properties:
@@ -2575,6 +2688,42 @@ info:
     title: Simple Admin
     version: 0.2.8
 paths:
+    /Audit:
+        post:
+            description: Get Audit by ID | 通过ID获取角色
+            operationId: GetAuditById
+            parameters:
+                - in: body
+                  name: body
+                  schema:
+                    $ref: '#/definitions/IDReq'
+                    type: object
+            responses:
+                "200":
+                    description: AuditInfoResp
+                    schema:
+                        $ref: '#/definitions/AuditInfoResp'
+            summary: Get Audit by ID | 通过ID获取角色
+            tags:
+                - Audit
+    /Audit/list:
+        post:
+            description: Get Audit list | 获取角色列表
+            operationId: GetAuditList
+            parameters:
+                - in: body
+                  name: body
+                  schema:
+                    $ref: '#/definitions/AuditListReq'
+                    type: object
+            responses:
+                "200":
+                    description: AuditListResp
+                    schema:
+                        $ref: '#/definitions/AuditListResp'
+            summary: Get Audit list | 获取角色列表
+            tags:
+                - Audit
     /api:
         post:
             description: Get API by ID | 通过ID获取API
