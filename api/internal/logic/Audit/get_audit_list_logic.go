@@ -1,8 +1,7 @@
-package Audit
+package audit
 
 import (
 	"context"
-	"net/http"
 
 	"github.com/suyuan32/simple-admin-common/i18n"
 	"github.com/suyuan32/simple-admin-core/api/internal/svc"
@@ -16,15 +15,13 @@ type GetAuditListLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
-	lang   string
 }
 
-func NewGetAuditListLogic(r *http.Request, svcCtx *svc.ServiceContext) *GetAuditListLogic {
+func NewGetAuditListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetAuditListLogic {
 	return &GetAuditListLogic{
-		Logger: logx.WithContext(r.Context()),
-		ctx:    r.Context(),
+		Logger: logx.WithContext(ctx),
+		ctx:    ctx,
 		svcCtx: svcCtx,
-		lang:   r.Header.Get("Accept-Language"),
 	}
 }
 
@@ -45,7 +42,7 @@ func (l *GetAuditListLogic) GetAuditList(req *types.AuditListReq) (resp *types.A
 	for _, v := range data.Data {
 		resp.Data.Data = append(resp.Data.Data,
 			types.AuditInfo{
-				BaseInfo: types.BaseInfo{
+				BaseIDInfo: types.BaseIDInfo{
 					Id:        v.Id,
 					CreatedAt: v.CreatedAt,
 					UpdatedAt: v.UpdatedAt,

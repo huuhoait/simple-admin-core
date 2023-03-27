@@ -32,6 +32,7 @@ func NewAuthorityMiddleware(cbn *casbin.Enforcer, rds *redis.Redis, trans *i18n.
 
 func (m *AuthorityMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		//r.Header.Add("Accept-Language", "en")
 		// get the path
 		obj := r.URL.Path
 		// get the method
@@ -42,6 +43,9 @@ func (m *AuthorityMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 		fmt.Println("-----------:act" + act)
 		fmt.Println("-----------:roleIds" + roleIds)
 		fmt.Println("-----------:usserId" + r.Context().Value("userId").(string))
+		var headLang = r.Header.Get("Accept-Language")
+		fmt.Println("-----------:headLang" + headLang)
+		r.Header.Set("Accept-Language", "en")
 		// check jwt blacklist
 		jwtResult, err := m.Rds.Get("token_" + r.Header.Get("Authorization"))
 		if err != nil {

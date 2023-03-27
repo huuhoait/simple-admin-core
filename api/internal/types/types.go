@@ -115,7 +115,7 @@ type BaseUUIDInfo struct {
 // The response data of Audit information | 角色信息
 // swagger:model AuditInfo
 type AuditInfo struct {
-	BaseInfo
+	BaseIDInfo
 	// ObjectName| 展示名称
 	ObjectName string `json:"objectName,optional"`
 	// ActionName | 状态

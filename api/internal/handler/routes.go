@@ -4,8 +4,8 @@ package handler
 import (
 	"net/http"
 
-	Audit "github.com/suyuan32/simple-admin-core/api/internal/handler/Audit"
 	api "github.com/suyuan32/simple-admin-core/api/internal/handler/api"
+	audit "github.com/suyuan32/simple-admin-core/api/internal/handler/audit"
 	authority "github.com/suyuan32/simple-admin-core/api/internal/handler/authority"
 	base "github.com/suyuan32/simple-admin-core/api/internal/handler/base"
 	captcha "github.com/suyuan32/simple-admin-core/api/internal/handler/captcha"
@@ -49,12 +49,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				{
 					Method:  http.MethodPost,
 					Path:    "/audit/list",
-					Handler: Audit.GetAuditListHandler(serverCtx),
+					Handler: audit.GetAuditListHandler(serverCtx),
 				},
 				{
 					Method:  http.MethodPost,
 					Path:    "/audit",
-					Handler: Audit.GetAuditByIdHandler(serverCtx),
+					Handler: audit.GetAuditByIdHandler(serverCtx),
 				},
 			}...,
 		),

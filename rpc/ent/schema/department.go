@@ -53,6 +53,7 @@ func (Department) Hooks() []ent.Hook {
 	}
 }
 
+
 func VersionHook() ent.Hook {
 
 	return func(next ent.Mutator) ent.Mutator {
@@ -66,6 +67,4 @@ func VersionHook() ent.Hook {
 			return next.Mutate(ctx, m)
 		})
 	}
-}
-
-*/
+}*/

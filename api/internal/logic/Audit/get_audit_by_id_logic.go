@@ -1,8 +1,7 @@
-package Audit
+package audit
 
 import (
 	"context"
-	"net/http"
 
 	"github.com/suyuan32/simple-admin-common/i18n"
 	"github.com/suyuan32/simple-admin-core/api/internal/svc"
@@ -16,15 +15,13 @@ type GetAuditByIdLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
-	lang   string
 }
 
-func NewGetAuditByIdLogic(r *http.Request, svcCtx *svc.ServiceContext) *GetAuditByIdLogic {
+func NewGetAuditByIdLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetAuditByIdLogic {
 	return &GetAuditByIdLogic{
-		Logger: logx.WithContext(r.Context()),
-		ctx:    r.Context(),
+		Logger: logx.WithContext(ctx),
+		ctx:    ctx,
 		svcCtx: svcCtx,
-		lang:   r.Header.Get("Accept-Language"),
 	}
 }
 
@@ -41,7 +38,7 @@ func (l *GetAuditByIdLogic) GetAuditById(req *types.IDReq) (resp *types.AuditInf
 			Msg:  l.svcCtx.Trans.Trans(l.ctx, i18n.Success),
 		},
 		Data: types.AuditInfo{
-			BaseInfo: types.BaseInfo{
+			BaseIDInfo: types.BaseIDInfo{
 				Id:        data.Id,
 				CreatedAt: data.CreatedAt,
 				UpdatedAt: data.UpdatedAt,

@@ -2814,6 +2814,42 @@ paths:
             summary: Update API information | 创建API
             tags:
                 - api
+    /audit:
+        post:
+            description: Get Audit by ID | 通过ID获取角色
+            operationId: GetAuditById
+            parameters:
+                - in: body
+                  name: body
+                  schema:
+                    $ref: '#/definitions/IDReq'
+                    type: object
+            responses:
+                "200":
+                    description: AuditInfoResp
+                    schema:
+                        $ref: '#/definitions/AuditInfoResp'
+            summary: Get Audit by ID | 通过ID获取角色
+            tags:
+                - audit
+    /audit/list:
+        post:
+            description: Get Audit list | 获取角色列表
+            operationId: GetAuditList
+            parameters:
+                - in: body
+                  name: body
+                  schema:
+                    $ref: '#/definitions/AuditListReq'
+                    type: object
+            responses:
+                "200":
+                    description: AuditListResp
+                    schema:
+                        $ref: '#/definitions/AuditListResp'
+            summary: Get Audit list | 获取角色列表
+            tags:
+                - audit
     /authority/api/create_or_update:
         post:
             description: Create or update API authorization information | 创建或更新API权限

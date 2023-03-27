@@ -3,7 +3,7 @@ import "base.api"
 type (
     // The response data of Audit information | 角色信息
     AuditInfo {
-        BaseInfo
+        BaseIDInfo
 
         // ObjectName| 展示名称
         ObjectName  string `json:"objectName,optional"`
@@ -54,7 +54,7 @@ type (
 
 @server(
     jwt: Auth
-    group: Audit
+    group: audit
     middleware: Authority
 )
 

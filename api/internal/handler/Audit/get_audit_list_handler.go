@@ -1,16 +1,16 @@
-package Audit
+package audit
 
 import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"github.com/suyuan32/simple-admin-core/api/internal/logic/Audit"
+	"github.com/suyuan32/simple-admin-core/api/internal/logic/audit"
 	"github.com/suyuan32/simple-admin-core/api/internal/svc"
 	"github.com/suyuan32/simple-admin-core/api/internal/types"
 )
 
-// swagger:route post /Audit/list Audit GetAuditList
+// swagger:route post /audit/list audit GetAuditList
 //
 // Get Audit list | 获取角色列表
 //
@@ -33,7 +33,7 @@ func GetAuditListHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := Audit.NewGetAuditListLogic(r, svcCtx)
+		l := audit.NewGetAuditListLogic(r.Context(), svcCtx)
 		resp, err := l.GetAuditList(&req)
 		if err != nil {
 			err = svcCtx.Trans.TransError(r.Context(), err)
