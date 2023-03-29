@@ -25,7 +25,7 @@ func (Audit) Fields() []ent.Field {
 
 func (Audit) Mixin() []ent.Mixin {
 	return []ent.Mixin{
-		mixins.BaseMixin{},
+		mixins.BaseIDMixin{},
 		//mixins.StatusMixin{},
 	}
 }
