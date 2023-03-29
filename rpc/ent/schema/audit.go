@@ -18,7 +18,7 @@ func (Audit) Fields() []ent.Field {
 		field.String("object_name").Comment("Effect Object"),
 		field.String("action_name").Comment("Effect action"),
 		field.String("changed_data").Comment("Changed Data"),
-	
+	}
 }
 
 func (Audit) Mixin() []ent.Mixin {

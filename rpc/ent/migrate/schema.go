@@ -40,8 +40,6 @@ var (
 		{Name: "object_name", Type: field.TypeString},
 		{Name: "action_name", Type: field.TypeString},
 		{Name: "changed_data", Type: field.TypeString},
-		{Name: "created_by", Type: field.TypeString, Nullable: true},
-		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 	}
 	// SysAuditsTable holds the schema information for the "sys_audits" table.
 	SysAuditsTable = &schema.Table{

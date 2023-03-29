@@ -52,46 +52,6 @@ func (au *AuditUpdate) SetChangedData(s string) *AuditUpdate {
 	return au
 }
 
-// SetCreatedBy sets the "created_by" field.
-func (au *AuditUpdate) SetCreatedBy(s string) *AuditUpdate {
-	au.mutation.SetCreatedBy(s)
-	return au
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (au *AuditUpdate) SetNillableCreatedBy(s *string) *AuditUpdate {
-	if s != nil {
-		au.SetCreatedBy(*s)
-	}
-	return au
-}
-
-// ClearCreatedBy clears the value of the "created_by" field.
-func (au *AuditUpdate) ClearCreatedBy() *AuditUpdate {
-	au.mutation.ClearCreatedBy()
-	return au
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (au *AuditUpdate) SetUpdatedBy(s string) *AuditUpdate {
-	au.mutation.SetUpdatedBy(s)
-	return au
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (au *AuditUpdate) SetNillableUpdatedBy(s *string) *AuditUpdate {
-	if s != nil {
-		au.SetUpdatedBy(*s)
-	}
-	return au
-}
-
-// ClearUpdatedBy clears the value of the "updated_by" field.
-func (au *AuditUpdate) ClearUpdatedBy() *AuditUpdate {
-	au.mutation.ClearUpdatedBy()
-	return au
-}
-
 // Mutation returns the AuditMutation object of the builder.
 func (au *AuditUpdate) Mutation() *AuditMutation {
 	return au.mutation
@@ -154,18 +114,6 @@ func (au *AuditUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := au.mutation.ChangedData(); ok {
 		_spec.SetField(audit.FieldChangedData, field.TypeString, value)
 	}
-	if value, ok := au.mutation.CreatedBy(); ok {
-		_spec.SetField(audit.FieldCreatedBy, field.TypeString, value)
-	}
-	if au.mutation.CreatedByCleared() {
-		_spec.ClearField(audit.FieldCreatedBy, field.TypeString)
-	}
-	if value, ok := au.mutation.UpdatedBy(); ok {
-		_spec.SetField(audit.FieldUpdatedBy, field.TypeString, value)
-	}
-	if au.mutation.UpdatedByCleared() {
-		_spec.ClearField(audit.FieldUpdatedBy, field.TypeString)
-	}
 	if n, err = sqlgraph.UpdateNodes(ctx, au.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{audit.Label}
@@ -208,46 +156,6 @@ func (auo *AuditUpdateOne) SetActionName(s string) *AuditUpdateOne {
 // SetChangedData sets the "changed_data" field.
 func (auo *AuditUpdateOne) SetChangedData(s string) *AuditUpdateOne {
 	auo.mutation.SetChangedData(s)
-	return auo
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (auo *AuditUpdateOne) SetCreatedBy(s string) *AuditUpdateOne {
-	auo.mutation.SetCreatedBy(s)
-	return auo
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (auo *AuditUpdateOne) SetNillableCreatedBy(s *string) *AuditUpdateOne {
-	if s != nil {
-		auo.SetCreatedBy(*s)
-	}
-	return auo
-}
-
-// ClearCreatedBy clears the value of the "created_by" field.
-func (auo *AuditUpdateOne) ClearCreatedBy() *AuditUpdateOne {
-	auo.mutation.ClearCreatedBy()
-	return auo
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (auo *AuditUpdateOne) SetUpdatedBy(s string) *AuditUpdateOne {
-	auo.mutation.SetUpdatedBy(s)
-	return auo
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (auo *AuditUpdateOne) SetNillableUpdatedBy(s *string) *AuditUpdateOne {
-	if s != nil {
-		auo.SetUpdatedBy(*s)
-	}
-	return auo
-}
-
-// ClearUpdatedBy clears the value of the "updated_by" field.
-func (auo *AuditUpdateOne) ClearUpdatedBy() *AuditUpdateOne {
-	auo.mutation.ClearUpdatedBy()
 	return auo
 }
 
@@ -349,18 +257,6 @@ func (auo *AuditUpdateOne) sqlSave(ctx context.Context) (_node *Audit, err error
 	}
 	if value, ok := auo.mutation.ChangedData(); ok {
 		_spec.SetField(audit.FieldChangedData, field.TypeString, value)
-	}
-	if value, ok := auo.mutation.CreatedBy(); ok {
-		_spec.SetField(audit.FieldCreatedBy, field.TypeString, value)
-	}
-	if auo.mutation.CreatedByCleared() {
-		_spec.ClearField(audit.FieldCreatedBy, field.TypeString)
-	}
-	if value, ok := auo.mutation.UpdatedBy(); ok {
-		_spec.SetField(audit.FieldUpdatedBy, field.TypeString, value)
-	}
-	if auo.mutation.UpdatedByCleared() {
-		_spec.ClearField(audit.FieldUpdatedBy, field.TypeString)
 	}
 	_node = &Audit{config: auo.config}
 	_spec.Assign = _node.assignValues
