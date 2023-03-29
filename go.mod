@@ -23,10 +23,7 @@ require (
 )
 
 replace github.com/zeromicro/go-zero v1.5.0 => github.com/suyuan32/simple-admin-tools v0.2.9
-<<<<<<< HEAD
 replace github.com/suyuan32/simple-admin-common v0.2.8 => github.com/huuhoait/zero-tools v0.0.1
-=======
->>>>>>> 8fe7ca79cc53d6337bebb8d855c9ec8dec4ba4f8
 
 require (
 	ariga.io/atlas v0.10.0 // indirect
