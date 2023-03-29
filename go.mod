@@ -1,4 +1,4 @@
-module github.com/suyuan32/simple-admin-core
+module github.com/huuhoait/zero-admin-core
 
 go 1.19
 
@@ -9,7 +9,7 @@ require (
 	github.com/google/go-cmp v0.5.9
 	github.com/hibiken/asynq v0.24.0
 	github.com/mojocn/base64Captcha v1.3.5
-	github.com/suyuan32/simple-admin-common v0.2.8
+	github.com/huuhoait/zero-tools v0.0.1
 	github.com/suyuan32/simple-admin-job v0.2.8
 	github.com/zeromicro/go-zero v1.5.0
 	golang.org/x/oauth2 v0.6.0
@@ -17,7 +17,8 @@ require (
 	google.golang.org/protobuf v1.30.0
 )
 
-replace github.com/zeromicro/go-zero v1.5.0 => github.com/suyuan32/simple-admin-tools v0.2.9-beta
+replace github.com/zeromicro/go-zero v1.5.0 => github.com/suyuan32/simple-admin-tools v0.2.9
+replace github.com/suyuan32/simple-admin-common v0.2.8 => github.com/huuhoait/zero-tools v0.0.1
 
 require (
 	ariga.io/atlas v0.10.0 // indirect
