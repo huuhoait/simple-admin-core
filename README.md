@@ -1,9 +1,9 @@
 <div align="center">
 <img src="https://i.postimg.cc/nh8mVKkf/logo.png" width="300px" height="300px"/>
-<h1>Simple Admin</h1>
+<h1>Zero Admin</h1>
 </div>
 
-**English** | [中文](./README.md) 
+
 ---
 [![Go-Zero](https://img.shields.io/badge/Go--Zero-v1.5.0-brightgreen.svg)](https://go-zero.dev/)
 [![Vben Admin](https://img.shields.io/badge/Vben%20Admin-v2.8.0-yellow.svg)](https://vvbin.cn/doc-next/)
@@ -11,10 +11,10 @@
 [![Casbin](https://img.shields.io/badge/Casbin-v2.52.1-orange.svg)](https://github.com/casbin/casbin)
 [![Release](https://img.shields.io/badge/Release-v0.2.7-green.svg)](https://github.com/huuhoait/zero-admin-core/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![SimpleAdmin](https://dcbadge.vercel.app/api/server/NDED5p2hJk)](https://discord.gg/NDED5p2hJk)
+[![ZeroAdmin](https://dcbadge.vercel.app/api/server/NDED5p2hJk)](https://discord.gg/NDED5p2hJk)
 ## Introduction
 
-Simple Admin is an out-of-the-box distributed microservice back-end management system developed based on go-zero, which provides rich functions for the development of medium and large back-ends, supports three-terminal code generation.
+Zero Admin is an out-of-the-box distributed microservice back-end management system developed based on go-zero, which provides rich functions for the development of medium and large back-ends, supports three-terminal code generation.
 The official comes with a variety of extensions to help small and medium-sized enterprises quickly go to the cloud and iterate quickly. Suitable for microservice learning and commercial use, open source and free.
 
 ## Feature
@@ -26,7 +26,7 @@ The official comes with a variety of extensions to help small and medium-sized e
 - **Service Discover**: use k8s endpoints to do service discovery and load-balance
 - **Authority** Manage authority via Casbin, based on RBAC
 - **Code Generation**: Built-in three-terminal Web, API, RPC code generation
-- **Multiple extensions**: Provides a variety of extensions and has a very simple access function
+- **Multiple extensions**: Provides a variety of extensions and has a very Zero access function
 - **Other** builtin concurrency control, adaptive circuit breaker, adaptive load shedding, auto-trigger, auto recover
 
 ## Support functions
@@ -52,7 +52,7 @@ The official comes with a variety of extensions to help small and medium-sized e
 ### Online preview
 [Online Preview](http://101.132.124.135/#/dashboard)
 Account:   admin 
-Password:  simple-admin
+Password:  Zero-admin
 #### Read Only, cannot register and modify
 
 ![pic](https://i.postimg.cc/qqPNR02x/register-zh-cn.png)
@@ -60,7 +60,7 @@ Password:  simple-admin
 
 ## Documentation
 
-[Simple Admin Document](https://doc.ryansu.pro)
+[Zero Admin Document](https://doc.ryansu.pro)
 
 - go-zero
   [Document](https://go-zero.dev/)
@@ -84,14 +84,14 @@ Password:  simple-admin
 
 ## Relative Project
 
-- [Simple Admin](https://github.com/huuhoait/zero-admin-core)
-- [Simple Admin Backend UI](https://github.com/suyuan32/simple-admin-backend-ui)
+- [Zero Admin](https://github.com/huuhoait/zero-admin-core)
+- [Zero Admin Backend UI](https://github.com/suyuan32/Zero-admin-backend-ui)
 
 ## Optional Components
 
-- [File Management](https://github.com/suyuan32/simple-admin-file)
-- [Scheduled Task](https://github.com/suyuan32/simple-admin-job)
-- [Member Management](https://github.com/suyuan32/simple-admin-member-api)
+- [File Management](https://github.com/suyuan32/Zero-admin-file)
+- [Scheduled Task](https://github.com/suyuan32/Zero-admin-job)
+- [Member Management](https://github.com/suyuan32/Zero-admin-member-api)
 
 
 ## How to contribute
@@ -126,7 +126,6 @@ You are very welcome to join！[Raise an issue](https://github.com/huuhoait/zero
 
 # Community
 
-> [Discard](https://discord.gg/NDED5p2hJk)
 
 > [Discussion](https://github.com/huuhoait/zero-admin-core/discussions)
 
@@ -137,8 +136,8 @@ You are very welcome to join！[Raise an issue](https://github.com/huuhoait/zero
 
 ## Maintainer
 
-[@Ryan Su](https://github.com/suyuan32)
+
 
 ## License
 
-[MIT © Ryan-2022](./LICENSE)
+
