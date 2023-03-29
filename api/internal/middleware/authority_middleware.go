@@ -7,13 +7,13 @@ import (
 	"strings"
 
 	"github.com/casbin/casbin/v2"
-	"github.com/suyuan32/simple-admin-common/enum/errorcode"
+	"github.com/huuhoait/zero-tools/enum/errorcode"
 	"github.com/zeromicro/go-zero/core/errorx"
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/stores/redis"
 	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/huuhoait/zero-tools/i18n"
 )
 
 type AuthorityMiddleware struct {

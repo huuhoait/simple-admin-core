@@ -3,7 +3,7 @@ package user
 import (
 	"context"
 
-	"github.com/suyuan32/simple-admin-common/enum/errorcode"
+	"github.com/huuhoait/zero-tools/enum/errorcode"
 	"github.com/zeromicro/go-zero/core/errorx"
 
 	"github.com/huuhoait/zero-admin-core/api/internal/logic/captcha"

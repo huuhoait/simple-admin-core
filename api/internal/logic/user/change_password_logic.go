@@ -3,7 +3,7 @@ package user
 import (
 	"context"
 
-	"github.com/suyuan32/simple-admin-common/utils/encrypt"
+	"github.com/huuhoait/zero-tools/utils/encrypt"
 	"github.com/zeromicro/go-zero/core/errorx"
 
 	"github.com/huuhoait/zero-admin-core/api/internal/svc"

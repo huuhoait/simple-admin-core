@@ -3,13 +3,13 @@ package user
 import (
 	"context"
 
-	"github.com/suyuan32/simple-admin-common/utils/encrypt"
+	"github.com/huuhoait/zero-tools/utils/encrypt"
 
 	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
 	"github.com/huuhoait/zero-admin-core/rpc/internal/utils/errorhandler"
 	"github.com/huuhoait/zero-admin-core/rpc/types/core"
 
-	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/huuhoait/zero-tools/i18n"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

@@ -7,11 +7,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/suyuan32/simple-admin-common/msg/logmsg"
+	"github.com/huuhoait/zero-tools/msg/logmsg"
 	"github.com/zeromicro/go-zero/core/errorx"
 	"github.com/zeromicro/go-zero/core/stores/redis"
 
-	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/huuhoait/zero-tools/i18n"
 
 	"github.com/huuhoait/zero-admin-core/api/internal/svc"
 	"github.com/huuhoait/zero-admin-core/api/internal/types"

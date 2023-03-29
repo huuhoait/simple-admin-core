@@ -80,7 +80,6 @@ type (
 		GetMenuAuthority(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*RoleMenuAuthorityResp, error)
 		CreateOrUpdateMenuAuthority(ctx context.Context, in *RoleMenuAuthorityReq, opts ...grpc.CallOption) (*BaseResp, error)
 		InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
-		InitJobDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
 		// Department management
 		CreateDepartment(ctx context.Context, in *DepartmentInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
 		UpdateDepartment(ctx context.Context, in *DepartmentInfo, opts ...grpc.CallOption) (*BaseResp, error)
@@ -206,11 +205,6 @@ func (m *defaultCore) CreateOrUpdateMenuAuthority(ctx context.Context, in *RoleM
 func (m *defaultCore) InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.InitDatabase(ctx, in, opts...)
-}
-
-func (m *defaultCore) InitJobDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.InitJobDatabase(ctx, in, opts...)
 }
 
 // Department management

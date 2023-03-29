@@ -86,11 +86,6 @@ func (s *CoreServer) InitDatabase(ctx context.Context, in *core.Empty) (*core.Ba
 	return l.InitDatabase(in)
 }
 
-func (s *CoreServer) InitJobDatabase(ctx context.Context, in *core.Empty) (*core.BaseResp, error) {
-	l := base.NewInitJobDatabaseLogic(ctx, s.svcCtx)
-	return l.InitJobDatabase(in)
-}
-
 // Department management
 func (s *CoreServer) CreateDepartment(ctx context.Context, in *core.DepartmentInfo) (*core.BaseIDResp, error) {
 	l := department.NewCreateDepartmentLogic(ctx, s.svcCtx)

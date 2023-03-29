@@ -5,12 +5,12 @@ import (
 
 	"time"
 
-	"github.com/suyuan32/simple-admin-common/enum/errorcode"
-	"github.com/suyuan32/simple-admin-common/utils/encrypt"
-	"github.com/suyuan32/simple-admin-common/utils/jwt"
+	"github.com/huuhoait/zero-tools/enum/errorcode"
+	"github.com/huuhoait/zero-tools/utils/encrypt"
+	"github.com/huuhoait/zero-tools/utils/jwt"
 	"github.com/zeromicro/go-zero/core/errorx"
 
-	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/huuhoait/zero-tools/i18n"
 
 	"github.com/huuhoait/zero-admin-core/api/internal/logic/captcha"
 	"github.com/huuhoait/zero-admin-core/api/internal/svc"

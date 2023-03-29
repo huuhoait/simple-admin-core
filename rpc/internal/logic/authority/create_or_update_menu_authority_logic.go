@@ -3,7 +3,7 @@ package authority
 import (
 	"context"
 
-	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/huuhoait/zero-tools/i18n"
 
 	"github.com/huuhoait/zero-admin-core/rpc/internal/utils/entx"
 

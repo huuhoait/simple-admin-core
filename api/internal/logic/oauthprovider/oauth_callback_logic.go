@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/suyuan32/simple-admin-common/utils/jwt"
+	"github.com/huuhoait/zero-tools/utils/jwt"
 
 	"github.com/huuhoait/zero-admin-core/api/internal/svc"
 	"github.com/huuhoait/zero-admin-core/api/internal/types"

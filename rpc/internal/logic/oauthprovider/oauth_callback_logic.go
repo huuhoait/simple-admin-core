@@ -8,13 +8,13 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/suyuan32/simple-admin-common/msg/logmsg"
+	"github.com/huuhoait/zero-tools/msg/logmsg"
 	"github.com/zeromicro/go-zero/core/errorx"
 	"golang.org/x/oauth2"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/huuhoait/zero-tools/i18n"
 
 	"github.com/huuhoait/zero-admin-core/rpc/ent"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/oauthprovider"

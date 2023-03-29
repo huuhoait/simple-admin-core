@@ -43,8 +43,6 @@ type CoreClient interface {
 	CreateOrUpdateMenuAuthority(ctx context.Context, in *RoleMenuAuthorityReq, opts ...grpc.CallOption) (*BaseResp, error)
 	// group: base
 	InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
-	// group: base
-	InitJobDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
 	// Department management
 	// group: department
 	CreateDepartment(ctx context.Context, in *DepartmentInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
@@ -256,15 +254,6 @@ func (c *coreClient) CreateOrUpdateMenuAuthority(ctx context.Context, in *RoleMe
 func (c *coreClient) InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
 	out := new(BaseResp)
 	err := c.cc.Invoke(ctx, "/core.Core/initDatabase", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *coreClient) InitJobDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
-	out := new(BaseResp)
-	err := c.cc.Invoke(ctx, "/core.Core/initJobDatabase", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -782,8 +771,6 @@ type CoreServer interface {
 	CreateOrUpdateMenuAuthority(context.Context, *RoleMenuAuthorityReq) (*BaseResp, error)
 	// group: base
 	InitDatabase(context.Context, *Empty) (*BaseResp, error)
-	// group: base
-	InitJobDatabase(context.Context, *Empty) (*BaseResp, error)
 	// Department management
 	// group: department
 	CreateDepartment(context.Context, *DepartmentInfo) (*BaseIDResp, error)
@@ -937,9 +924,6 @@ func (UnimplementedCoreServer) CreateOrUpdateMenuAuthority(context.Context, *Rol
 }
 func (UnimplementedCoreServer) InitDatabase(context.Context, *Empty) (*BaseResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitDatabase not implemented")
-}
-func (UnimplementedCoreServer) InitJobDatabase(context.Context, *Empty) (*BaseResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method InitJobDatabase not implemented")
 }
 func (UnimplementedCoreServer) CreateDepartment(context.Context, *DepartmentInfo) (*BaseIDResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDepartment not implemented")
@@ -1292,24 +1276,6 @@ func _Core_InitDatabase_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CoreServer).InitDatabase(ctx, req.(*Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Core_InitJobDatabase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoreServer).InitJobDatabase(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/core.Core/initJobDatabase",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoreServer).InitJobDatabase(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2332,10 +2298,6 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "initDatabase",
 			Handler:    _Core_InitDatabase_Handler,
-		},
-		{
-			MethodName: "initJobDatabase",
-			Handler:    _Core_InitJobDatabase_Handler,
 		},
 		{
 			MethodName: "createDepartment",

@@ -3,10 +3,10 @@ package token
 import (
 	"context"
 
-	"github.com/suyuan32/simple-admin-common/utils/uuidx"
+	"github.com/huuhoait/zero-tools/utils/uuidx"
 	"github.com/zeromicro/go-zero/core/logx"
 
-	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/huuhoait/zero-tools/i18n"
 
 	"github.com/huuhoait/zero-admin-core/rpc/ent/token"
 

@@ -5,12 +5,12 @@ import (
 	"fmt"
 
 	"entgo.io/ent/dialect/sql/schema"
-	"github.com/suyuan32/simple-admin-common/msg/logmsg"
-	"github.com/suyuan32/simple-admin-common/utils/encrypt"
+	"github.com/huuhoait/zero-tools/msg/logmsg"
+	"github.com/huuhoait/zero-tools/utils/encrypt"
 	"github.com/zeromicro/go-zero/core/errorx"
 	"github.com/zeromicro/go-zero/core/stores/redis"
 
-	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/huuhoait/zero-tools/i18n"
 
 	"github.com/huuhoait/zero-admin-core/rpc/ent"
 	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"

@@ -20,7 +20,7 @@ replace github.com/zeromicro/go-zero v1.5.0 => github.com/suyuan32/simple-admin-
 
 replace github.com/suyuan32/simple-admin-common v0.2.8 => github.com/huuhoait/zero-tools v0.0.1
 
-require github.com/suyuan32/simple-admin-common v0.2.9
+require github.com/huuhoait/zero-tools v0.0.1
 
 require (
 	ariga.io/atlas v0.10.0 // indirect
@@ -97,6 +97,7 @@ require (
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
+	github.com/suyuan32/simple-admin-common v0.2.9 // indirect
 	github.com/zclconf/go-cty v1.13.1 // indirect
 	go.etcd.io/etcd/api/v3 v3.5.7 // indirect
 	go.etcd.io/etcd/client/pkg/v3 v3.5.7 // indirect

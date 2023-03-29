@@ -3,7 +3,7 @@ package user
 import (
 	"context"
 
-	"github.com/suyuan32/simple-admin-common/utils/uuidx"
+	"github.com/huuhoait/zero-tools/utils/uuidx"
 
 	"github.com/huuhoait/zero-admin-core/rpc/ent"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/user"

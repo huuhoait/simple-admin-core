@@ -1,7 +1,7 @@
 package svc
 
 import (
-	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/huuhoait/zero-tools/i18n"
 
 	i18n2 "github.com/huuhoait/zero-admin-core/api/internal/i18n"
 
