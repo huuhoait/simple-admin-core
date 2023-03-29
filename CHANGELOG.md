@@ -1,6 +1,6 @@
 
 <a name="v0.2.8"></a>
-## [v0.2.8](https://github.com/suyuan32/simple-admin-core/compare/v0.2.7...v0.2.8) (2023-03-19)
+## [v0.2.8](https://github.com/huuhoait/zero-admin-core/compare/v0.2.7...v0.2.8) (2023-03-19)
 
 ### Chore
 
@@ -28,12 +28,12 @@
 
 ### Pull Requests
 
-* Merge pull request [#84](https://github.com/suyuan32/simple-admin-core/issues/84) from suyuan32/feat-task-log
-* Merge pull request [#83](https://github.com/suyuan32/simple-admin-core/issues/83) from suyuan32/feat-postgres-docker
+* Merge pull request [#84](https://github.com/huuhoait/zero-admin-core/issues/84) from suyuan32/feat-task-log
+* Merge pull request [#83](https://github.com/huuhoait/zero-admin-core/issues/83) from suyuan32/feat-postgres-docker
 
 
 <a name="v0.2.7"></a>
-## [v0.2.7](https://github.com/suyuan32/simple-admin-core/compare/v0.2.7-beta...v0.2.7) (2023-03-12)
+## [v0.2.7](https://github.com/huuhoait/zero-admin-core/compare/v0.2.7-beta...v0.2.7) (2023-03-12)
 
 ### Chore
 
@@ -46,7 +46,7 @@
 
 
 <a name="v0.2.7-beta"></a>
-## [v0.2.7-beta](https://github.com/suyuan32/simple-admin-core/compare/v0.2.5-beta...v0.2.7-beta) (2023-03-08)
+## [v0.2.7-beta](https://github.com/huuhoait/zero-admin-core/compare/v0.2.5-beta...v0.2.7-beta) (2023-03-08)
 
 ### Chore
 
@@ -77,15 +77,15 @@
 
 ### Pull Requests
 
-* Merge pull request [#79](https://github.com/suyuan32/simple-admin-core/issues/79) from suyuan32/refator-split-pkg
+* Merge pull request [#79](https://github.com/huuhoait/zero-admin-core/issues/79) from suyuan32/refator-split-pkg
 
 
 <a name="v0.2.5-beta"></a>
-## [v0.2.5-beta](https://github.com/suyuan32/simple-admin-core/compare/v0.2.6...v0.2.5-beta) (2023-02-28)
+## [v0.2.5-beta](https://github.com/huuhoait/zero-admin-core/compare/v0.2.6...v0.2.5-beta) (2023-02-28)
 
 
 <a name="v0.2.6"></a>
-## [v0.2.6](https://github.com/suyuan32/simple-admin-core/compare/v0.2.5...v0.2.6) (2023-02-28)
+## [v0.2.6](https://github.com/huuhoait/zero-admin-core/compare/v0.2.5...v0.2.6) (2023-02-28)
 
 ### Docs
 
@@ -112,12 +112,12 @@
 
 ### Pull Requests
 
-* Merge pull request [#78](https://github.com/suyuan32/simple-admin-core/issues/78) from suyuan32/feat-error-handling
-* Merge pull request [#77](https://github.com/suyuan32/simple-admin-core/issues/77) from suyuan32/feat-redis-watcher
+* Merge pull request [#78](https://github.com/huuhoait/zero-admin-core/issues/78) from suyuan32/feat-error-handling
+* Merge pull request [#77](https://github.com/huuhoait/zero-admin-core/issues/77) from suyuan32/feat-redis-watcher
 
 
 <a name="v0.2.5"></a>
-## [v0.2.5](https://github.com/suyuan32/simple-admin-core/compare/v0.2.4...v0.2.5) (2023-02-23)
+## [v0.2.5](https://github.com/huuhoait/zero-admin-core/compare/v0.2.4...v0.2.5) (2023-02-23)
 
 ### Chore
 
@@ -147,11 +147,11 @@
 
 ### Pull Requests
 
-* Merge pull request [#72](https://github.com/suyuan32/simple-admin-core/issues/72) from suyuan32/refator-split-member
+* Merge pull request [#72](https://github.com/huuhoait/zero-admin-core/issues/72) from suyuan32/refator-split-member
 
 
 <a name="v0.2.4"></a>
-## [v0.2.4](https://github.com/suyuan32/simple-admin-core/compare/v0.2.4-beta...v0.2.4) (2023-02-13)
+## [v0.2.4](https://github.com/huuhoait/zero-admin-core/compare/v0.2.4-beta...v0.2.4) (2023-02-13)
 
 ### Chore
 
@@ -171,7 +171,7 @@
 
 
 <a name="v0.2.4-beta"></a>
-## [v0.2.4-beta](https://github.com/suyuan32/simple-admin-core/compare/v0.2.3...v0.2.4-beta) (2023-02-09)
+## [v0.2.4-beta](https://github.com/huuhoait/zero-admin-core/compare/v0.2.3...v0.2.4-beta) (2023-02-09)
 
 ### Docs
 
@@ -193,11 +193,11 @@
 
 ### Pull Requests
 
-* Merge pull request [#68](https://github.com/suyuan32/simple-admin-core/issues/68) from suyuan32/refator-createUpdate
+* Merge pull request [#68](https://github.com/huuhoait/zero-admin-core/issues/68) from suyuan32/refator-createUpdate
 
 
 <a name="v0.2.3"></a>
-## [v0.2.3](https://github.com/suyuan32/simple-admin-core/compare/v0.2.2...v0.2.3) (2023-02-06)
+## [v0.2.3](https://github.com/huuhoait/zero-admin-core/compare/v0.2.2...v0.2.3) (2023-02-06)
 
 ### Chore
 
@@ -233,12 +233,12 @@
 
 ### Pull Requests
 
-* Merge pull request [#66](https://github.com/suyuan32/simple-admin-core/issues/66) from suyuan32/feat-post
-* Merge pull request [#65](https://github.com/suyuan32/simple-admin-core/issues/65) from suyuan32/feat-dept
+* Merge pull request [#66](https://github.com/huuhoait/zero-admin-core/issues/66) from suyuan32/feat-post
+* Merge pull request [#65](https://github.com/huuhoait/zero-admin-core/issues/65) from suyuan32/feat-dept
 
 
 <a name="v0.2.2"></a>
-## [v0.2.2](https://github.com/suyuan32/simple-admin-core/compare/v0.2.1...v0.2.2) (2023-01-29)
+## [v0.2.2](https://github.com/huuhoait/zero-admin-core/compare/v0.2.1...v0.2.2) (2023-01-29)
 
 ### Chore
 
@@ -267,12 +267,12 @@
 
 ### Pull Requests
 
-* Merge pull request [#61](https://github.com/suyuan32/simple-admin-core/issues/61) from suyuan32/feat-proto-split
-* Merge pull request [#58](https://github.com/suyuan32/simple-admin-core/issues/58) from ch3nnn/fix/config-database
+* Merge pull request [#61](https://github.com/huuhoait/zero-admin-core/issues/61) from suyuan32/feat-proto-split
+* Merge pull request [#58](https://github.com/huuhoait/zero-admin-core/issues/58) from ch3nnn/fix/config-database
 
 
 <a name="v0.2.1"></a>
-## [v0.2.1](https://github.com/suyuan32/simple-admin-core/compare/v0.2.1-beta...v0.2.1) (2023-01-10)
+## [v0.2.1](https://github.com/huuhoait/zero-admin-core/compare/v0.2.1-beta...v0.2.1) (2023-01-10)
 
 ### Doc
 
@@ -280,7 +280,7 @@
 
 
 <a name="v0.2.1-beta"></a>
-## [v0.2.1-beta](https://github.com/suyuan32/simple-admin-core/compare/v0.2.0...v0.2.1-beta) (2023-01-09)
+## [v0.2.1-beta](https://github.com/huuhoait/zero-admin-core/compare/v0.2.0...v0.2.1-beta) (2023-01-09)
 
 ### Chore
 
@@ -302,7 +302,7 @@
 
 
 <a name="v0.2.0"></a>
-## [v0.2.0](https://github.com/suyuan32/simple-admin-core/compare/v0.2.0-beta...v0.2.0) (2022-12-29)
+## [v0.2.0](https://github.com/huuhoait/zero-admin-core/compare/v0.2.0-beta...v0.2.0) (2022-12-29)
 
 ### Chore
 
@@ -325,7 +325,7 @@
 
 
 <a name="v0.2.0-beta"></a>
-## [v0.2.0-beta](https://github.com/suyuan32/simple-admin-core/compare/v0.1.9...v0.2.0-beta) (2022-12-17)
+## [v0.2.0-beta](https://github.com/huuhoait/zero-admin-core/compare/v0.1.9...v0.2.0-beta) (2022-12-17)
 
 ### Docs
 
@@ -337,16 +337,16 @@
 ### Fix
 
 * postgres dsn
-* pagination template bug [#51](https://github.com/suyuan32/simple-admin-core/issues/51)
+* pagination template bug [#51](https://github.com/huuhoait/zero-admin-core/issues/51)
 * postgres dsn
 
 ### Pull Requests
 
-* Merge pull request [#52](https://github.com/suyuan32/simple-admin-core/issues/52) from suyuan32/fix-pagination
+* Merge pull request [#52](https://github.com/huuhoait/zero-admin-core/issues/52) from suyuan32/fix-pagination
 
 
 <a name="v0.1.9"></a>
-## [v0.1.9](https://github.com/suyuan32/simple-admin-core/compare/v0.1.8...v0.1.9) (2022-12-15)
+## [v0.1.9](https://github.com/huuhoait/zero-admin-core/compare/v0.1.8...v0.1.9) (2022-12-15)
 
 ### Chore
 
@@ -373,11 +373,11 @@
 
 ### Pull Requests
 
-* Merge pull request [#49](https://github.com/suyuan32/simple-admin-core/issues/49) from suyuan32/group-logic
+* Merge pull request [#49](https://github.com/huuhoait/zero-admin-core/issues/49) from suyuan32/group-logic
 
 
 <a name="v0.1.8"></a>
-## [v0.1.8](https://github.com/suyuan32/simple-admin-core/compare/v0.1.7...v0.1.8) (2022-12-10)
+## [v0.1.8](https://github.com/huuhoait/zero-admin-core/compare/v0.1.7...v0.1.8) (2022-12-10)
 
 ### Docs
 
@@ -406,7 +406,7 @@
 
 
 <a name="v0.1.7"></a>
-## [v0.1.7](https://github.com/suyuan32/simple-admin-core/compare/v0.1.6...v0.1.7) (2022-12-03)
+## [v0.1.7](https://github.com/huuhoait/zero-admin-core/compare/v0.1.6...v0.1.7) (2022-12-03)
 
 ### Docs
 
@@ -427,11 +427,11 @@
 
 ### Pull Requests
 
-* Merge pull request [#46](https://github.com/suyuan32/simple-admin-core/issues/46) from suyuan32/fix-reuse-pkg
+* Merge pull request [#46](https://github.com/huuhoait/zero-admin-core/issues/46) from suyuan32/fix-reuse-pkg
 
 
 <a name="v0.1.6"></a>
-## [v0.1.6](https://github.com/suyuan32/simple-admin-core/compare/v0.1.5...v0.1.6) (2022-11-18)
+## [v0.1.6](https://github.com/huuhoait/zero-admin-core/compare/v0.1.5...v0.1.6) (2022-11-18)
 
 ### Docs
 
@@ -457,11 +457,11 @@
 
 ### Pull Requests
 
-* Merge pull request [#45](https://github.com/suyuan32/simple-admin-core/issues/45) from suyuan32/fix-reuse-pkg
+* Merge pull request [#45](https://github.com/huuhoait/zero-admin-core/issues/45) from suyuan32/fix-reuse-pkg
 
 
 <a name="v0.1.5"></a>
-## [v0.1.5](https://github.com/suyuan32/simple-admin-core/compare/v0.1.4...v0.1.5) (2022-11-13)
+## [v0.1.5](https://github.com/huuhoait/zero-admin-core/compare/v0.1.4...v0.1.5) (2022-11-13)
 
 ### Docs
 
@@ -487,11 +487,11 @@
 
 ### Pull Requests
 
-* Merge pull request [#43](https://github.com/suyuan32/simple-admin-core/issues/43) from suyuan32/fix-error-code
+* Merge pull request [#43](https://github.com/huuhoait/zero-admin-core/issues/43) from suyuan32/fix-error-code
 
 
 <a name="v0.1.4"></a>
-## [v0.1.4](https://github.com/suyuan32/simple-admin-core/compare/v0.1.4-beta...v0.1.4) (2022-11-11)
+## [v0.1.4](https://github.com/huuhoait/zero-admin-core/compare/v0.1.4-beta...v0.1.4) (2022-11-11)
 
 ### Chore
 
@@ -519,7 +519,7 @@
 
 
 <a name="v0.1.4-beta"></a>
-## [v0.1.4-beta](https://github.com/suyuan32/simple-admin-core/compare/v0.1.3...v0.1.4-beta) (2022-11-07)
+## [v0.1.4-beta](https://github.com/huuhoait/zero-admin-core/compare/v0.1.3...v0.1.4-beta) (2022-11-07)
 
 ### Docs
 
@@ -545,11 +545,11 @@
 
 ### Pull Requests
 
-* Merge pull request [#40](https://github.com/suyuan32/simple-admin-core/issues/40) from suyuan32/ent
+* Merge pull request [#40](https://github.com/huuhoait/zero-admin-core/issues/40) from suyuan32/ent
 
 
 <a name="v0.1.3"></a>
-## [v0.1.3](https://github.com/suyuan32/simple-admin-core/compare/v0.1.2...v0.1.3) (2022-11-02)
+## [v0.1.3](https://github.com/huuhoait/zero-admin-core/compare/v0.1.2...v0.1.3) (2022-11-02)
 
 ### Chore
 
@@ -567,7 +567,7 @@
 
 ### Fix
 
-* DictionaryDetail 表结构 [#38](https://github.com/suyuan32/simple-admin-core/issues/38)
+* DictionaryDetail 表结构 [#38](https://github.com/huuhoait/zero-admin-core/issues/38)
 * blocking in cron
 * api model index
 * http status
@@ -581,11 +581,11 @@
 
 ### Pull Requests
 
-* Merge pull request [#37](https://github.com/suyuan32/simple-admin-core/issues/37) from MUHM/fix/status
+* Merge pull request [#37](https://github.com/huuhoait/zero-admin-core/issues/37) from MUHM/fix/status
 
 
 <a name="v0.1.2"></a>
-## [v0.1.2](https://github.com/suyuan32/simple-admin-core/compare/v0.1.1...v0.1.2) (2022-10-28)
+## [v0.1.2](https://github.com/huuhoait/zero-admin-core/compare/v0.1.1...v0.1.2) (2022-10-28)
 
 ### Chore
 
@@ -607,8 +607,8 @@
 * add optional tag for userprofile request
 * add optional tag for userprofile request
 * add optional tag for page request
-* CreateAt,UpdateAt,DeleteAt 命名不统一 [#29](https://github.com/suyuan32/simple-admin-core/issues/29)
-* swagger response type definition wrong [#27](https://github.com/suyuan32/simple-admin-core/issues/27)
+* CreateAt,UpdateAt,DeleteAt 命名不统一 [#29](https://github.com/huuhoait/zero-admin-core/issues/29)
+* swagger response type definition wrong [#27](https://github.com/huuhoait/zero-admin-core/issues/27)
 * change log message into lowercase
 
 ### Perf
@@ -626,12 +626,12 @@
 
 ### Pull Requests
 
-* Merge pull request [#34](https://github.com/suyuan32/simple-admin-core/issues/34) from suyuan32/feat-rckmq
-* Merge pull request [#31](https://github.com/suyuan32/simple-admin-core/issues/31) from RogueCultivators/fix/list
+* Merge pull request [#34](https://github.com/huuhoait/zero-admin-core/issues/34) from suyuan32/feat-rckmq
+* Merge pull request [#31](https://github.com/huuhoait/zero-admin-core/issues/31) from RogueCultivators/fix/list
 
 
 <a name="v0.1.1"></a>
-## [v0.1.1](https://github.com/suyuan32/simple-admin-core/compare/v0.1.0...v0.1.1) (2022-10-21)
+## [v0.1.1](https://github.com/huuhoait/zero-admin-core/compare/v0.1.0...v0.1.1) (2022-10-21)
 
 ### Docs
 
@@ -650,7 +650,7 @@
 
 
 <a name="v0.1.0"></a>
-## [v0.1.0](https://github.com/suyuan32/simple-admin-core/compare/v0.0.9...v0.1.0) (2022-10-17)
+## [v0.1.0](https://github.com/huuhoait/zero-admin-core/compare/v0.0.9...v0.1.0) (2022-10-17)
 
 ### Docs
 
@@ -675,13 +675,13 @@
 
 ### Pull Requests
 
-* Merge pull request [#20](https://github.com/suyuan32/simple-admin-core/issues/20) from suyuan32/feat-log-collection
-* Merge pull request [#19](https://github.com/suyuan32/simple-admin-core/issues/19) from suyuan32/feat-log-collection
-* Merge pull request [#18](https://github.com/suyuan32/simple-admin-core/issues/18) from suyuan32/feat-monitor
+* Merge pull request [#20](https://github.com/huuhoait/zero-admin-core/issues/20) from suyuan32/feat-log-collection
+* Merge pull request [#19](https://github.com/huuhoait/zero-admin-core/issues/19) from suyuan32/feat-log-collection
+* Merge pull request [#18](https://github.com/huuhoait/zero-admin-core/issues/18) from suyuan32/feat-monitor
 
 
 <a name="v0.0.9"></a>
-## [v0.0.9](https://github.com/suyuan32/simple-admin-core/compare/v0.0.8.1...v0.0.9) (2022-10-12)
+## [v0.0.9](https://github.com/huuhoait/zero-admin-core/compare/v0.0.8.1...v0.0.9) (2022-10-12)
 
 ### Docs
 
@@ -709,11 +709,11 @@
 
 ### Pull Requests
 
-* Merge pull request [#16](https://github.com/suyuan32/simple-admin-core/issues/16) from suyuan32/feat-k8s
+* Merge pull request [#16](https://github.com/huuhoait/zero-admin-core/issues/16) from suyuan32/feat-k8s
 
 
 <a name="v0.0.8.1"></a>
-## [v0.0.8.1](https://github.com/suyuan32/simple-admin-core/compare/v0.0.8...v0.0.8.1) (2022-10-09)
+## [v0.0.8.1](https://github.com/huuhoait/zero-admin-core/compare/v0.0.8...v0.0.8.1) (2022-10-09)
 
 ### Docs
 
@@ -727,7 +727,7 @@
 
 
 <a name="v0.0.8"></a>
-## [v0.0.8](https://github.com/suyuan32/simple-admin-core/compare/v0.0.7...v0.0.8) (2022-10-08)
+## [v0.0.8](https://github.com/huuhoait/zero-admin-core/compare/v0.0.7...v0.0.8) (2022-10-08)
 
 ### Docs
 
@@ -749,7 +749,7 @@
 
 
 <a name="v0.0.7"></a>
-## [v0.0.7](https://github.com/suyuan32/simple-admin-core/compare/v0.0.7-beta...v0.0.7) (2022-09-30)
+## [v0.0.7](https://github.com/huuhoait/zero-admin-core/compare/v0.0.7-beta...v0.0.7) (2022-09-30)
 
 ### Fix
 
@@ -758,7 +758,7 @@
 
 
 <a name="v0.0.7-beta"></a>
-## [v0.0.7-beta](https://github.com/suyuan32/simple-admin-core/compare/v0.0.6...v0.0.7-beta) (2022-09-29)
+## [v0.0.7-beta](https://github.com/huuhoait/zero-admin-core/compare/v0.0.6...v0.0.7-beta) (2022-09-29)
 
 ### Docs
 
@@ -792,7 +792,7 @@
 
 
 <a name="v0.0.6"></a>
-## [v0.0.6](https://github.com/suyuan32/simple-admin-core/compare/v0.0.5...v0.0.6) (2022-09-23)
+## [v0.0.6](https://github.com/huuhoait/zero-admin-core/compare/v0.0.5...v0.0.6) (2022-09-23)
 
 ### Feat
 
@@ -804,7 +804,7 @@
 
 
 <a name="v0.0.5"></a>
-## [v0.0.5](https://github.com/suyuan32/simple-admin-core/compare/v0.0.4...v0.0.5) (2022-09-21)
+## [v0.0.5](https://github.com/huuhoait/zero-admin-core/compare/v0.0.4...v0.0.5) (2022-09-21)
 
 ### Feat
 
@@ -825,7 +825,7 @@
 
 
 <a name="v0.0.4"></a>
-## [v0.0.4](https://github.com/suyuan32/simple-admin-core/compare/v0.0.2...v0.0.4) (2022-09-13)
+## [v0.0.4](https://github.com/huuhoait/zero-admin-core/compare/v0.0.2...v0.0.4) (2022-09-13)
 
 ### Feat
 
@@ -853,7 +853,7 @@
 
 
 <a name="v0.0.2"></a>
-## [v0.0.2](https://github.com/suyuan32/simple-admin-core/compare/v0.0.1...v0.0.2) (2022-09-05)
+## [v0.0.2](https://github.com/huuhoait/zero-admin-core/compare/v0.0.1...v0.0.2) (2022-09-05)
 
 ### Feat
 
@@ -872,7 +872,7 @@
 
 ### Pull Requests
 
-* Merge pull request [#2](https://github.com/suyuan32/simple-admin-core/issues/2) from suyuan32/dev
+* Merge pull request [#2](https://github.com/huuhoait/zero-admin-core/issues/2) from suyuan32/dev
 
 
 <a name="v0.0.1"></a>
@@ -900,5 +900,5 @@
 
 ### Pull Requests
 
-* Merge pull request [#1](https://github.com/suyuan32/simple-admin-core/issues/1) from suyuan32/dev
+* Merge pull request [#1](https://github.com/huuhoait/zero-admin-core/issues/1) from suyuan32/dev
 

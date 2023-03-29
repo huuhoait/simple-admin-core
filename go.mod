@@ -9,13 +9,7 @@ require (
 	github.com/google/go-cmp v0.5.9
 	github.com/hibiken/asynq v0.24.0
 	github.com/mojocn/base64Captcha v1.3.5
-
-	github.com/huuhoait/zero-tools v0.0.1
-	github.com/suyuan32/simple-admin-job v0.2.8
-
-
 	github.com/suyuan32/simple-admin-job v0.2.9
-
 	github.com/zeromicro/go-zero v1.5.0
 	golang.org/x/oauth2 v0.6.0
 	google.golang.org/grpc v1.54.0
@@ -23,7 +17,10 @@ require (
 )
 
 replace github.com/zeromicro/go-zero v1.5.0 => github.com/suyuan32/simple-admin-tools v0.2.9
+
 replace github.com/suyuan32/simple-admin-common v0.2.8 => github.com/huuhoait/zero-tools v0.0.1
+
+require github.com/suyuan32/simple-admin-common v0.2.9
 
 require (
 	ariga.io/atlas v0.10.0 // indirect

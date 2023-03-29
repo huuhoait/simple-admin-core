@@ -9,7 +9,7 @@
 [![Vben Admin](https://img.shields.io/badge/Vben%20Admin-v2.8.0-yellow.svg)](https://vvbin.cn/doc-next/)
 [![Ent](https://img.shields.io/badge/Ent-v0.11.9-blue.svg)](https://entgo.io/)
 [![Casbin](https://img.shields.io/badge/Casbin-v2.52.1-orange.svg)](https://github.com/casbin/casbin)
-[![Release](https://img.shields.io/badge/Release-v0.2.7-green.svg)](https://github.com/suyuan32/simple-admin-core/releases)
+[![Release](https://img.shields.io/badge/Release-v0.2.7-green.svg)](https://github.com/huuhoait/zero-admin-core/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![SimpleAdmin](https://dcbadge.vercel.app/api/server/NDED5p2hJk)](https://discord.gg/NDED5p2hJk)
 ## Introduction
@@ -45,7 +45,7 @@ The official comes with a variety of extensions to help small and medium-sized e
 
 ## Project Planning Progress
 
-[RoadMap](https://github.com/suyuan32/simple-admin-core/issues/63)
+[RoadMap](https://github.com/huuhoait/zero-admin-core/issues/63)
 
 ## Preview
 
@@ -84,7 +84,7 @@ Password:  simple-admin
 
 ## Relative Project
 
-- [Simple Admin](https://github.com/suyuan32/simple-admin-core)
+- [Simple Admin](https://github.com/huuhoait/zero-admin-core)
 - [Simple Admin Backend UI](https://github.com/suyuan32/simple-admin-backend-ui)
 
 ## Optional Components
@@ -96,7 +96,7 @@ Password:  simple-admin
 
 ## How to contribute
 
-You are very welcome to join！[Raise an issue](https://github.com/suyuan32/simple-admin-core/issues/new) Or submit a Pull Request。
+You are very welcome to join！[Raise an issue](https://github.com/huuhoait/zero-admin-core/issues/new) Or submit a Pull Request。
 
 **Pull Request:**
 
@@ -128,11 +128,11 @@ You are very welcome to join！[Raise an issue](https://github.com/suyuan32/simp
 
 > [Discard](https://discord.gg/NDED5p2hJk)
 
-> [Discussion](https://github.com/suyuan32/simple-admin-core/discussions)
+> [Discussion](https://github.com/huuhoait/zero-admin-core/discussions)
 
 ## Stars
 
-[![Star History Chart](https://api.star-history.com/svg?repos=suyuan32/simple-admin-core&type=Date)](https://github.com/suyuan32/simple-admin-core)
+[![Star History Chart](https://api.star-history.com/svg?repos=huuhoait/zero-admin-core&type=Date)](https://github.com/huuhoait/zero-admin-core)
 
 
 ## Maintainer

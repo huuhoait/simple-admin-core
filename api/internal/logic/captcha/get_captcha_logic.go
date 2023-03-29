@@ -10,9 +10,9 @@ import (
 
 	"github.com/suyuan32/simple-admin-common/i18n"
 
-	"github.com/suyuan32/simple-admin-core/api/internal/config"
-	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	"github.com/huuhoait/zero-admin-core/api/internal/config"
+	"github.com/huuhoait/zero-admin-core/api/internal/svc"
+	"github.com/huuhoait/zero-admin-core/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

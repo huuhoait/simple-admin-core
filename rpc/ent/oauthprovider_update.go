@@ -13,8 +13,8 @@ import (
 	"entgo.io/ent/schema/field"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/oauthprovider"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/oauthprovider"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
 )
 
 // OauthProviderUpdate is the builder for updating OauthProvider entities.

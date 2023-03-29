@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/audit"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/audit"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
 )
 
 // AuditQuery is the builder for querying Audit entities.

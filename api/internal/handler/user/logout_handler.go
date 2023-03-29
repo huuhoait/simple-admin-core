@@ -5,8 +5,8 @@ import (
 
 	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"github.com/suyuan32/simple-admin-core/api/internal/logic/user"
-	"github.com/suyuan32/simple-admin-core/api/internal/svc"
+	"github.com/huuhoait/zero-admin-core/api/internal/logic/user"
+	"github.com/huuhoait/zero-admin-core/api/internal/svc"
 )
 
 // swagger:route get /user/logout user Logout

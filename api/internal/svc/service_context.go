@@ -3,13 +3,13 @@ package svc
 import (
 	"github.com/suyuan32/simple-admin-common/i18n"
 
-	i18n2 "github.com/suyuan32/simple-admin-core/api/internal/i18n"
+	i18n2 "github.com/huuhoait/zero-admin-core/api/internal/i18n"
 
 	"github.com/suyuan32/simple-admin-job/jobclient"
 
-	"github.com/suyuan32/simple-admin-core/api/internal/config"
-	"github.com/suyuan32/simple-admin-core/api/internal/middleware"
-	"github.com/suyuan32/simple-admin-core/rpc/coreclient"
+	"github.com/huuhoait/zero-admin-core/api/internal/config"
+	"github.com/huuhoait/zero-admin-core/api/internal/middleware"
+	"github.com/huuhoait/zero-admin-core/rpc/coreclient"
 
 	"github.com/casbin/casbin/v2"
 	"github.com/zeromicro/go-zero/core/stores/redis"

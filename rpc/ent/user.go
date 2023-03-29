@@ -9,8 +9,8 @@ import (
 
 	"entgo.io/ent/dialect/sql"
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/department"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
 )
 
 // User is the model entity for the User schema.

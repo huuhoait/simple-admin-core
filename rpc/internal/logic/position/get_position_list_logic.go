@@ -3,12 +3,12 @@ package position
 import (
 	"context"
 
-	"github.com/suyuan32/simple-admin-core/rpc/ent/position"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/position"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
 
-	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
-	"github.com/suyuan32/simple-admin-core/rpc/internal/utils/errorhandler"
-	"github.com/suyuan32/simple-admin-core/rpc/types/core"
+	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
+	"github.com/huuhoait/zero-admin-core/rpc/internal/utils/errorhandler"
+	"github.com/huuhoait/zero-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect/sql"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionary"
 )
 
 // Dictionary is the model entity for the Dictionary schema.

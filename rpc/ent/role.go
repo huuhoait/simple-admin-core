@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect/sql"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/role"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/role"
 )
 
 // Role is the model entity for the Role schema.

@@ -10,7 +10,7 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/audit"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/audit"
 )
 
 // AuditCreate is the builder for creating a Audit entity.

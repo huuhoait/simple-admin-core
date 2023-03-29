@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect/sql"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/audit"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/audit"
 )
 
 // Audit is the model entity for the Audit schema.

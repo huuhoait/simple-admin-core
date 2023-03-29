@@ -14,9 +14,9 @@ import (
 	uuid "github.com/gofrs/uuid/v5"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/department"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
 )
 
 // DepartmentUpdate is the builder for updating Department entities.

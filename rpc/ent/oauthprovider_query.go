@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/oauthprovider"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/oauthprovider"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
 )
 
 // OauthProviderQuery is the builder for querying OauthProvider entities.

@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect/sql"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/menu"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/menu"
 )
 
 // Menu is the model entity for the Menu schema.

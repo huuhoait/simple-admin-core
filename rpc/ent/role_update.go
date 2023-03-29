@@ -14,10 +14,10 @@ import (
 	uuid "github.com/gofrs/uuid/v5"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/menu"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/role"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/menu"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/role"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
 )
 
 // RoleUpdate is the builder for updating Role entities.
