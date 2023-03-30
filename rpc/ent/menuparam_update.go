@@ -29,6 +29,46 @@ func (mpu *MenuParamUpdate) Where(ps ...predicate.MenuParam) *MenuParamUpdate {
 	return mpu
 }
 
+// SetCreatedBy sets the "created_by" field.
+func (mpu *MenuParamUpdate) SetCreatedBy(s string) *MenuParamUpdate {
+	mpu.mutation.SetCreatedBy(s)
+	return mpu
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (mpu *MenuParamUpdate) SetNillableCreatedBy(s *string) *MenuParamUpdate {
+	if s != nil {
+		mpu.SetCreatedBy(*s)
+	}
+	return mpu
+}
+
+// ClearCreatedBy clears the value of the "created_by" field.
+func (mpu *MenuParamUpdate) ClearCreatedBy() *MenuParamUpdate {
+	mpu.mutation.ClearCreatedBy()
+	return mpu
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (mpu *MenuParamUpdate) SetUpdatedBy(s string) *MenuParamUpdate {
+	mpu.mutation.SetUpdatedBy(s)
+	return mpu
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (mpu *MenuParamUpdate) SetNillableUpdatedBy(s *string) *MenuParamUpdate {
+	if s != nil {
+		mpu.SetUpdatedBy(*s)
+	}
+	return mpu
+}
+
+// ClearUpdatedBy clears the value of the "updated_by" field.
+func (mpu *MenuParamUpdate) ClearUpdatedBy() *MenuParamUpdate {
+	mpu.mutation.ClearUpdatedBy()
+	return mpu
+}
+
 // SetUpdatedAt sets the "updated_at" field.
 func (mpu *MenuParamUpdate) SetUpdatedAt(t time.Time) *MenuParamUpdate {
 	mpu.mutation.SetUpdatedAt(t)
@@ -148,6 +188,18 @@ func (mpu *MenuParamUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			}
 		}
 	}
+	if value, ok := mpu.mutation.CreatedBy(); ok {
+		_spec.SetField(menuparam.FieldCreatedBy, field.TypeString, value)
+	}
+	if mpu.mutation.CreatedByCleared() {
+		_spec.ClearField(menuparam.FieldCreatedBy, field.TypeString)
+	}
+	if value, ok := mpu.mutation.UpdatedBy(); ok {
+		_spec.SetField(menuparam.FieldUpdatedBy, field.TypeString, value)
+	}
+	if mpu.mutation.UpdatedByCleared() {
+		_spec.ClearField(menuparam.FieldUpdatedBy, field.TypeString)
+	}
 	if value, ok := mpu.mutation.UpdatedAt(); ok {
 		_spec.SetField(menuparam.FieldUpdatedAt, field.TypeTime, value)
 	}
@@ -208,6 +260,46 @@ type MenuParamUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *MenuParamMutation
+}
+
+// SetCreatedBy sets the "created_by" field.
+func (mpuo *MenuParamUpdateOne) SetCreatedBy(s string) *MenuParamUpdateOne {
+	mpuo.mutation.SetCreatedBy(s)
+	return mpuo
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (mpuo *MenuParamUpdateOne) SetNillableCreatedBy(s *string) *MenuParamUpdateOne {
+	if s != nil {
+		mpuo.SetCreatedBy(*s)
+	}
+	return mpuo
+}
+
+// ClearCreatedBy clears the value of the "created_by" field.
+func (mpuo *MenuParamUpdateOne) ClearCreatedBy() *MenuParamUpdateOne {
+	mpuo.mutation.ClearCreatedBy()
+	return mpuo
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (mpuo *MenuParamUpdateOne) SetUpdatedBy(s string) *MenuParamUpdateOne {
+	mpuo.mutation.SetUpdatedBy(s)
+	return mpuo
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (mpuo *MenuParamUpdateOne) SetNillableUpdatedBy(s *string) *MenuParamUpdateOne {
+	if s != nil {
+		mpuo.SetUpdatedBy(*s)
+	}
+	return mpuo
+}
+
+// ClearUpdatedBy clears the value of the "updated_by" field.
+func (mpuo *MenuParamUpdateOne) ClearUpdatedBy() *MenuParamUpdateOne {
+	mpuo.mutation.ClearUpdatedBy()
+	return mpuo
 }
 
 // SetUpdatedAt sets the "updated_at" field.
@@ -365,6 +457,18 @@ func (mpuo *MenuParamUpdateOne) sqlSave(ctx context.Context) (_node *MenuParam, 
 				ps[i](selector)
 			}
 		}
+	}
+	if value, ok := mpuo.mutation.CreatedBy(); ok {
+		_spec.SetField(menuparam.FieldCreatedBy, field.TypeString, value)
+	}
+	if mpuo.mutation.CreatedByCleared() {
+		_spec.ClearField(menuparam.FieldCreatedBy, field.TypeString)
+	}
+	if value, ok := mpuo.mutation.UpdatedBy(); ok {
+		_spec.SetField(menuparam.FieldUpdatedBy, field.TypeString, value)
+	}
+	if mpuo.mutation.UpdatedByCleared() {
+		_spec.ClearField(menuparam.FieldUpdatedBy, field.TypeString)
 	}
 	if value, ok := mpuo.mutation.UpdatedAt(); ok {
 		_spec.SetField(menuparam.FieldUpdatedAt, field.TypeTime, value)

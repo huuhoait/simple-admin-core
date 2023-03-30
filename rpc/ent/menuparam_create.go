@@ -21,6 +21,20 @@ type MenuParamCreate struct {
 	hooks    []Hook
 }
 
+// SetCreatedBy sets the "created_by" field.
+func (mpc *MenuParamCreate) SetCreatedBy(s string) *MenuParamCreate {
+	mpc.mutation.SetCreatedBy(s)
+	return mpc
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (mpc *MenuParamCreate) SetNillableCreatedBy(s *string) *MenuParamCreate {
+	if s != nil {
+		mpc.SetCreatedBy(*s)
+	}
+	return mpc
+}
+
 // SetCreatedAt sets the "created_at" field.
 func (mpc *MenuParamCreate) SetCreatedAt(t time.Time) *MenuParamCreate {
 	mpc.mutation.SetCreatedAt(t)
@@ -31,6 +45,20 @@ func (mpc *MenuParamCreate) SetCreatedAt(t time.Time) *MenuParamCreate {
 func (mpc *MenuParamCreate) SetNillableCreatedAt(t *time.Time) *MenuParamCreate {
 	if t != nil {
 		mpc.SetCreatedAt(*t)
+	}
+	return mpc
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (mpc *MenuParamCreate) SetUpdatedBy(s string) *MenuParamCreate {
+	mpc.mutation.SetUpdatedBy(s)
+	return mpc
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (mpc *MenuParamCreate) SetNillableUpdatedBy(s *string) *MenuParamCreate {
+	if s != nil {
+		mpc.SetUpdatedBy(*s)
 	}
 	return mpc
 }
@@ -200,9 +228,17 @@ func (mpc *MenuParamCreate) createSpec() (*MenuParam, *sqlgraph.CreateSpec) {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
+	if value, ok := mpc.mutation.CreatedBy(); ok {
+		_spec.SetField(menuparam.FieldCreatedBy, field.TypeString, value)
+		_node.CreatedBy = value
+	}
 	if value, ok := mpc.mutation.CreatedAt(); ok {
 		_spec.SetField(menuparam.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
+	}
+	if value, ok := mpc.mutation.UpdatedBy(); ok {
+		_spec.SetField(menuparam.FieldUpdatedBy, field.TypeString, value)
+		_node.UpdatedBy = value
 	}
 	if value, ok := mpc.mutation.UpdatedAt(); ok {
 		_spec.SetField(menuparam.FieldUpdatedAt, field.TypeTime, value)

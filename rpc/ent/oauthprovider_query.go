@@ -261,12 +261,12 @@ func (opq *OauthProviderQuery) Clone() *OauthProviderQuery {
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.OauthProvider.Query().
-//		GroupBy(oauthprovider.FieldCreatedAt).
+//		GroupBy(oauthprovider.FieldCreatedBy).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (opq *OauthProviderQuery) GroupBy(field string, fields ...string) *OauthProviderGroupBy {
@@ -284,11 +284,11 @@ func (opq *OauthProviderQuery) GroupBy(field string, fields ...string) *OauthPro
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //	}
 //
 //	client.OauthProvider.Query().
-//		Select(oauthprovider.FieldCreatedAt).
+//		Select(oauthprovider.FieldCreatedBy).
 //		Scan(ctx, &v)
 func (opq *OauthProviderQuery) Select(fields ...string) *OauthProviderSelect {
 	opq.ctx.Fields = append(opq.ctx.Fields, fields...)

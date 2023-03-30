@@ -202,6 +202,7 @@ func ({{ $receiver }} *{{ $builder }}) sqlSave(ctx context.Context) ({{ $ret }} 
 			SetObjectName("Department").
 			SetActionName("Update").
 			SetChangedData(r.String()).
+			SetCreatedBy(_node.UpdatedBy).
 			SaveX(ctx)
 			/* huuhoait edit end*/
 		{{end}}

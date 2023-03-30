@@ -20,6 +20,20 @@ type AuditCreate struct {
 	hooks    []Hook
 }
 
+// SetCreatedBy sets the "created_by" field.
+func (ac *AuditCreate) SetCreatedBy(s string) *AuditCreate {
+	ac.mutation.SetCreatedBy(s)
+	return ac
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (ac *AuditCreate) SetNillableCreatedBy(s *string) *AuditCreate {
+	if s != nil {
+		ac.SetCreatedBy(*s)
+	}
+	return ac
+}
+
 // SetCreatedAt sets the "created_at" field.
 func (ac *AuditCreate) SetCreatedAt(t time.Time) *AuditCreate {
 	ac.mutation.SetCreatedAt(t)
@@ -30,6 +44,20 @@ func (ac *AuditCreate) SetCreatedAt(t time.Time) *AuditCreate {
 func (ac *AuditCreate) SetNillableCreatedAt(t *time.Time) *AuditCreate {
 	if t != nil {
 		ac.SetCreatedAt(*t)
+	}
+	return ac
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (ac *AuditCreate) SetUpdatedBy(s string) *AuditCreate {
+	ac.mutation.SetUpdatedBy(s)
+	return ac
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (ac *AuditCreate) SetNillableUpdatedBy(s *string) *AuditCreate {
+	if s != nil {
+		ac.SetUpdatedBy(*s)
 	}
 	return ac
 }
@@ -166,9 +194,17 @@ func (ac *AuditCreate) createSpec() (*Audit, *sqlgraph.CreateSpec) {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
+	if value, ok := ac.mutation.CreatedBy(); ok {
+		_spec.SetField(audit.FieldCreatedBy, field.TypeString, value)
+		_node.CreatedBy = value
+	}
 	if value, ok := ac.mutation.CreatedAt(); ok {
 		_spec.SetField(audit.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
+	}
+	if value, ok := ac.mutation.UpdatedBy(); ok {
+		_spec.SetField(audit.FieldUpdatedBy, field.TypeString, value)
+		_node.UpdatedBy = value
 	}
 	if value, ok := ac.mutation.UpdatedAt(); ok {
 		_spec.SetField(audit.FieldUpdatedAt, field.TypeTime, value)

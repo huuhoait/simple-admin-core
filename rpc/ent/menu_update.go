@@ -30,6 +30,46 @@ func (mu *MenuUpdate) Where(ps ...predicate.Menu) *MenuUpdate {
 	return mu
 }
 
+// SetCreatedBy sets the "created_by" field.
+func (mu *MenuUpdate) SetCreatedBy(s string) *MenuUpdate {
+	mu.mutation.SetCreatedBy(s)
+	return mu
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (mu *MenuUpdate) SetNillableCreatedBy(s *string) *MenuUpdate {
+	if s != nil {
+		mu.SetCreatedBy(*s)
+	}
+	return mu
+}
+
+// ClearCreatedBy clears the value of the "created_by" field.
+func (mu *MenuUpdate) ClearCreatedBy() *MenuUpdate {
+	mu.mutation.ClearCreatedBy()
+	return mu
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (mu *MenuUpdate) SetUpdatedBy(s string) *MenuUpdate {
+	mu.mutation.SetUpdatedBy(s)
+	return mu
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (mu *MenuUpdate) SetNillableUpdatedBy(s *string) *MenuUpdate {
+	if s != nil {
+		mu.SetUpdatedBy(*s)
+	}
+	return mu
+}
+
+// ClearUpdatedBy clears the value of the "updated_by" field.
+func (mu *MenuUpdate) ClearUpdatedBy() *MenuUpdate {
+	mu.mutation.ClearUpdatedBy()
+	return mu
+}
+
 // SetUpdatedAt sets the "updated_at" field.
 func (mu *MenuUpdate) SetUpdatedAt(t time.Time) *MenuUpdate {
 	mu.mutation.SetUpdatedAt(t)
@@ -577,6 +617,18 @@ func (mu *MenuUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			}
 		}
 	}
+	if value, ok := mu.mutation.CreatedBy(); ok {
+		_spec.SetField(menu.FieldCreatedBy, field.TypeString, value)
+	}
+	if mu.mutation.CreatedByCleared() {
+		_spec.ClearField(menu.FieldCreatedBy, field.TypeString)
+	}
+	if value, ok := mu.mutation.UpdatedBy(); ok {
+		_spec.SetField(menu.FieldUpdatedBy, field.TypeString, value)
+	}
+	if mu.mutation.UpdatedByCleared() {
+		_spec.ClearField(menu.FieldUpdatedBy, field.TypeString)
+	}
 	if value, ok := mu.mutation.UpdatedAt(); ok {
 		_spec.SetField(menu.FieldUpdatedAt, field.TypeTime, value)
 	}
@@ -877,6 +929,46 @@ type MenuUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *MenuMutation
+}
+
+// SetCreatedBy sets the "created_by" field.
+func (muo *MenuUpdateOne) SetCreatedBy(s string) *MenuUpdateOne {
+	muo.mutation.SetCreatedBy(s)
+	return muo
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (muo *MenuUpdateOne) SetNillableCreatedBy(s *string) *MenuUpdateOne {
+	if s != nil {
+		muo.SetCreatedBy(*s)
+	}
+	return muo
+}
+
+// ClearCreatedBy clears the value of the "created_by" field.
+func (muo *MenuUpdateOne) ClearCreatedBy() *MenuUpdateOne {
+	muo.mutation.ClearCreatedBy()
+	return muo
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (muo *MenuUpdateOne) SetUpdatedBy(s string) *MenuUpdateOne {
+	muo.mutation.SetUpdatedBy(s)
+	return muo
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (muo *MenuUpdateOne) SetNillableUpdatedBy(s *string) *MenuUpdateOne {
+	if s != nil {
+		muo.SetUpdatedBy(*s)
+	}
+	return muo
+}
+
+// ClearUpdatedBy clears the value of the "updated_by" field.
+func (muo *MenuUpdateOne) ClearUpdatedBy() *MenuUpdateOne {
+	muo.mutation.ClearUpdatedBy()
+	return muo
 }
 
 // SetUpdatedAt sets the "updated_at" field.
@@ -1462,6 +1554,18 @@ func (muo *MenuUpdateOne) sqlSave(ctx context.Context) (_node *Menu, err error) 
 				ps[i](selector)
 			}
 		}
+	}
+	if value, ok := muo.mutation.CreatedBy(); ok {
+		_spec.SetField(menu.FieldCreatedBy, field.TypeString, value)
+	}
+	if muo.mutation.CreatedByCleared() {
+		_spec.ClearField(menu.FieldCreatedBy, field.TypeString)
+	}
+	if value, ok := muo.mutation.UpdatedBy(); ok {
+		_spec.SetField(menu.FieldUpdatedBy, field.TypeString, value)
+	}
+	if muo.mutation.UpdatedByCleared() {
+		_spec.ClearField(menu.FieldUpdatedBy, field.TypeString)
 	}
 	if value, ok := muo.mutation.UpdatedAt(); ok {
 		_spec.SetField(menu.FieldUpdatedAt, field.TypeTime, value)

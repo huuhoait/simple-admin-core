@@ -29,6 +29,46 @@ func (du *DictionaryUpdate) Where(ps ...predicate.Dictionary) *DictionaryUpdate 
 	return du
 }
 
+// SetCreatedBy sets the "created_by" field.
+func (du *DictionaryUpdate) SetCreatedBy(s string) *DictionaryUpdate {
+	du.mutation.SetCreatedBy(s)
+	return du
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (du *DictionaryUpdate) SetNillableCreatedBy(s *string) *DictionaryUpdate {
+	if s != nil {
+		du.SetCreatedBy(*s)
+	}
+	return du
+}
+
+// ClearCreatedBy clears the value of the "created_by" field.
+func (du *DictionaryUpdate) ClearCreatedBy() *DictionaryUpdate {
+	du.mutation.ClearCreatedBy()
+	return du
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (du *DictionaryUpdate) SetUpdatedBy(s string) *DictionaryUpdate {
+	du.mutation.SetUpdatedBy(s)
+	return du
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (du *DictionaryUpdate) SetNillableUpdatedBy(s *string) *DictionaryUpdate {
+	if s != nil {
+		du.SetUpdatedBy(*s)
+	}
+	return du
+}
+
+// ClearUpdatedBy clears the value of the "updated_by" field.
+func (du *DictionaryUpdate) ClearUpdatedBy() *DictionaryUpdate {
+	du.mutation.ClearUpdatedBy()
+	return du
+}
+
 // SetUpdatedAt sets the "updated_at" field.
 func (du *DictionaryUpdate) SetUpdatedAt(t time.Time) *DictionaryUpdate {
 	du.mutation.SetUpdatedAt(t)
@@ -166,6 +206,18 @@ func (du *DictionaryUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			}
 		}
 	}
+	if value, ok := du.mutation.CreatedBy(); ok {
+		_spec.SetField(dictionary.FieldCreatedBy, field.TypeString, value)
+	}
+	if du.mutation.CreatedByCleared() {
+		_spec.ClearField(dictionary.FieldCreatedBy, field.TypeString)
+	}
+	if value, ok := du.mutation.UpdatedBy(); ok {
+		_spec.SetField(dictionary.FieldUpdatedBy, field.TypeString, value)
+	}
+	if du.mutation.UpdatedByCleared() {
+		_spec.ClearField(dictionary.FieldUpdatedBy, field.TypeString)
+	}
 	if value, ok := du.mutation.UpdatedAt(); ok {
 		_spec.SetField(dictionary.FieldUpdatedAt, field.TypeTime, value)
 	}
@@ -251,6 +303,46 @@ type DictionaryUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *DictionaryMutation
+}
+
+// SetCreatedBy sets the "created_by" field.
+func (duo *DictionaryUpdateOne) SetCreatedBy(s string) *DictionaryUpdateOne {
+	duo.mutation.SetCreatedBy(s)
+	return duo
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (duo *DictionaryUpdateOne) SetNillableCreatedBy(s *string) *DictionaryUpdateOne {
+	if s != nil {
+		duo.SetCreatedBy(*s)
+	}
+	return duo
+}
+
+// ClearCreatedBy clears the value of the "created_by" field.
+func (duo *DictionaryUpdateOne) ClearCreatedBy() *DictionaryUpdateOne {
+	duo.mutation.ClearCreatedBy()
+	return duo
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (duo *DictionaryUpdateOne) SetUpdatedBy(s string) *DictionaryUpdateOne {
+	duo.mutation.SetUpdatedBy(s)
+	return duo
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (duo *DictionaryUpdateOne) SetNillableUpdatedBy(s *string) *DictionaryUpdateOne {
+	if s != nil {
+		duo.SetUpdatedBy(*s)
+	}
+	return duo
+}
+
+// ClearUpdatedBy clears the value of the "updated_by" field.
+func (duo *DictionaryUpdateOne) ClearUpdatedBy() *DictionaryUpdateOne {
+	duo.mutation.ClearUpdatedBy()
+	return duo
 }
 
 // SetUpdatedAt sets the "updated_at" field.
@@ -426,6 +518,18 @@ func (duo *DictionaryUpdateOne) sqlSave(ctx context.Context) (_node *Dictionary,
 				ps[i](selector)
 			}
 		}
+	}
+	if value, ok := duo.mutation.CreatedBy(); ok {
+		_spec.SetField(dictionary.FieldCreatedBy, field.TypeString, value)
+	}
+	if duo.mutation.CreatedByCleared() {
+		_spec.ClearField(dictionary.FieldCreatedBy, field.TypeString)
+	}
+	if value, ok := duo.mutation.UpdatedBy(); ok {
+		_spec.SetField(dictionary.FieldUpdatedBy, field.TypeString, value)
+	}
+	if duo.mutation.UpdatedByCleared() {
+		_spec.ClearField(dictionary.FieldUpdatedBy, field.TypeString)
 	}
 	if value, ok := duo.mutation.UpdatedAt(); ok {
 		_spec.SetField(dictionary.FieldUpdatedAt, field.TypeTime, value)

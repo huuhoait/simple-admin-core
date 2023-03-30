@@ -3,6 +3,38 @@
 package ent
 
 // set field if value is not empty. e.g. string does not equal to ""
+func (a *APIUpdate) SetNotEmptyCreatedBy(value string) *APIUpdate {
+	if value != "" {
+		return a.SetCreatedBy(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *APIUpdateOne) SetNotEmptyCreatedBy(value string) *APIUpdateOne {
+	if value != "" {
+		return a.SetCreatedBy(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *APIUpdate) SetNotEmptyUpdatedBy(value string) *APIUpdate {
+	if value != "" {
+		return a.SetUpdatedBy(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *APIUpdateOne) SetNotEmptyUpdatedBy(value string) *APIUpdateOne {
+	if value != "" {
+		return a.SetUpdatedBy(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
 func (a *APIUpdate) SetNotEmptyPath(value string) *APIUpdate {
 	if value != "" {
 		return a.SetPath(value)
@@ -67,6 +99,38 @@ func (a *APIUpdateOne) SetNotEmptyMethod(value string) *APIUpdateOne {
 }
 
 // set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdate) SetNotEmptyCreatedBy(value string) *AuditUpdate {
+	if value != "" {
+		return a.SetCreatedBy(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdateOne) SetNotEmptyCreatedBy(value string) *AuditUpdateOne {
+	if value != "" {
+		return a.SetCreatedBy(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdate) SetNotEmptyUpdatedBy(value string) *AuditUpdate {
+	if value != "" {
+		return a.SetUpdatedBy(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (a *AuditUpdateOne) SetNotEmptyUpdatedBy(value string) *AuditUpdateOne {
+	if value != "" {
+		return a.SetUpdatedBy(value)
+	}
+	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
 func (a *AuditUpdate) SetNotEmptyObjectName(value string) *AuditUpdate {
 	if value != "" {
 		return a.SetObjectName(value)
@@ -112,6 +176,38 @@ func (a *AuditUpdateOne) SetNotEmptyChangedData(value string) *AuditUpdateOne {
 		return a.SetChangedData(value)
 	}
 	return a
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (d *DepartmentUpdate) SetNotEmptyCreatedBy(value string) *DepartmentUpdate {
+	if value != "" {
+		return d.SetCreatedBy(value)
+	}
+	return d
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (d *DepartmentUpdateOne) SetNotEmptyCreatedBy(value string) *DepartmentUpdateOne {
+	if value != "" {
+		return d.SetCreatedBy(value)
+	}
+	return d
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (d *DepartmentUpdate) SetNotEmptyUpdatedBy(value string) *DepartmentUpdate {
+	if value != "" {
+		return d.SetUpdatedBy(value)
+	}
+	return d
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (d *DepartmentUpdateOne) SetNotEmptyUpdatedBy(value string) *DepartmentUpdateOne {
+	if value != "" {
+		return d.SetUpdatedBy(value)
+	}
+	return d
 }
 
 // set field if value is not empty. e.g. string does not equal to ""
@@ -259,6 +355,38 @@ func (d *DepartmentUpdateOne) SetNotEmptyParentID(value uint64) *DepartmentUpdat
 }
 
 // set field if value is not empty. e.g. string does not equal to ""
+func (d *DictionaryUpdate) SetNotEmptyCreatedBy(value string) *DictionaryUpdate {
+	if value != "" {
+		return d.SetCreatedBy(value)
+	}
+	return d
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (d *DictionaryUpdateOne) SetNotEmptyCreatedBy(value string) *DictionaryUpdateOne {
+	if value != "" {
+		return d.SetCreatedBy(value)
+	}
+	return d
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (d *DictionaryUpdate) SetNotEmptyUpdatedBy(value string) *DictionaryUpdate {
+	if value != "" {
+		return d.SetUpdatedBy(value)
+	}
+	return d
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (d *DictionaryUpdateOne) SetNotEmptyUpdatedBy(value string) *DictionaryUpdateOne {
+	if value != "" {
+		return d.SetUpdatedBy(value)
+	}
+	return d
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
 func (d *DictionaryUpdate) SetNotEmptyStatus(value uint8) *DictionaryUpdate {
 	if value != 0 {
 		return d.SetStatus(value)
@@ -320,6 +448,38 @@ func (d *DictionaryUpdateOne) SetNotEmptyDesc(value string) *DictionaryUpdateOne
 		return d.SetDesc(value)
 	}
 	return d
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (dd *DictionaryDetailUpdate) SetNotEmptyCreatedBy(value string) *DictionaryDetailUpdate {
+	if value != "" {
+		return dd.SetCreatedBy(value)
+	}
+	return dd
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (dd *DictionaryDetailUpdateOne) SetNotEmptyCreatedBy(value string) *DictionaryDetailUpdateOne {
+	if value != "" {
+		return dd.SetCreatedBy(value)
+	}
+	return dd
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (dd *DictionaryDetailUpdate) SetNotEmptyUpdatedBy(value string) *DictionaryDetailUpdate {
+	if value != "" {
+		return dd.SetUpdatedBy(value)
+	}
+	return dd
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (dd *DictionaryDetailUpdateOne) SetNotEmptyUpdatedBy(value string) *DictionaryDetailUpdateOne {
+	if value != "" {
+		return dd.SetUpdatedBy(value)
+	}
+	return dd
 }
 
 // set field if value is not empty. e.g. string does not equal to ""
@@ -416,6 +576,38 @@ func (dd *DictionaryDetailUpdateOne) SetNotEmptyDictionaryID(value uint64) *Dict
 		return dd.SetDictionaryID(value)
 	}
 	return dd
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MenuUpdate) SetNotEmptyCreatedBy(value string) *MenuUpdate {
+	if value != "" {
+		return m.SetCreatedBy(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MenuUpdateOne) SetNotEmptyCreatedBy(value string) *MenuUpdateOne {
+	if value != "" {
+		return m.SetCreatedBy(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MenuUpdate) SetNotEmptyUpdatedBy(value string) *MenuUpdate {
+	if value != "" {
+		return m.SetUpdatedBy(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MenuUpdateOne) SetNotEmptyUpdatedBy(value string) *MenuUpdateOne {
+	if value != "" {
+		return m.SetUpdatedBy(value)
+	}
+	return m
 }
 
 // set field if value is not empty. e.g. string does not equal to ""
@@ -627,6 +819,38 @@ func (m *MenuUpdateOne) SetNotEmptyRealPath(value string) *MenuUpdateOne {
 }
 
 // set field if value is not empty. e.g. string does not equal to ""
+func (mp *MenuParamUpdate) SetNotEmptyCreatedBy(value string) *MenuParamUpdate {
+	if value != "" {
+		return mp.SetCreatedBy(value)
+	}
+	return mp
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mp *MenuParamUpdateOne) SetNotEmptyCreatedBy(value string) *MenuParamUpdateOne {
+	if value != "" {
+		return mp.SetCreatedBy(value)
+	}
+	return mp
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mp *MenuParamUpdate) SetNotEmptyUpdatedBy(value string) *MenuParamUpdate {
+	if value != "" {
+		return mp.SetUpdatedBy(value)
+	}
+	return mp
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mp *MenuParamUpdateOne) SetNotEmptyUpdatedBy(value string) *MenuParamUpdateOne {
+	if value != "" {
+		return mp.SetUpdatedBy(value)
+	}
+	return mp
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
 func (mp *MenuParamUpdate) SetNotEmptyType(value string) *MenuParamUpdate {
 	if value != "" {
 		return mp.SetType(value)
@@ -688,6 +912,38 @@ func (mp *MenuParamUpdateOne) SetNotEmptyMenuID(value uint64) *MenuParamUpdateOn
 		return mp.SetMenuID(value)
 	}
 	return mp
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (op *OauthProviderUpdate) SetNotEmptyCreatedBy(value string) *OauthProviderUpdate {
+	if value != "" {
+		return op.SetCreatedBy(value)
+	}
+	return op
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (op *OauthProviderUpdateOne) SetNotEmptyCreatedBy(value string) *OauthProviderUpdateOne {
+	if value != "" {
+		return op.SetCreatedBy(value)
+	}
+	return op
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (op *OauthProviderUpdate) SetNotEmptyUpdatedBy(value string) *OauthProviderUpdate {
+	if value != "" {
+		return op.SetUpdatedBy(value)
+	}
+	return op
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (op *OauthProviderUpdateOne) SetNotEmptyUpdatedBy(value string) *OauthProviderUpdateOne {
+	if value != "" {
+		return op.SetUpdatedBy(value)
+	}
+	return op
 }
 
 // set field if value is not empty. e.g. string does not equal to ""
@@ -835,6 +1091,38 @@ func (op *OauthProviderUpdateOne) SetNotEmptyInfoURL(value string) *OauthProvide
 }
 
 // set field if value is not empty. e.g. string does not equal to ""
+func (po *PositionUpdate) SetNotEmptyCreatedBy(value string) *PositionUpdate {
+	if value != "" {
+		return po.SetCreatedBy(value)
+	}
+	return po
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (po *PositionUpdateOne) SetNotEmptyCreatedBy(value string) *PositionUpdateOne {
+	if value != "" {
+		return po.SetCreatedBy(value)
+	}
+	return po
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (po *PositionUpdate) SetNotEmptyUpdatedBy(value string) *PositionUpdate {
+	if value != "" {
+		return po.SetUpdatedBy(value)
+	}
+	return po
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (po *PositionUpdateOne) SetNotEmptyUpdatedBy(value string) *PositionUpdateOne {
+	if value != "" {
+		return po.SetUpdatedBy(value)
+	}
+	return po
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
 func (po *PositionUpdate) SetNotEmptyStatus(value uint8) *PositionUpdate {
 	if value != 0 {
 		return po.SetStatus(value)
@@ -912,6 +1200,38 @@ func (po *PositionUpdateOne) SetNotEmptyRemark(value string) *PositionUpdateOne 
 		return po.SetRemark(value)
 	}
 	return po
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (r *RoleUpdate) SetNotEmptyCreatedBy(value string) *RoleUpdate {
+	if value != "" {
+		return r.SetCreatedBy(value)
+	}
+	return r
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (r *RoleUpdateOne) SetNotEmptyCreatedBy(value string) *RoleUpdateOne {
+	if value != "" {
+		return r.SetCreatedBy(value)
+	}
+	return r
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (r *RoleUpdate) SetNotEmptyUpdatedBy(value string) *RoleUpdate {
+	if value != "" {
+		return r.SetUpdatedBy(value)
+	}
+	return r
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (r *RoleUpdateOne) SetNotEmptyUpdatedBy(value string) *RoleUpdateOne {
+	if value != "" {
+		return r.SetUpdatedBy(value)
+	}
+	return r
 }
 
 // set field if value is not empty. e.g. string does not equal to ""

@@ -261,12 +261,12 @@ func (aq *AuditQuery) Clone() *AuditQuery {
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.Audit.Query().
-//		GroupBy(audit.FieldCreatedAt).
+//		GroupBy(audit.FieldCreatedBy).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (aq *AuditQuery) GroupBy(field string, fields ...string) *AuditGroupBy {
@@ -284,11 +284,11 @@ func (aq *AuditQuery) GroupBy(field string, fields ...string) *AuditGroupBy {
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //	}
 //
 //	client.Audit.Query().
-//		Select(audit.FieldCreatedAt).
+//		Select(audit.FieldCreatedBy).
 //		Scan(ctx, &v)
 func (aq *AuditQuery) Select(fields ...string) *AuditSelect {
 	aq.ctx.Fields = append(aq.ctx.Fields, fields...)

@@ -32,6 +32,46 @@ func (du *DepartmentUpdate) Where(ps ...predicate.Department) *DepartmentUpdate 
 	return du
 }
 
+// SetCreatedBy sets the "created_by" field.
+func (du *DepartmentUpdate) SetCreatedBy(s string) *DepartmentUpdate {
+	du.mutation.SetCreatedBy(s)
+	return du
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (du *DepartmentUpdate) SetNillableCreatedBy(s *string) *DepartmentUpdate {
+	if s != nil {
+		du.SetCreatedBy(*s)
+	}
+	return du
+}
+
+// ClearCreatedBy clears the value of the "created_by" field.
+func (du *DepartmentUpdate) ClearCreatedBy() *DepartmentUpdate {
+	du.mutation.ClearCreatedBy()
+	return du
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (du *DepartmentUpdate) SetUpdatedBy(s string) *DepartmentUpdate {
+	du.mutation.SetUpdatedBy(s)
+	return du
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (du *DepartmentUpdate) SetNillableUpdatedBy(s *string) *DepartmentUpdate {
+	if s != nil {
+		du.SetUpdatedBy(*s)
+	}
+	return du
+}
+
+// ClearUpdatedBy clears the value of the "updated_by" field.
+func (du *DepartmentUpdate) ClearUpdatedBy() *DepartmentUpdate {
+	du.mutation.ClearUpdatedBy()
+	return du
+}
+
 // SetUpdatedAt sets the "updated_at" field.
 func (du *DepartmentUpdate) SetUpdatedAt(t time.Time) *DepartmentUpdate {
 	du.mutation.SetUpdatedAt(t)
@@ -275,6 +315,18 @@ func (du *DepartmentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			}
 		}
 	}
+	if value, ok := du.mutation.CreatedBy(); ok {
+		_spec.SetField(department.FieldCreatedBy, field.TypeString, value)
+	}
+	if du.mutation.CreatedByCleared() {
+		_spec.ClearField(department.FieldCreatedBy, field.TypeString)
+	}
+	if value, ok := du.mutation.UpdatedBy(); ok {
+		_spec.SetField(department.FieldUpdatedBy, field.TypeString, value)
+	}
+	if du.mutation.UpdatedByCleared() {
+		_spec.ClearField(department.FieldUpdatedBy, field.TypeString)
+	}
 	if value, ok := du.mutation.UpdatedAt(); ok {
 		_spec.SetField(department.FieldUpdatedAt, field.TypeTime, value)
 	}
@@ -449,6 +501,46 @@ type DepartmentUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *DepartmentMutation
+}
+
+// SetCreatedBy sets the "created_by" field.
+func (duo *DepartmentUpdateOne) SetCreatedBy(s string) *DepartmentUpdateOne {
+	duo.mutation.SetCreatedBy(s)
+	return duo
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (duo *DepartmentUpdateOne) SetNillableCreatedBy(s *string) *DepartmentUpdateOne {
+	if s != nil {
+		duo.SetCreatedBy(*s)
+	}
+	return duo
+}
+
+// ClearCreatedBy clears the value of the "created_by" field.
+func (duo *DepartmentUpdateOne) ClearCreatedBy() *DepartmentUpdateOne {
+	duo.mutation.ClearCreatedBy()
+	return duo
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (duo *DepartmentUpdateOne) SetUpdatedBy(s string) *DepartmentUpdateOne {
+	duo.mutation.SetUpdatedBy(s)
+	return duo
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (duo *DepartmentUpdateOne) SetNillableUpdatedBy(s *string) *DepartmentUpdateOne {
+	if s != nil {
+		duo.SetUpdatedBy(*s)
+	}
+	return duo
+}
+
+// ClearUpdatedBy clears the value of the "updated_by" field.
+func (duo *DepartmentUpdateOne) ClearUpdatedBy() *DepartmentUpdateOne {
+	duo.mutation.ClearUpdatedBy()
+	return duo
 }
 
 // SetUpdatedAt sets the "updated_at" field.
@@ -741,6 +833,18 @@ func (duo *DepartmentUpdateOne) sqlSave(ctx context.Context) (_node *Department,
 			}
 		}
 	}
+	if value, ok := duo.mutation.CreatedBy(); ok {
+		_spec.SetField(department.FieldCreatedBy, field.TypeString, value)
+	}
+	if duo.mutation.CreatedByCleared() {
+		_spec.ClearField(department.FieldCreatedBy, field.TypeString)
+	}
+	if value, ok := duo.mutation.UpdatedBy(); ok {
+		_spec.SetField(department.FieldUpdatedBy, field.TypeString, value)
+	}
+	if duo.mutation.UpdatedByCleared() {
+		_spec.ClearField(department.FieldUpdatedBy, field.TypeString)
+	}
 	if value, ok := duo.mutation.UpdatedAt(); ok {
 		_spec.SetField(department.FieldUpdatedAt, field.TypeTime, value)
 	}
@@ -924,6 +1028,7 @@ func (duo *DepartmentUpdateOne) sqlSave(ctx context.Context) (_node *Department,
 		SetObjectName("Department").
 		SetActionName("Update").
 		SetChangedData(r.String()).
+		SetCreatedBy(_node.UpdatedBy).
 		SaveX(ctx)
 		/* huuhoait edit end*/
 

@@ -16,8 +16,12 @@ type Role struct {
 	config `json:"-"`
 	// ID of the ent.
 	ID uint64 `json:"id,omitempty"`
+	// CreatedBy holds the value of the "created_by" field.
+	CreatedBy string `json:"created_by,omitempty"`
 	// CreatedAt holds the value of the "created_at" field.
 	CreatedAt time.Time `json:"created_at,omitempty"`
+	// UpdatedBy holds the value of the "updated_by" field.
+	UpdatedBy string `json:"updated_by,omitempty"`
 	// UpdatedAt holds the value of the "updated_at" field.
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// status 1 normal 2 ban | 状态 1 正常 2 禁用
@@ -73,7 +77,7 @@ func (*Role) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case role.FieldID, role.FieldStatus, role.FieldSort:
 			values[i] = new(sql.NullInt64)
-		case role.FieldName, role.FieldCode, role.FieldDefaultRouter, role.FieldRemark:
+		case role.FieldCreatedBy, role.FieldUpdatedBy, role.FieldName, role.FieldCode, role.FieldDefaultRouter, role.FieldRemark:
 			values[i] = new(sql.NullString)
 		case role.FieldCreatedAt, role.FieldUpdatedAt:
 			values[i] = new(sql.NullTime)
@@ -98,11 +102,23 @@ func (r *Role) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			r.ID = uint64(value.Int64)
+		case role.FieldCreatedBy:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field created_by", values[i])
+			} else if value.Valid {
+				r.CreatedBy = value.String
+			}
 		case role.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
 				r.CreatedAt = value.Time
+			}
+		case role.FieldUpdatedBy:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field updated_by", values[i])
+			} else if value.Valid {
+				r.UpdatedBy = value.String
 			}
 		case role.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
@@ -184,8 +200,14 @@ func (r *Role) String() string {
 	var builder strings.Builder
 	builder.WriteString("Role(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", r.ID))
+	builder.WriteString("created_by=")
+	builder.WriteString(r.CreatedBy)
+	builder.WriteString(", ")
 	builder.WriteString("created_at=")
 	builder.WriteString(r.CreatedAt.Format(time.ANSIC))
+	builder.WriteString(", ")
+	builder.WriteString("updated_by=")
+	builder.WriteString(r.UpdatedBy)
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
 	builder.WriteString(r.UpdatedAt.Format(time.ANSIC))

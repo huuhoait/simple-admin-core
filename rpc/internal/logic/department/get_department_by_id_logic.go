@@ -43,5 +43,7 @@ func (l *GetDepartmentByIdLogic) GetDepartmentById(in *core.IDReq) (*core.Depart
 		Email:     result.Email,
 		Remark:    result.Remark,
 		ParentId:  result.ParentID,
+		CreatedBy: result.CreatedBy,
+		UpdatedBy: result.UpdatedBy,
 	}, nil
 }

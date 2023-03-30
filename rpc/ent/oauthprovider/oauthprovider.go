@@ -11,8 +11,12 @@ const (
 	Label = "oauth_provider"
 	// FieldID holds the string denoting the id field in the database.
 	FieldID = "id"
+	// FieldCreatedBy holds the string denoting the created_by field in the database.
+	FieldCreatedBy = "created_by"
 	// FieldCreatedAt holds the string denoting the created_at field in the database.
 	FieldCreatedAt = "created_at"
+	// FieldUpdatedBy holds the string denoting the updated_by field in the database.
+	FieldUpdatedBy = "updated_by"
 	// FieldUpdatedAt holds the string denoting the updated_at field in the database.
 	FieldUpdatedAt = "updated_at"
 	// FieldName holds the string denoting the name field in the database.
@@ -40,7 +44,9 @@ const (
 // Columns holds all SQL columns for oauthprovider fields.
 var Columns = []string{
 	FieldID,
+	FieldCreatedBy,
 	FieldCreatedAt,
+	FieldUpdatedBy,
 	FieldUpdatedAt,
 	FieldName,
 	FieldClientID,

@@ -12,7 +12,9 @@ var (
 	// SysApisColumns holds the columns for the "sys_apis" table.
 	SysApisColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "path", Type: field.TypeString},
 		{Name: "description", Type: field.TypeString},
@@ -28,14 +30,16 @@ var (
 			{
 				Name:    "api_path_method",
 				Unique:  true,
-				Columns: []*schema.Column{SysApisColumns[3], SysApisColumns[6]},
+				Columns: []*schema.Column{SysApisColumns[5], SysApisColumns[8]},
 			},
 		},
 	}
 	// SysAuditsColumns holds the columns for the "sys_audits" table.
 	SysAuditsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "object_name", Type: field.TypeString},
 		{Name: "action_name", Type: field.TypeString},
@@ -50,7 +54,9 @@ var (
 	// SysDepartmentsColumns holds the columns for the "sys_departments" table.
 	SysDepartmentsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
 		{Name: "sort", Type: field.TypeUint32, Default: 1},
@@ -70,7 +76,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "sys_departments_sys_departments_children",
-				Columns:    []*schema.Column{SysDepartmentsColumns[11]},
+				Columns:    []*schema.Column{SysDepartmentsColumns[13]},
 				RefColumns: []*schema.Column{SysDepartmentsColumns[0]},
 				OnDelete:   schema.SetNull,
 			},
@@ -79,7 +85,9 @@ var (
 	// SysDictionariesColumns holds the columns for the "sys_dictionaries" table.
 	SysDictionariesColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
 		{Name: "title", Type: field.TypeString},
@@ -95,7 +103,9 @@ var (
 	// SysDictionaryDetailsColumns holds the columns for the "sys_dictionary_details" table.
 	SysDictionaryDetailsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
 		{Name: "sort", Type: field.TypeUint32, Default: 1},
@@ -112,7 +122,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "sys_dictionary_details_sys_dictionaries_dictionary_details",
-				Columns:    []*schema.Column{SysDictionaryDetailsColumns[8]},
+				Columns:    []*schema.Column{SysDictionaryDetailsColumns[10]},
 				RefColumns: []*schema.Column{SysDictionariesColumns[0]},
 				OnDelete:   schema.SetNull,
 			},
@@ -121,7 +131,9 @@ var (
 	// SysMenusColumns holds the columns for the "sys_menus" table.
 	SysMenusColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "sort", Type: field.TypeUint32, Default: 1},
 		{Name: "menu_level", Type: field.TypeUint32},
@@ -153,7 +165,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "sys_menus_sys_menus_children",
-				Columns:    []*schema.Column{SysMenusColumns[23]},
+				Columns:    []*schema.Column{SysMenusColumns[25]},
 				RefColumns: []*schema.Column{SysMenusColumns[0]},
 				OnDelete:   schema.SetNull,
 			},
@@ -162,7 +174,9 @@ var (
 	// SysMenuParamsColumns holds the columns for the "sys_menu_params" table.
 	SysMenuParamsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "type", Type: field.TypeString},
 		{Name: "key", Type: field.TypeString},
@@ -177,7 +191,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "sys_menu_params_sys_menus_params",
-				Columns:    []*schema.Column{SysMenuParamsColumns[6]},
+				Columns:    []*schema.Column{SysMenuParamsColumns[8]},
 				RefColumns: []*schema.Column{SysMenusColumns[0]},
 				OnDelete:   schema.SetNull,
 			},
@@ -186,7 +200,9 @@ var (
 	// SysOauthProvidersColumns holds the columns for the "sys_oauth_providers" table.
 	SysOauthProvidersColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "name", Type: field.TypeString, Unique: true},
 		{Name: "client_id", Type: field.TypeString},
@@ -207,7 +223,9 @@ var (
 	// SysPositionsColumns holds the columns for the "sys_positions" table.
 	SysPositionsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
 		{Name: "sort", Type: field.TypeUint32, Default: 1},
@@ -224,14 +242,16 @@ var (
 			{
 				Name:    "position_code",
 				Unique:  true,
-				Columns: []*schema.Column{SysPositionsColumns[6]},
+				Columns: []*schema.Column{SysPositionsColumns[8]},
 			},
 		},
 	}
 	// SysRolesColumns holds the columns for the "sys_roles" table.
 	SysRolesColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
 		{Name: "name", Type: field.TypeString},
@@ -249,7 +269,7 @@ var (
 			{
 				Name:    "role_code",
 				Unique:  true,
-				Columns: []*schema.Column{SysRolesColumns[5]},
+				Columns: []*schema.Column{SysRolesColumns[7]},
 			},
 		},
 	}

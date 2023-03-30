@@ -17,8 +17,12 @@ type MenuParam struct {
 	config `json:"-"`
 	// ID of the ent.
 	ID uint64 `json:"id,omitempty"`
+	// CreatedBy holds the value of the "created_by" field.
+	CreatedBy string `json:"created_by,omitempty"`
 	// CreatedAt holds the value of the "created_at" field.
 	CreatedAt time.Time `json:"created_at,omitempty"`
+	// UpdatedBy holds the value of the "updated_by" field.
+	UpdatedBy string `json:"updated_by,omitempty"`
 	// UpdatedAt holds the value of the "updated_at" field.
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// Pass parameters via params or query | 参数类型
@@ -63,7 +67,7 @@ func (*MenuParam) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case menuparam.FieldID, menuparam.FieldMenuID:
 			values[i] = new(sql.NullInt64)
-		case menuparam.FieldType, menuparam.FieldKey, menuparam.FieldValue:
+		case menuparam.FieldCreatedBy, menuparam.FieldUpdatedBy, menuparam.FieldType, menuparam.FieldKey, menuparam.FieldValue:
 			values[i] = new(sql.NullString)
 		case menuparam.FieldCreatedAt, menuparam.FieldUpdatedAt:
 			values[i] = new(sql.NullTime)
@@ -88,11 +92,23 @@ func (mp *MenuParam) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			mp.ID = uint64(value.Int64)
+		case menuparam.FieldCreatedBy:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field created_by", values[i])
+			} else if value.Valid {
+				mp.CreatedBy = value.String
+			}
 		case menuparam.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
 				mp.CreatedAt = value.Time
+			}
+		case menuparam.FieldUpdatedBy:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field updated_by", values[i])
+			} else if value.Valid {
+				mp.UpdatedBy = value.String
 			}
 		case menuparam.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
@@ -157,8 +173,14 @@ func (mp *MenuParam) String() string {
 	var builder strings.Builder
 	builder.WriteString("MenuParam(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", mp.ID))
+	builder.WriteString("created_by=")
+	builder.WriteString(mp.CreatedBy)
+	builder.WriteString(", ")
 	builder.WriteString("created_at=")
 	builder.WriteString(mp.CreatedAt.Format(time.ANSIC))
+	builder.WriteString(", ")
+	builder.WriteString("updated_by=")
+	builder.WriteString(mp.UpdatedBy)
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
 	builder.WriteString(mp.UpdatedAt.Format(time.ANSIC))

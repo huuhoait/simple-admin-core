@@ -37,6 +37,7 @@ func (l *UpdateDepartmentLogic) UpdateDepartment(in *core.DepartmentInfo) (*core
 		SetNotEmptyEmail(in.Email).
 		SetNotEmptyRemark(in.Remark).
 		SetNotEmptyParentID(in.ParentId).
+		SetUpdatedBy(in.UpdatedBy).
 		Exec(l.ctx)
 	if err != nil {
 		return nil, errorhandler.DefaultEntError(l.Logger, err, in)

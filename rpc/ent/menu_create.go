@@ -22,6 +22,20 @@ type MenuCreate struct {
 	hooks    []Hook
 }
 
+// SetCreatedBy sets the "created_by" field.
+func (mc *MenuCreate) SetCreatedBy(s string) *MenuCreate {
+	mc.mutation.SetCreatedBy(s)
+	return mc
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (mc *MenuCreate) SetNillableCreatedBy(s *string) *MenuCreate {
+	if s != nil {
+		mc.SetCreatedBy(*s)
+	}
+	return mc
+}
+
 // SetCreatedAt sets the "created_at" field.
 func (mc *MenuCreate) SetCreatedAt(t time.Time) *MenuCreate {
 	mc.mutation.SetCreatedAt(t)
@@ -32,6 +46,20 @@ func (mc *MenuCreate) SetCreatedAt(t time.Time) *MenuCreate {
 func (mc *MenuCreate) SetNillableCreatedAt(t *time.Time) *MenuCreate {
 	if t != nil {
 		mc.SetCreatedAt(*t)
+	}
+	return mc
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (mc *MenuCreate) SetUpdatedBy(s string) *MenuCreate {
+	mc.mutation.SetUpdatedBy(s)
+	return mc
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (mc *MenuCreate) SetNillableUpdatedBy(s *string) *MenuCreate {
+	if s != nil {
+		mc.SetUpdatedBy(*s)
 	}
 	return mc
 }
@@ -527,9 +555,17 @@ func (mc *MenuCreate) createSpec() (*Menu, *sqlgraph.CreateSpec) {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
+	if value, ok := mc.mutation.CreatedBy(); ok {
+		_spec.SetField(menu.FieldCreatedBy, field.TypeString, value)
+		_node.CreatedBy = value
+	}
 	if value, ok := mc.mutation.CreatedAt(); ok {
 		_spec.SetField(menu.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
+	}
+	if value, ok := mc.mutation.UpdatedBy(); ok {
+		_spec.SetField(menu.FieldUpdatedBy, field.TypeString, value)
+		_node.UpdatedBy = value
 	}
 	if value, ok := mc.mutation.UpdatedAt(); ok {
 		_spec.SetField(menu.FieldUpdatedAt, field.TypeTime, value)

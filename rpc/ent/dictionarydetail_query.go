@@ -297,12 +297,12 @@ func (ddq *DictionaryDetailQuery) WithDictionaries(opts ...func(*DictionaryQuery
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.DictionaryDetail.Query().
-//		GroupBy(dictionarydetail.FieldCreatedAt).
+//		GroupBy(dictionarydetail.FieldCreatedBy).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (ddq *DictionaryDetailQuery) GroupBy(field string, fields ...string) *DictionaryDetailGroupBy {
@@ -320,11 +320,11 @@ func (ddq *DictionaryDetailQuery) GroupBy(field string, fields ...string) *Dicti
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //	}
 //
 //	client.DictionaryDetail.Query().
-//		Select(dictionarydetail.FieldCreatedAt).
+//		Select(dictionarydetail.FieldCreatedBy).
 //		Scan(ctx, &v)
 func (ddq *DictionaryDetailQuery) Select(fields ...string) *DictionaryDetailSelect {
 	ddq.ctx.Fields = append(ddq.ctx.Fields, fields...)

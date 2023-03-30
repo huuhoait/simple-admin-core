@@ -16,8 +16,12 @@ type OauthProvider struct {
 	config `json:"-"`
 	// ID of the ent.
 	ID uint64 `json:"id,omitempty"`
+	// CreatedBy holds the value of the "created_by" field.
+	CreatedBy string `json:"created_by,omitempty"`
 	// CreatedAt holds the value of the "created_at" field.
 	CreatedAt time.Time `json:"created_at,omitempty"`
+	// UpdatedBy holds the value of the "updated_by" field.
+	UpdatedBy string `json:"updated_by,omitempty"`
 	// UpdatedAt holds the value of the "updated_at" field.
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// the provider's name | 提供商名称
@@ -47,7 +51,7 @@ func (*OauthProvider) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case oauthprovider.FieldID, oauthprovider.FieldAuthStyle:
 			values[i] = new(sql.NullInt64)
-		case oauthprovider.FieldName, oauthprovider.FieldClientID, oauthprovider.FieldClientSecret, oauthprovider.FieldRedirectURL, oauthprovider.FieldScopes, oauthprovider.FieldAuthURL, oauthprovider.FieldTokenURL, oauthprovider.FieldInfoURL:
+		case oauthprovider.FieldCreatedBy, oauthprovider.FieldUpdatedBy, oauthprovider.FieldName, oauthprovider.FieldClientID, oauthprovider.FieldClientSecret, oauthprovider.FieldRedirectURL, oauthprovider.FieldScopes, oauthprovider.FieldAuthURL, oauthprovider.FieldTokenURL, oauthprovider.FieldInfoURL:
 			values[i] = new(sql.NullString)
 		case oauthprovider.FieldCreatedAt, oauthprovider.FieldUpdatedAt:
 			values[i] = new(sql.NullTime)
@@ -72,11 +76,23 @@ func (op *OauthProvider) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			op.ID = uint64(value.Int64)
+		case oauthprovider.FieldCreatedBy:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field created_by", values[i])
+			} else if value.Valid {
+				op.CreatedBy = value.String
+			}
 		case oauthprovider.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
 				op.CreatedAt = value.Time
+			}
+		case oauthprovider.FieldUpdatedBy:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field updated_by", values[i])
+			} else if value.Valid {
+				op.UpdatedBy = value.String
 			}
 		case oauthprovider.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
@@ -166,8 +182,14 @@ func (op *OauthProvider) String() string {
 	var builder strings.Builder
 	builder.WriteString("OauthProvider(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", op.ID))
+	builder.WriteString("created_by=")
+	builder.WriteString(op.CreatedBy)
+	builder.WriteString(", ")
 	builder.WriteString("created_at=")
 	builder.WriteString(op.CreatedAt.Format(time.ANSIC))
+	builder.WriteString(", ")
+	builder.WriteString("updated_by=")
+	builder.WriteString(op.UpdatedBy)
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
 	builder.WriteString(op.UpdatedAt.Format(time.ANSIC))

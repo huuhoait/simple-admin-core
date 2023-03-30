@@ -16,8 +16,12 @@ type Dictionary struct {
 	config `json:"-"`
 	// ID of the ent.
 	ID uint64 `json:"id,omitempty"`
+	// CreatedBy holds the value of the "created_by" field.
+	CreatedBy string `json:"created_by,omitempty"`
 	// CreatedAt holds the value of the "created_at" field.
 	CreatedAt time.Time `json:"created_at,omitempty"`
+	// UpdatedBy holds the value of the "updated_by" field.
+	UpdatedBy string `json:"updated_by,omitempty"`
 	// UpdatedAt holds the value of the "updated_at" field.
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// status 1 normal 2 ban | 状态 1 正常 2 禁用
@@ -58,7 +62,7 @@ func (*Dictionary) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case dictionary.FieldID, dictionary.FieldStatus:
 			values[i] = new(sql.NullInt64)
-		case dictionary.FieldTitle, dictionary.FieldName, dictionary.FieldDesc:
+		case dictionary.FieldCreatedBy, dictionary.FieldUpdatedBy, dictionary.FieldTitle, dictionary.FieldName, dictionary.FieldDesc:
 			values[i] = new(sql.NullString)
 		case dictionary.FieldCreatedAt, dictionary.FieldUpdatedAt:
 			values[i] = new(sql.NullTime)
@@ -83,11 +87,23 @@ func (d *Dictionary) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			d.ID = uint64(value.Int64)
+		case dictionary.FieldCreatedBy:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field created_by", values[i])
+			} else if value.Valid {
+				d.CreatedBy = value.String
+			}
 		case dictionary.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
 				d.CreatedAt = value.Time
+			}
+		case dictionary.FieldUpdatedBy:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field updated_by", values[i])
+			} else if value.Valid {
+				d.UpdatedBy = value.String
 			}
 		case dictionary.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
@@ -152,8 +168,14 @@ func (d *Dictionary) String() string {
 	var builder strings.Builder
 	builder.WriteString("Dictionary(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", d.ID))
+	builder.WriteString("created_by=")
+	builder.WriteString(d.CreatedBy)
+	builder.WriteString(", ")
 	builder.WriteString("created_at=")
 	builder.WriteString(d.CreatedAt.Format(time.ANSIC))
+	builder.WriteString(", ")
+	builder.WriteString("updated_by=")
+	builder.WriteString(d.UpdatedBy)
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
 	builder.WriteString(d.UpdatedAt.Format(time.ANSIC))

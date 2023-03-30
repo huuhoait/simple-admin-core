@@ -299,12 +299,12 @@ func (pq *PositionQuery) WithUsers(opts ...func(*UserQuery)) *PositionQuery {
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.Position.Query().
-//		GroupBy(position.FieldCreatedAt).
+//		GroupBy(position.FieldCreatedBy).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (pq *PositionQuery) GroupBy(field string, fields ...string) *PositionGroupBy {
@@ -322,11 +322,11 @@ func (pq *PositionQuery) GroupBy(field string, fields ...string) *PositionGroupB
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //	}
 //
 //	client.Position.Query().
-//		Select(position.FieldCreatedAt).
+//		Select(position.FieldCreatedBy).
 //		Scan(ctx, &v)
 func (pq *PositionQuery) Select(fields ...string) *PositionSelect {
 	pq.ctx.Fields = append(pq.ctx.Fields, fields...)

@@ -368,12 +368,12 @@ func (dq *DepartmentQuery) WithUsers(opts ...func(*UserQuery)) *DepartmentQuery 
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.Department.Query().
-//		GroupBy(department.FieldCreatedAt).
+//		GroupBy(department.FieldCreatedBy).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (dq *DepartmentQuery) GroupBy(field string, fields ...string) *DepartmentGroupBy {
@@ -391,11 +391,11 @@ func (dq *DepartmentQuery) GroupBy(field string, fields ...string) *DepartmentGr
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //	}
 //
 //	client.Department.Query().
-//		Select(department.FieldCreatedAt).
+//		Select(department.FieldCreatedBy).
 //		Scan(ctx, &v)
 func (dq *DepartmentQuery) Select(fields ...string) *DepartmentSelect {
 	dq.ctx.Fields = append(dq.ctx.Fields, fields...)

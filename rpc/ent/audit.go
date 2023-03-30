@@ -16,8 +16,12 @@ type Audit struct {
 	config `json:"-"`
 	// ID of the ent.
 	ID uint64 `json:"id,omitempty"`
+	// CreatedBy holds the value of the "created_by" field.
+	CreatedBy string `json:"created_by,omitempty"`
 	// CreatedAt holds the value of the "created_at" field.
 	CreatedAt time.Time `json:"created_at,omitempty"`
+	// UpdatedBy holds the value of the "updated_by" field.
+	UpdatedBy string `json:"updated_by,omitempty"`
 	// UpdatedAt holds the value of the "updated_at" field.
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// Effect Object
@@ -35,7 +39,7 @@ func (*Audit) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case audit.FieldID:
 			values[i] = new(sql.NullInt64)
-		case audit.FieldObjectName, audit.FieldActionName, audit.FieldChangedData:
+		case audit.FieldCreatedBy, audit.FieldUpdatedBy, audit.FieldObjectName, audit.FieldActionName, audit.FieldChangedData:
 			values[i] = new(sql.NullString)
 		case audit.FieldCreatedAt, audit.FieldUpdatedAt:
 			values[i] = new(sql.NullTime)
@@ -60,11 +64,23 @@ func (a *Audit) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			a.ID = uint64(value.Int64)
+		case audit.FieldCreatedBy:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field created_by", values[i])
+			} else if value.Valid {
+				a.CreatedBy = value.String
+			}
 		case audit.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
 				a.CreatedAt = value.Time
+			}
+		case audit.FieldUpdatedBy:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field updated_by", values[i])
+			} else if value.Valid {
+				a.UpdatedBy = value.String
 			}
 		case audit.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
@@ -118,8 +134,14 @@ func (a *Audit) String() string {
 	var builder strings.Builder
 	builder.WriteString("Audit(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", a.ID))
+	builder.WriteString("created_by=")
+	builder.WriteString(a.CreatedBy)
+	builder.WriteString(", ")
 	builder.WriteString("created_at=")
 	builder.WriteString(a.CreatedAt.Format(time.ANSIC))
+	builder.WriteString(", ")
+	builder.WriteString("updated_by=")
+	builder.WriteString(a.UpdatedBy)
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
 	builder.WriteString(a.UpdatedAt.Format(time.ANSIC))

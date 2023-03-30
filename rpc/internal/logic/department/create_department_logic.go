@@ -37,6 +37,7 @@ func (l *CreateDepartmentLogic) CreateDepartment(in *core.DepartmentInfo) (*core
 		SetEmail(in.Email).
 		SetRemark(in.Remark).
 		SetParentID(in.ParentId).
+		SetCreatedBy(in.CreatedBy).
 		Save(l.ctx)
 	if err != nil {
 		return nil, errorhandler.DefaultEntError(l.Logger, err, in)

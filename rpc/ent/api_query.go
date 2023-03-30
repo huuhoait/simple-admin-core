@@ -261,12 +261,12 @@ func (aq *APIQuery) Clone() *APIQuery {
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.API.Query().
-//		GroupBy(api.FieldCreatedAt).
+//		GroupBy(api.FieldCreatedBy).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (aq *APIQuery) GroupBy(field string, fields ...string) *APIGroupBy {
@@ -284,11 +284,11 @@ func (aq *APIQuery) GroupBy(field string, fields ...string) *APIGroupBy {
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //	}
 //
 //	client.API.Query().
-//		Select(api.FieldCreatedAt).
+//		Select(api.FieldCreatedBy).
 //		Scan(ctx, &v)
 func (aq *APIQuery) Select(fields ...string) *APISelect {
 	aq.ctx.Fields = append(aq.ctx.Fields, fields...)

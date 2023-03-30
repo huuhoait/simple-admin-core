@@ -28,6 +28,46 @@ func (au *APIUpdate) Where(ps ...predicate.API) *APIUpdate {
 	return au
 }
 
+// SetCreatedBy sets the "created_by" field.
+func (au *APIUpdate) SetCreatedBy(s string) *APIUpdate {
+	au.mutation.SetCreatedBy(s)
+	return au
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (au *APIUpdate) SetNillableCreatedBy(s *string) *APIUpdate {
+	if s != nil {
+		au.SetCreatedBy(*s)
+	}
+	return au
+}
+
+// ClearCreatedBy clears the value of the "created_by" field.
+func (au *APIUpdate) ClearCreatedBy() *APIUpdate {
+	au.mutation.ClearCreatedBy()
+	return au
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (au *APIUpdate) SetUpdatedBy(s string) *APIUpdate {
+	au.mutation.SetUpdatedBy(s)
+	return au
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (au *APIUpdate) SetNillableUpdatedBy(s *string) *APIUpdate {
+	if s != nil {
+		au.SetUpdatedBy(*s)
+	}
+	return au
+}
+
+// ClearUpdatedBy clears the value of the "updated_by" field.
+func (au *APIUpdate) ClearUpdatedBy() *APIUpdate {
+	au.mutation.ClearUpdatedBy()
+	return au
+}
+
 // SetUpdatedAt sets the "updated_at" field.
 func (au *APIUpdate) SetUpdatedAt(t time.Time) *APIUpdate {
 	au.mutation.SetUpdatedAt(t)
@@ -116,6 +156,18 @@ func (au *APIUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			}
 		}
 	}
+	if value, ok := au.mutation.CreatedBy(); ok {
+		_spec.SetField(api.FieldCreatedBy, field.TypeString, value)
+	}
+	if au.mutation.CreatedByCleared() {
+		_spec.ClearField(api.FieldCreatedBy, field.TypeString)
+	}
+	if value, ok := au.mutation.UpdatedBy(); ok {
+		_spec.SetField(api.FieldUpdatedBy, field.TypeString, value)
+	}
+	if au.mutation.UpdatedByCleared() {
+		_spec.ClearField(api.FieldUpdatedBy, field.TypeString)
+	}
 	if value, ok := au.mutation.UpdatedAt(); ok {
 		_spec.SetField(api.FieldUpdatedAt, field.TypeTime, value)
 	}
@@ -150,6 +202,46 @@ type APIUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *APIMutation
+}
+
+// SetCreatedBy sets the "created_by" field.
+func (auo *APIUpdateOne) SetCreatedBy(s string) *APIUpdateOne {
+	auo.mutation.SetCreatedBy(s)
+	return auo
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (auo *APIUpdateOne) SetNillableCreatedBy(s *string) *APIUpdateOne {
+	if s != nil {
+		auo.SetCreatedBy(*s)
+	}
+	return auo
+}
+
+// ClearCreatedBy clears the value of the "created_by" field.
+func (auo *APIUpdateOne) ClearCreatedBy() *APIUpdateOne {
+	auo.mutation.ClearCreatedBy()
+	return auo
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (auo *APIUpdateOne) SetUpdatedBy(s string) *APIUpdateOne {
+	auo.mutation.SetUpdatedBy(s)
+	return auo
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (auo *APIUpdateOne) SetNillableUpdatedBy(s *string) *APIUpdateOne {
+	if s != nil {
+		auo.SetUpdatedBy(*s)
+	}
+	return auo
+}
+
+// ClearUpdatedBy clears the value of the "updated_by" field.
+func (auo *APIUpdateOne) ClearUpdatedBy() *APIUpdateOne {
+	auo.mutation.ClearUpdatedBy()
+	return auo
 }
 
 // SetUpdatedAt sets the "updated_at" field.
@@ -276,6 +368,18 @@ func (auo *APIUpdateOne) sqlSave(ctx context.Context) (_node *API, err error) {
 				ps[i](selector)
 			}
 		}
+	}
+	if value, ok := auo.mutation.CreatedBy(); ok {
+		_spec.SetField(api.FieldCreatedBy, field.TypeString, value)
+	}
+	if auo.mutation.CreatedByCleared() {
+		_spec.ClearField(api.FieldCreatedBy, field.TypeString)
+	}
+	if value, ok := auo.mutation.UpdatedBy(); ok {
+		_spec.SetField(api.FieldUpdatedBy, field.TypeString, value)
+	}
+	if auo.mutation.UpdatedByCleared() {
+		_spec.ClearField(api.FieldUpdatedBy, field.TypeString)
 	}
 	if value, ok := auo.mutation.UpdatedAt(); ok {
 		_spec.SetField(api.FieldUpdatedAt, field.TypeTime, value)

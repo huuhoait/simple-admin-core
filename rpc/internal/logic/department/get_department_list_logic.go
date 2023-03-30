@@ -57,6 +57,8 @@ func (l *GetDepartmentListLogic) GetDepartmentList(in *core.DepartmentListReq) (
 			Email:     v.Email,
 			Remark:    v.Remark,
 			ParentId:  v.ParentID,
+			CreatedBy: v.CreatedBy,
+			UpdatedBy: v.UpdatedBy,
 		})
 	}
 

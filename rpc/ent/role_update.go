@@ -33,6 +33,46 @@ func (ru *RoleUpdate) Where(ps ...predicate.Role) *RoleUpdate {
 	return ru
 }
 
+// SetCreatedBy sets the "created_by" field.
+func (ru *RoleUpdate) SetCreatedBy(s string) *RoleUpdate {
+	ru.mutation.SetCreatedBy(s)
+	return ru
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (ru *RoleUpdate) SetNillableCreatedBy(s *string) *RoleUpdate {
+	if s != nil {
+		ru.SetCreatedBy(*s)
+	}
+	return ru
+}
+
+// ClearCreatedBy clears the value of the "created_by" field.
+func (ru *RoleUpdate) ClearCreatedBy() *RoleUpdate {
+	ru.mutation.ClearCreatedBy()
+	return ru
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (ru *RoleUpdate) SetUpdatedBy(s string) *RoleUpdate {
+	ru.mutation.SetUpdatedBy(s)
+	return ru
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (ru *RoleUpdate) SetNillableUpdatedBy(s *string) *RoleUpdate {
+	if s != nil {
+		ru.SetUpdatedBy(*s)
+	}
+	return ru
+}
+
+// ClearUpdatedBy clears the value of the "updated_by" field.
+func (ru *RoleUpdate) ClearUpdatedBy() *RoleUpdate {
+	ru.mutation.ClearUpdatedBy()
+	return ru
+}
+
 // SetUpdatedAt sets the "updated_at" field.
 func (ru *RoleUpdate) SetUpdatedAt(t time.Time) *RoleUpdate {
 	ru.mutation.SetUpdatedAt(t)
@@ -249,6 +289,18 @@ func (ru *RoleUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			}
 		}
 	}
+	if value, ok := ru.mutation.CreatedBy(); ok {
+		_spec.SetField(role.FieldCreatedBy, field.TypeString, value)
+	}
+	if ru.mutation.CreatedByCleared() {
+		_spec.ClearField(role.FieldCreatedBy, field.TypeString)
+	}
+	if value, ok := ru.mutation.UpdatedBy(); ok {
+		_spec.SetField(role.FieldUpdatedBy, field.TypeString, value)
+	}
+	if ru.mutation.UpdatedByCleared() {
+		_spec.ClearField(role.FieldUpdatedBy, field.TypeString)
+	}
 	if value, ok := ru.mutation.UpdatedAt(); ok {
 		_spec.SetField(role.FieldUpdatedAt, field.TypeTime, value)
 	}
@@ -388,6 +440,46 @@ type RoleUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *RoleMutation
+}
+
+// SetCreatedBy sets the "created_by" field.
+func (ruo *RoleUpdateOne) SetCreatedBy(s string) *RoleUpdateOne {
+	ruo.mutation.SetCreatedBy(s)
+	return ruo
+}
+
+// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
+func (ruo *RoleUpdateOne) SetNillableCreatedBy(s *string) *RoleUpdateOne {
+	if s != nil {
+		ruo.SetCreatedBy(*s)
+	}
+	return ruo
+}
+
+// ClearCreatedBy clears the value of the "created_by" field.
+func (ruo *RoleUpdateOne) ClearCreatedBy() *RoleUpdateOne {
+	ruo.mutation.ClearCreatedBy()
+	return ruo
+}
+
+// SetUpdatedBy sets the "updated_by" field.
+func (ruo *RoleUpdateOne) SetUpdatedBy(s string) *RoleUpdateOne {
+	ruo.mutation.SetUpdatedBy(s)
+	return ruo
+}
+
+// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
+func (ruo *RoleUpdateOne) SetNillableUpdatedBy(s *string) *RoleUpdateOne {
+	if s != nil {
+		ruo.SetUpdatedBy(*s)
+	}
+	return ruo
+}
+
+// ClearUpdatedBy clears the value of the "updated_by" field.
+func (ruo *RoleUpdateOne) ClearUpdatedBy() *RoleUpdateOne {
+	ruo.mutation.ClearUpdatedBy()
+	return ruo
 }
 
 // SetUpdatedAt sets the "updated_at" field.
@@ -653,6 +745,18 @@ func (ruo *RoleUpdateOne) sqlSave(ctx context.Context) (_node *Role, err error) 
 			}
 		}
 	}
+	if value, ok := ruo.mutation.CreatedBy(); ok {
+		_spec.SetField(role.FieldCreatedBy, field.TypeString, value)
+	}
+	if ruo.mutation.CreatedByCleared() {
+		_spec.ClearField(role.FieldCreatedBy, field.TypeString)
+	}
+	if value, ok := ruo.mutation.UpdatedBy(); ok {
+		_spec.SetField(role.FieldUpdatedBy, field.TypeString, value)
+	}
+	if ruo.mutation.UpdatedByCleared() {
+		_spec.ClearField(role.FieldUpdatedBy, field.TypeString)
+	}
 	if value, ok := ruo.mutation.UpdatedAt(); ok {
 		_spec.SetField(role.FieldUpdatedAt, field.TypeTime, value)
 	}
@@ -803,6 +907,7 @@ func (ruo *RoleUpdateOne) sqlSave(ctx context.Context) (_node *Role, err error) 
 		SetObjectName("Department").
 		SetActionName("Update").
 		SetChangedData(r.String()).
+		SetCreatedBy(_node.UpdatedBy).
 		SaveX(ctx)
 		/* huuhoait edit end*/
 

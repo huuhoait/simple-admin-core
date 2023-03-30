@@ -404,12 +404,12 @@ func (mq *MenuQuery) WithParams(opts ...func(*MenuParamQuery)) *MenuQuery {
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.Menu.Query().
-//		GroupBy(menu.FieldCreatedAt).
+//		GroupBy(menu.FieldCreatedBy).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (mq *MenuQuery) GroupBy(field string, fields ...string) *MenuGroupBy {
@@ -427,11 +427,11 @@ func (mq *MenuQuery) GroupBy(field string, fields ...string) *MenuGroupBy {
 // Example:
 //
 //	var v []struct {
-//		CreatedAt time.Time `json:"created_at,omitempty"`
+//		CreatedBy string `json:"created_by,omitempty"`
 //	}
 //
 //	client.Menu.Query().
-//		Select(menu.FieldCreatedAt).
+//		Select(menu.FieldCreatedBy).
 //		Scan(ctx, &v)
 func (mq *MenuQuery) Select(fields ...string) *MenuSelect {
 	mq.ctx.Fields = append(mq.ctx.Fields, fields...)
