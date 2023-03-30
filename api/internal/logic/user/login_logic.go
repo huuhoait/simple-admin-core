@@ -50,7 +50,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 			return nil, errorx.NewCodeInvalidArgumentError("login.wrongUsernameOrPassword")
 		}
 
-		token, err := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, user.Id, "roleId", time.Now().Unix(),
+		token, err := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, user.Username, user.Id, "roleId", time.Now().Unix(),
 			l.svcCtx.Config.Auth.AccessExpire, user.RoleCodes)
 		if err != nil {
 			return nil, err
