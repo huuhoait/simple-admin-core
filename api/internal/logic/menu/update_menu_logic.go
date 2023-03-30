@@ -42,6 +42,7 @@ func (l *UpdateMenuLogic) UpdateMenu(req *types.MenuPlainInfo) (resp *types.Base
 		Component: req.Component,
 		Sort:      req.Sort,
 		Disabled:  req.Disabled,
+		UpdatedBy: l.ctx.Value("userId").(string),
 		Meta: &core.Meta{
 			Title:              req.Title,
 			Icon:               req.Icon,

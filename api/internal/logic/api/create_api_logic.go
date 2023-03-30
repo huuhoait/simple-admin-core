@@ -32,6 +32,7 @@ func (l *CreateApiLogic) CreateApi(req *types.ApiInfo) (resp *types.BaseMsgResp,
 			Description: req.Description,
 			ApiGroup:    req.Group,
 			Method:      req.Method,
+			CreatedBy:   l.ctx.Value("userId").(string),
 		})
 	if err != nil {
 		return nil, err

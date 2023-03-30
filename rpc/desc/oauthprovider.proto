@@ -15,6 +15,8 @@ message OauthProviderInfo {
   string token_url = 10;
   uint64 auth_style = 11;
   string info_url = 12;
+    string created_by = 13;
+  string updated_by = 14;
 }
 
 message OauthProviderListResp {

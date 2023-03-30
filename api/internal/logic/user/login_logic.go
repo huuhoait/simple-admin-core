@@ -61,6 +61,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 		_, err = l.svcCtx.CoreRpc.CreateToken(l.ctx, &core.TokenInfo{
 			Id:        "",
 			CreatedAt: 0,
+			UserName:  user.Username,
 			Uuid:      user.Id,
 			Token:     token,
 			Source:    "core_user",

@@ -32,6 +32,7 @@ func (l *UpdateApiLogic) UpdateApi(req *types.ApiInfo) (resp *types.BaseMsgResp,
 			Description: req.Description,
 			ApiGroup:    req.Group,
 			Method:      req.Method,
+			UpdatedBy:   l.ctx.Value("userId").(string),
 		})
 	if err != nil {
 		return nil, err

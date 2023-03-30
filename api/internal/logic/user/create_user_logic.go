@@ -40,6 +40,7 @@ func (l *CreateUserLogic) CreateUser(req *types.UserInfo) (resp *types.BaseMsgRe
 			Avatar:       req.Avatar,
 			DepartmentId: req.DepartmentId,
 			PositionIds:  req.PositionIds,
+			UpdatedBy:    l.ctx.Value("userId").(string),
 		})
 	if err != nil {
 		return nil, err

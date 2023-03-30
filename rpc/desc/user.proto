@@ -19,6 +19,8 @@ message UserInfo {
   uint64 department_id = 14;
   repeated uint64 position_ids = 15;
   repeated string role_codes = 16;
+    string created_by = 17;
+  string updated_by = 18;
 }
 
 message UserListResp {

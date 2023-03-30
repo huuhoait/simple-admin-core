@@ -42,6 +42,7 @@ func (l *CreateMenuLogic) CreateMenu(req *types.MenuPlainInfo) (resp *types.Base
 		Component: req.Component,
 		Sort:      req.Sort,
 		Disabled:  req.Disabled,
+		CreatedBy: l.ctx.Value("userId").(string),
 		Meta: &core.Meta{
 			Title:              req.Title,
 			Icon:               req.Icon,

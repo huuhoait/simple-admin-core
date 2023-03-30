@@ -10,6 +10,8 @@ message ApiInfo {
   string description = 5;
   string api_group = 6;
   string method = 7;
+  string created_by=8;
+  string updated_by=9;
 }
 
 message ApiListResp {

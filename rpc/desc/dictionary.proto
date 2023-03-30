@@ -10,6 +10,8 @@ message DictionaryInfo {
   string title = 5;
   string name = 6;
   string desc = 7;
+    string created_by = 8;
+  string updated_by = 9;
 }
 
 message DictionaryListResp {

@@ -37,6 +37,7 @@ func (l *UpdateOauthProviderLogic) UpdateOauthProvider(req *types.OauthProviderI
 			TokenUrl:     req.TokenUrl,
 			AuthStyle:    req.AuthStyle,
 			InfoUrl:      req.InfoUrl,
+			UpdatedBy:    l.ctx.Value("userId").(string),
 		})
 	if err != nil {
 		return nil, err

@@ -34,6 +34,7 @@ func (l *UpdateRoleLogic) UpdateRole(req *types.RoleInfo) (resp *types.BaseMsgRe
 			DefaultRouter: req.DefaultRouter,
 			Remark:        req.Remark,
 			Sort:          req.Sort,
+			UpdatedBy:     l.ctx.Value("userId").(string),
 		})
 	if err != nil {
 		return nil, err

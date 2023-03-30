@@ -27,12 +27,13 @@ func NewUpdatePositionLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Up
 func (l *UpdatePositionLogic) UpdatePosition(req *types.PositionInfo) (resp *types.BaseMsgResp, err error) {
 	data, err := l.svcCtx.CoreRpc.UpdatePosition(l.ctx,
 		&core.PositionInfo{
-			Id:     req.Id,
-			Status: req.Status,
-			Sort:   req.Sort,
-			Name:   req.Name,
-			Code:   req.Code,
-			Remark: req.Remark,
+			Id:        req.Id,
+			Status:    req.Status,
+			Sort:      req.Sort,
+			Name:      req.Name,
+			Code:      req.Code,
+			Remark:    req.Remark,
+			UpdatedBy: l.ctx.Value("userId").(string),
 		})
 	if err != nil {
 		return nil, err

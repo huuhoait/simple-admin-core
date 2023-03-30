@@ -27,12 +27,13 @@ func NewCreatePositionLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Cr
 func (l *CreatePositionLogic) CreatePosition(req *types.PositionInfo) (resp *types.BaseMsgResp, err error) {
 	data, err := l.svcCtx.CoreRpc.CreatePosition(l.ctx,
 		&core.PositionInfo{
-			Id:     req.Id,
-			Status: req.Status,
-			Sort:   req.Sort,
-			Name:   req.Name,
-			Code:   req.Code,
-			Remark: req.Remark,
+			Id:        req.Id,
+			Status:    req.Status,
+			Sort:      req.Sort,
+			Name:      req.Name,
+			Code:      req.Code,
+			Remark:    req.Remark,
+			CreatedBy: l.ctx.Value("userId").(string),
 		})
 	if err != nil {
 		return nil, err

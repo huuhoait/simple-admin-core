@@ -34,6 +34,7 @@ func (l *CreateRoleLogic) CreateRole(req *types.RoleInfo) (resp *types.BaseMsgRe
 			DefaultRouter: req.DefaultRouter,
 			Remark:        req.Remark,
 			Sort:          req.Sort,
+			CreatedBy:     l.ctx.Value("userId").(string),
 		})
 	if err != nil {
 		return nil, err
