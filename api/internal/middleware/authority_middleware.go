@@ -2,7 +2,6 @@ package middleware
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -39,13 +38,6 @@ func (m *AuthorityMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 		act := r.Method
 		// get the role id
 		roleIds := r.Context().Value("roleId").(string)
-		fmt.Println("-----------:obj" + obj)
-		fmt.Println("-----------:act" + act)
-		fmt.Println("-----------:roleIds" + roleIds)
-		fmt.Println("-----------:usserId" + r.Context().Value("userId").(string))
-		var headLang = r.Header.Get("Accept-Language")
-		fmt.Println("-----------:headLang" + headLang)
-		r.Header.Set("Accept-Language", "en")
 		// check jwt blacklist
 		jwtResult, err := m.Rds.Get("token_" + r.Header.Get("Authorization"))
 		if err != nil {

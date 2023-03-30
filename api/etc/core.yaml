@@ -5,7 +5,7 @@ Timeout: 30000
 
 Auth:
   AccessSecret: jS6VKDtsJf3z1n2VKDtsJf3z1n2
-  AccessExpire: 25920000ßßß
+  AccessExpire: 25920000
 
 Log:
   ServiceName: coreApiLogger

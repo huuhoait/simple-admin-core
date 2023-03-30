@@ -18,9 +18,9 @@ require (
 
 replace github.com/zeromicro/go-zero v1.5.0 => github.com/suyuan32/simple-admin-tools v0.2.9
 
-replace github.com/suyuan32/simple-admin-common v0.2.8 => github.com/huuhoait/zero-tools v0.0.1
+replace github.com/suyuan32/simple-admin-common v0.2.8 => github.com/huuhoait/zero-tools v0.0.2
 
-require github.com/huuhoait/zero-tools v0.0.1
+require github.com/huuhoait/zero-tools v0.0.2
 
 require (
 	ariga.io/atlas v0.10.0 // indirect
@@ -74,6 +74,7 @@ require (
 	github.com/jackc/pgx/v4 v4.18.1 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
+	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/leodido/go-urn v1.2.2 // indirect
 	github.com/lib/pq v1.10.7 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
@@ -95,9 +96,9 @@ require (
 	github.com/prometheus/common v0.42.0 // indirect
 	github.com/prometheus/procfs v0.9.0 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
+	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
-	github.com/suyuan32/simple-admin-common v0.2.9 // indirect
 	github.com/zclconf/go-cty v1.13.1 // indirect
 	go.etcd.io/etcd/api/v3 v3.5.7 // indirect
 	go.etcd.io/etcd/client/pkg/v3 v3.5.7 // indirect
