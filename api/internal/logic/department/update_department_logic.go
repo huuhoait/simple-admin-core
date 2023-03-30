@@ -37,6 +37,7 @@ func (l *UpdateDepartmentLogic) UpdateDepartment(req *types.DepartmentInfo) (res
 			Email:     req.Email,
 			Remark:    req.Remark,
 			ParentId:  req.ParentId,
+			UpdatedBy: l.ctx.Value("userId").(string),
 		})
 	if err != nil {
 		return nil, err
