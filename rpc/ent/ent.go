@@ -18,6 +18,8 @@ import (
 	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionarydetail"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/menu"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/menuparam"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/merchant"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/merchantmeta"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/oauthprovider"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/position"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/role"
@@ -83,6 +85,8 @@ func columnChecker(table string) func(string) error {
 		dictionarydetail.Table: dictionarydetail.ValidColumn,
 		menu.Table:             menu.ValidColumn,
 		menuparam.Table:        menuparam.ValidColumn,
+		merchant.Table:         merchant.ValidColumn,
+		merchantmeta.Table:     merchantmeta.ValidColumn,
 		oauthprovider.Table:    oauthprovider.ValidColumn,
 		position.Table:         position.ValidColumn,
 		role.Table:             role.ValidColumn,

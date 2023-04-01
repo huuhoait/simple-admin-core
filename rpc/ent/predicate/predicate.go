@@ -27,6 +27,12 @@ type Menu func(*sql.Selector)
 // MenuParam is the predicate function for menuparam builders.
 type MenuParam func(*sql.Selector)
 
+// Merchant is the predicate function for merchant builders.
+type Merchant func(*sql.Selector)
+
+// MerchantMeta is the predicate function for merchantmeta builders.
+type MerchantMeta func(*sql.Selector)
+
 // OauthProvider is the predicate function for oauthprovider builders.
 type OauthProvider func(*sql.Selector)
 

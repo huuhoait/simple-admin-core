@@ -197,6 +197,64 @@ var (
 			},
 		},
 	}
+	// SysMerchantsColumns holds the columns for the "sys_Merchants" table.
+	SysMerchantsColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_by", Type: field.TypeString, Nullable: true},
+		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true},
+		{Name: "updated_at", Type: field.TypeTime},
+		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
+		{Name: "sort", Type: field.TypeUint32, Default: 1},
+		{Name: "name", Type: field.TypeString},
+		{Name: "leader", Type: field.TypeString},
+		{Name: "phone", Type: field.TypeString},
+		{Name: "email", Type: field.TypeString},
+		{Name: "remark", Type: field.TypeString},
+		{Name: "parent_id", Type: field.TypeUint64, Nullable: true, Default: 0},
+	}
+	// SysMerchantsTable holds the schema information for the "sys_Merchants" table.
+	SysMerchantsTable = &schema.Table{
+		Name:       "sys_Merchants",
+		Columns:    SysMerchantsColumns,
+		PrimaryKey: []*schema.Column{SysMerchantsColumns[0]},
+		ForeignKeys: []*schema.ForeignKey{
+			{
+				Symbol:     "sys_Merchants_sys_Merchants_children",
+				Columns:    []*schema.Column{SysMerchantsColumns[12]},
+				RefColumns: []*schema.Column{SysMerchantsColumns[0]},
+				OnDelete:   schema.SetNull,
+			},
+		},
+	}
+	// SysMerchantMetaColumns holds the columns for the "sys_merchant_meta" table.
+	SysMerchantMetaColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeUint64, Increment: true},
+		{Name: "created_by", Type: field.TypeString, Nullable: true},
+		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true},
+		{Name: "updated_at", Type: field.TypeTime},
+		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
+		{Name: "sort", Type: field.TypeUint32, Default: 1},
+		{Name: "title", Type: field.TypeString},
+		{Name: "key", Type: field.TypeString},
+		{Name: "value", Type: field.TypeString},
+		{Name: "merchant_id", Type: field.TypeUint64, Nullable: true},
+	}
+	// SysMerchantMetaTable holds the schema information for the "sys_merchant_meta" table.
+	SysMerchantMetaTable = &schema.Table{
+		Name:       "sys_merchant_meta",
+		Columns:    SysMerchantMetaColumns,
+		PrimaryKey: []*schema.Column{SysMerchantMetaColumns[0]},
+		ForeignKeys: []*schema.ForeignKey{
+			{
+				Symbol:     "sys_merchant_meta_sys_Merchants_merchant_meta",
+				Columns:    []*schema.Column{SysMerchantMetaColumns[10]},
+				RefColumns: []*schema.Column{SysMerchantsColumns[0]},
+				OnDelete:   schema.SetNull,
+			},
+		},
+	}
 	// SysOauthProvidersColumns holds the columns for the "sys_oauth_providers" table.
 	SysOauthProvidersColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
@@ -423,6 +481,8 @@ var (
 		SysDictionaryDetailsTable,
 		SysMenusTable,
 		SysMenuParamsTable,
+		SysMerchantsTable,
+		SysMerchantMetaTable,
 		SysOauthProvidersTable,
 		SysPositionsTable,
 		SysRolesTable,
@@ -459,6 +519,14 @@ func init() {
 	SysMenuParamsTable.ForeignKeys[0].RefTable = SysMenusTable
 	SysMenuParamsTable.Annotation = &entsql.Annotation{
 		Table: "sys_menu_params",
+	}
+	SysMerchantsTable.ForeignKeys[0].RefTable = SysMerchantsTable
+	SysMerchantsTable.Annotation = &entsql.Annotation{
+		Table: "sys_Merchants",
+	}
+	SysMerchantMetaTable.ForeignKeys[0].RefTable = SysMerchantsTable
+	SysMerchantMetaTable.Annotation = &entsql.Annotation{
+		Table: "sys_merchant_meta",
 	}
 	SysOauthProvidersTable.Annotation = &entsql.Annotation{
 		Table: "sys_oauth_providers",

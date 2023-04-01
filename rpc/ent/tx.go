@@ -26,6 +26,10 @@ type Tx struct {
 	Menu *MenuClient
 	// MenuParam is the client for interacting with the MenuParam builders.
 	MenuParam *MenuParamClient
+	// Merchant is the client for interacting with the Merchant builders.
+	Merchant *MerchantClient
+	// MerchantMeta is the client for interacting with the MerchantMeta builders.
+	MerchantMeta *MerchantMetaClient
 	// OauthProvider is the client for interacting with the OauthProvider builders.
 	OauthProvider *OauthProviderClient
 	// Position is the client for interacting with the Position builders.
@@ -174,6 +178,8 @@ func (tx *Tx) init() {
 	tx.DictionaryDetail = NewDictionaryDetailClient(tx.config)
 	tx.Menu = NewMenuClient(tx.config)
 	tx.MenuParam = NewMenuParamClient(tx.config)
+	tx.Merchant = NewMerchantClient(tx.config)
+	tx.MerchantMeta = NewMerchantMetaClient(tx.config)
 	tx.OauthProvider = NewOauthProviderClient(tx.config)
 	tx.Position = NewPositionClient(tx.config)
 	tx.Role = NewRoleClient(tx.config)

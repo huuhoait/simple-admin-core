@@ -93,6 +93,30 @@ func (f MenuParamFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, e
 	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.MenuParamMutation", m)
 }
 
+// The MerchantFunc type is an adapter to allow the use of ordinary
+// function as Merchant mutator.
+type MerchantFunc func(context.Context, *ent.MerchantMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f MerchantFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.MerchantMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.MerchantMutation", m)
+}
+
+// The MerchantMetaFunc type is an adapter to allow the use of ordinary
+// function as MerchantMeta mutator.
+type MerchantMetaFunc func(context.Context, *ent.MerchantMetaMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f MerchantMetaFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.MerchantMetaMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.MerchantMetaMutation", m)
+}
+
 // The OauthProviderFunc type is an adapter to allow the use of ordinary
 // function as OauthProvider mutator.
 type OauthProviderFunc func(context.Context, *ent.OauthProviderMutation) (ent.Value, error)

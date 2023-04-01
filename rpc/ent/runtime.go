@@ -13,6 +13,8 @@ import (
 	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionarydetail"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/menu"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/menuparam"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/merchant"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/merchantmeta"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/oauthprovider"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/position"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/role"
@@ -234,6 +236,64 @@ func init() {
 	menuparam.DefaultUpdatedAt = menuparamDescUpdatedAt.Default.(func() time.Time)
 	// menuparam.UpdateDefaultUpdatedAt holds the default value on update for the updated_at field.
 	menuparam.UpdateDefaultUpdatedAt = menuparamDescUpdatedAt.UpdateDefault.(func() time.Time)
+	merchantMixin := schema.Merchant{}.Mixin()
+	merchantMixinFields0 := merchantMixin[0].Fields()
+	_ = merchantMixinFields0
+	merchantMixinFields1 := merchantMixin[1].Fields()
+	_ = merchantMixinFields1
+	merchantMixinFields2 := merchantMixin[2].Fields()
+	_ = merchantMixinFields2
+	merchantFields := schema.Merchant{}.Fields()
+	_ = merchantFields
+	// merchantDescCreatedAt is the schema descriptor for created_at field.
+	merchantDescCreatedAt := merchantMixinFields0[2].Descriptor()
+	// merchant.DefaultCreatedAt holds the default value on creation for the created_at field.
+	merchant.DefaultCreatedAt = merchantDescCreatedAt.Default.(func() time.Time)
+	// merchantDescUpdatedAt is the schema descriptor for updated_at field.
+	merchantDescUpdatedAt := merchantMixinFields0[4].Descriptor()
+	// merchant.DefaultUpdatedAt holds the default value on creation for the updated_at field.
+	merchant.DefaultUpdatedAt = merchantDescUpdatedAt.Default.(func() time.Time)
+	// merchant.UpdateDefaultUpdatedAt holds the default value on update for the updated_at field.
+	merchant.UpdateDefaultUpdatedAt = merchantDescUpdatedAt.UpdateDefault.(func() time.Time)
+	// merchantDescStatus is the schema descriptor for status field.
+	merchantDescStatus := merchantMixinFields1[0].Descriptor()
+	// merchant.DefaultStatus holds the default value on creation for the status field.
+	merchant.DefaultStatus = merchantDescStatus.Default.(uint8)
+	// merchantDescSort is the schema descriptor for sort field.
+	merchantDescSort := merchantMixinFields2[0].Descriptor()
+	// merchant.DefaultSort holds the default value on creation for the sort field.
+	merchant.DefaultSort = merchantDescSort.Default.(uint32)
+	// merchantDescParentID is the schema descriptor for parent_id field.
+	merchantDescParentID := merchantFields[5].Descriptor()
+	// merchant.DefaultParentID holds the default value on creation for the parent_id field.
+	merchant.DefaultParentID = merchantDescParentID.Default.(uint64)
+	merchantmetaMixin := schema.MerchantMeta{}.Mixin()
+	merchantmetaMixinFields0 := merchantmetaMixin[0].Fields()
+	_ = merchantmetaMixinFields0
+	merchantmetaMixinFields1 := merchantmetaMixin[1].Fields()
+	_ = merchantmetaMixinFields1
+	merchantmetaMixinFields2 := merchantmetaMixin[2].Fields()
+	_ = merchantmetaMixinFields2
+	merchantmetaFields := schema.MerchantMeta{}.Fields()
+	_ = merchantmetaFields
+	// merchantmetaDescCreatedAt is the schema descriptor for created_at field.
+	merchantmetaDescCreatedAt := merchantmetaMixinFields0[2].Descriptor()
+	// merchantmeta.DefaultCreatedAt holds the default value on creation for the created_at field.
+	merchantmeta.DefaultCreatedAt = merchantmetaDescCreatedAt.Default.(func() time.Time)
+	// merchantmetaDescUpdatedAt is the schema descriptor for updated_at field.
+	merchantmetaDescUpdatedAt := merchantmetaMixinFields0[4].Descriptor()
+	// merchantmeta.DefaultUpdatedAt holds the default value on creation for the updated_at field.
+	merchantmeta.DefaultUpdatedAt = merchantmetaDescUpdatedAt.Default.(func() time.Time)
+	// merchantmeta.UpdateDefaultUpdatedAt holds the default value on update for the updated_at field.
+	merchantmeta.UpdateDefaultUpdatedAt = merchantmetaDescUpdatedAt.UpdateDefault.(func() time.Time)
+	// merchantmetaDescStatus is the schema descriptor for status field.
+	merchantmetaDescStatus := merchantmetaMixinFields1[0].Descriptor()
+	// merchantmeta.DefaultStatus holds the default value on creation for the status field.
+	merchantmeta.DefaultStatus = merchantmetaDescStatus.Default.(uint8)
+	// merchantmetaDescSort is the schema descriptor for sort field.
+	merchantmetaDescSort := merchantmetaMixinFields2[0].Descriptor()
+	// merchantmeta.DefaultSort holds the default value on creation for the sort field.
+	merchantmeta.DefaultSort = merchantmetaDescSort.Default.(uint32)
 	oauthproviderMixin := schema.OauthProvider{}.Mixin()
 	oauthproviderMixinFields0 := oauthproviderMixin[0].Fields()
 	_ = oauthproviderMixinFields0

@@ -915,6 +915,294 @@ func (mp *MenuParamUpdateOne) SetNotEmptyMenuID(value uint64) *MenuParamUpdateOn
 }
 
 // set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdate) SetNotEmptyCreatedBy(value string) *MerchantUpdate {
+	if value != "" {
+		return m.SetCreatedBy(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdateOne) SetNotEmptyCreatedBy(value string) *MerchantUpdateOne {
+	if value != "" {
+		return m.SetCreatedBy(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdate) SetNotEmptyUpdatedBy(value string) *MerchantUpdate {
+	if value != "" {
+		return m.SetUpdatedBy(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdateOne) SetNotEmptyUpdatedBy(value string) *MerchantUpdateOne {
+	if value != "" {
+		return m.SetUpdatedBy(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdate) SetNotEmptyStatus(value uint8) *MerchantUpdate {
+	if value != 0 {
+		return m.SetStatus(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdateOne) SetNotEmptyStatus(value uint8) *MerchantUpdateOne {
+	if value != 0 {
+		return m.SetStatus(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdate) SetNotEmptySort(value uint32) *MerchantUpdate {
+	if value != 0 {
+		return m.SetSort(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdateOne) SetNotEmptySort(value uint32) *MerchantUpdateOne {
+	if value != 0 {
+		return m.SetSort(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdate) SetNotEmptyName(value string) *MerchantUpdate {
+	if value != "" {
+		return m.SetName(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdateOne) SetNotEmptyName(value string) *MerchantUpdateOne {
+	if value != "" {
+		return m.SetName(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdate) SetNotEmptyLeader(value string) *MerchantUpdate {
+	if value != "" {
+		return m.SetLeader(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdateOne) SetNotEmptyLeader(value string) *MerchantUpdateOne {
+	if value != "" {
+		return m.SetLeader(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdate) SetNotEmptyPhone(value string) *MerchantUpdate {
+	if value != "" {
+		return m.SetPhone(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdateOne) SetNotEmptyPhone(value string) *MerchantUpdateOne {
+	if value != "" {
+		return m.SetPhone(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdate) SetNotEmptyEmail(value string) *MerchantUpdate {
+	if value != "" {
+		return m.SetEmail(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdateOne) SetNotEmptyEmail(value string) *MerchantUpdateOne {
+	if value != "" {
+		return m.SetEmail(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdate) SetNotEmptyRemark(value string) *MerchantUpdate {
+	if value != "" {
+		return m.SetRemark(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdateOne) SetNotEmptyRemark(value string) *MerchantUpdateOne {
+	if value != "" {
+		return m.SetRemark(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdate) SetNotEmptyParentID(value uint64) *MerchantUpdate {
+	if value != 0 {
+		return m.SetParentID(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (m *MerchantUpdateOne) SetNotEmptyParentID(value uint64) *MerchantUpdateOne {
+	if value != 0 {
+		return m.SetParentID(value)
+	}
+	return m
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdate) SetNotEmptyCreatedBy(value string) *MerchantMetaUpdate {
+	if value != "" {
+		return mm.SetCreatedBy(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdateOne) SetNotEmptyCreatedBy(value string) *MerchantMetaUpdateOne {
+	if value != "" {
+		return mm.SetCreatedBy(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdate) SetNotEmptyUpdatedBy(value string) *MerchantMetaUpdate {
+	if value != "" {
+		return mm.SetUpdatedBy(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdateOne) SetNotEmptyUpdatedBy(value string) *MerchantMetaUpdateOne {
+	if value != "" {
+		return mm.SetUpdatedBy(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdate) SetNotEmptyStatus(value uint8) *MerchantMetaUpdate {
+	if value != 0 {
+		return mm.SetStatus(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdateOne) SetNotEmptyStatus(value uint8) *MerchantMetaUpdateOne {
+	if value != 0 {
+		return mm.SetStatus(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdate) SetNotEmptySort(value uint32) *MerchantMetaUpdate {
+	if value != 0 {
+		return mm.SetSort(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdateOne) SetNotEmptySort(value uint32) *MerchantMetaUpdateOne {
+	if value != 0 {
+		return mm.SetSort(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdate) SetNotEmptyTitle(value string) *MerchantMetaUpdate {
+	if value != "" {
+		return mm.SetTitle(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdateOne) SetNotEmptyTitle(value string) *MerchantMetaUpdateOne {
+	if value != "" {
+		return mm.SetTitle(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdate) SetNotEmptyKey(value string) *MerchantMetaUpdate {
+	if value != "" {
+		return mm.SetKey(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdateOne) SetNotEmptyKey(value string) *MerchantMetaUpdateOne {
+	if value != "" {
+		return mm.SetKey(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdate) SetNotEmptyValue(value string) *MerchantMetaUpdate {
+	if value != "" {
+		return mm.SetValue(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdateOne) SetNotEmptyValue(value string) *MerchantMetaUpdateOne {
+	if value != "" {
+		return mm.SetValue(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdate) SetNotEmptyMerchantID(value uint64) *MerchantMetaUpdate {
+	if value != 0 {
+		return mm.SetMerchantID(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
+func (mm *MerchantMetaUpdateOne) SetNotEmptyMerchantID(value uint64) *MerchantMetaUpdateOne {
+	if value != 0 {
+		return mm.SetMerchantID(value)
+	}
+	return mm
+}
+
+// set field if value is not empty. e.g. string does not equal to ""
 func (op *OauthProviderUpdate) SetNotEmptyCreatedBy(value string) *OauthProviderUpdate {
 	if value != "" {
 		return op.SetCreatedBy(value)

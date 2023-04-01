@@ -43,6 +43,12 @@ type (
 	MenuParamListResp        = core.MenuParamListResp
 	MenuRoleInfo             = core.MenuRoleInfo
 	MenuRoleListResp         = core.MenuRoleListResp
+	MerchantInfo             = core.MerchantInfo
+	MerchantListReq          = core.MerchantListReq
+	MerchantListResp         = core.MerchantListResp
+	MerchantMetaInfo         = core.MerchantMetaInfo
+	MerchantMetaListReq      = core.MerchantMetaListReq
+	MerchantMetaListResp     = core.MerchantMetaListResp
 	Meta                     = core.Meta
 	OauthLoginReq            = core.OauthLoginReq
 	OauthProviderInfo        = core.OauthProviderInfo
@@ -109,6 +115,18 @@ type (
 		GetMenuParamList(ctx context.Context, in *MenuParamListReq, opts ...grpc.CallOption) (*MenuParamListResp, error)
 		GetMenuParamById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MenuParamInfo, error)
 		DeleteMenuParam(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+		// Merchant management
+		CreateMerchant(ctx context.Context, in *MerchantInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
+		UpdateMerchant(ctx context.Context, in *MerchantInfo, opts ...grpc.CallOption) (*BaseResp, error)
+		GetMerchantList(ctx context.Context, in *MerchantListReq, opts ...grpc.CallOption) (*MerchantListResp, error)
+		GetMerchantById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MerchantInfo, error)
+		DeleteMerchant(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+		// MerchantMeta management
+		CreateMerchantMeta(ctx context.Context, in *MerchantMetaInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
+		UpdateMerchantMeta(ctx context.Context, in *MerchantMetaInfo, opts ...grpc.CallOption) (*BaseResp, error)
+		GetMerchantMetaList(ctx context.Context, in *MerchantMetaListReq, opts ...grpc.CallOption) (*MerchantMetaListResp, error)
+		GetMerchantMetaById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MerchantMetaInfo, error)
+		DeleteMerchantMeta(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 		// OauthProvider management
 		CreateOauthProvider(ctx context.Context, in *OauthProviderInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
 		UpdateOauthProvider(ctx context.Context, in *OauthProviderInfo, opts ...grpc.CallOption) (*BaseResp, error)
@@ -334,6 +352,58 @@ func (m *defaultCore) GetMenuParamById(ctx context.Context, in *IDReq, opts ...g
 func (m *defaultCore) DeleteMenuParam(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.DeleteMenuParam(ctx, in, opts...)
+}
+
+// Merchant management
+func (m *defaultCore) CreateMerchant(ctx context.Context, in *MerchantInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.CreateMerchant(ctx, in, opts...)
+}
+
+func (m *defaultCore) UpdateMerchant(ctx context.Context, in *MerchantInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.UpdateMerchant(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetMerchantList(ctx context.Context, in *MerchantListReq, opts ...grpc.CallOption) (*MerchantListResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetMerchantList(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetMerchantById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MerchantInfo, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetMerchantById(ctx, in, opts...)
+}
+
+func (m *defaultCore) DeleteMerchant(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.DeleteMerchant(ctx, in, opts...)
+}
+
+// MerchantMeta management
+func (m *defaultCore) CreateMerchantMeta(ctx context.Context, in *MerchantMetaInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.CreateMerchantMeta(ctx, in, opts...)
+}
+
+func (m *defaultCore) UpdateMerchantMeta(ctx context.Context, in *MerchantMetaInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.UpdateMerchantMeta(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetMerchantMetaList(ctx context.Context, in *MerchantMetaListReq, opts ...grpc.CallOption) (*MerchantMetaListResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetMerchantMetaList(ctx, in, opts...)
+}
+
+func (m *defaultCore) GetMerchantMetaById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MerchantMetaInfo, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.GetMerchantMetaById(ctx, in, opts...)
+}
+
+func (m *defaultCore) DeleteMerchantMeta(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := core.NewCoreClient(m.cli.Conn())
+	return client.DeleteMerchantMeta(ctx, in, opts...)
 }
 
 // OauthProvider management

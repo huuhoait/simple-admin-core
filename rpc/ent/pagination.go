@@ -13,6 +13,8 @@ import (
 	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionarydetail"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/menu"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/menuparam"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/merchant"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/merchantmeta"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/oauthprovider"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/position"
 	"github.com/huuhoait/zero-admin-core/rpc/ent/role"
@@ -611,6 +613,164 @@ func (mp *MenuParamQuery) Page(
 
 	mp = mp.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
 	list, err := mp.All(ctx)
+	if err != nil {
+		return nil, err
+	}
+	ret.List = list
+
+	return ret, nil
+}
+
+type MerchantPager struct {
+	Order  OrderFunc
+	Filter func(*MerchantQuery) (*MerchantQuery, error)
+}
+
+// MerchantPaginateOption enables pagination customization.
+type MerchantPaginateOption func(*MerchantPager)
+
+// DefaultMerchantOrder is the default ordering of Merchant.
+var DefaultMerchantOrder = Desc(merchant.FieldID)
+
+func newMerchantPager(opts []MerchantPaginateOption) (*MerchantPager, error) {
+	pager := &MerchantPager{}
+	for _, opt := range opts {
+		opt(pager)
+	}
+	if pager.Order == nil {
+		pager.Order = DefaultMerchantOrder
+	}
+	return pager, nil
+}
+
+func (p *MerchantPager) ApplyFilter(query *MerchantQuery) (*MerchantQuery, error) {
+	if p.Filter != nil {
+		return p.Filter(query)
+	}
+	return query, nil
+}
+
+// MerchantPageList is Merchant PageList result.
+type MerchantPageList struct {
+	List        []*Merchant  `json:"list"`
+	PageDetails *PageDetails `json:"pageDetails"`
+}
+
+func (m *MerchantQuery) Page(
+	ctx context.Context, pageNum uint64, pageSize uint64, opts ...MerchantPaginateOption,
+) (*MerchantPageList, error) {
+
+	pager, err := newMerchantPager(opts)
+	if err != nil {
+		return nil, err
+	}
+
+	if m, err = pager.ApplyFilter(m); err != nil {
+		return nil, err
+	}
+
+	ret := &MerchantPageList{}
+
+	ret.PageDetails = &PageDetails{
+		Page: pageNum,
+		Size: pageSize,
+	}
+
+	count, err := m.Clone().Count(ctx)
+
+	if err != nil {
+		return nil, err
+	}
+
+	ret.PageDetails.Total = uint64(count)
+
+	if pager.Order != nil {
+		m = m.Order(pager.Order)
+	} else {
+		m = m.Order(DefaultMerchantOrder)
+	}
+
+	m = m.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
+	list, err := m.All(ctx)
+	if err != nil {
+		return nil, err
+	}
+	ret.List = list
+
+	return ret, nil
+}
+
+type MerchantMetaPager struct {
+	Order  OrderFunc
+	Filter func(*MerchantMetaQuery) (*MerchantMetaQuery, error)
+}
+
+// MerchantMetaPaginateOption enables pagination customization.
+type MerchantMetaPaginateOption func(*MerchantMetaPager)
+
+// DefaultMerchantMetaOrder is the default ordering of MerchantMeta.
+var DefaultMerchantMetaOrder = Desc(merchantmeta.FieldID)
+
+func newMerchantMetaPager(opts []MerchantMetaPaginateOption) (*MerchantMetaPager, error) {
+	pager := &MerchantMetaPager{}
+	for _, opt := range opts {
+		opt(pager)
+	}
+	if pager.Order == nil {
+		pager.Order = DefaultMerchantMetaOrder
+	}
+	return pager, nil
+}
+
+func (p *MerchantMetaPager) ApplyFilter(query *MerchantMetaQuery) (*MerchantMetaQuery, error) {
+	if p.Filter != nil {
+		return p.Filter(query)
+	}
+	return query, nil
+}
+
+// MerchantMetaPageList is MerchantMeta PageList result.
+type MerchantMetaPageList struct {
+	List        []*MerchantMeta `json:"list"`
+	PageDetails *PageDetails    `json:"pageDetails"`
+}
+
+func (mm *MerchantMetaQuery) Page(
+	ctx context.Context, pageNum uint64, pageSize uint64, opts ...MerchantMetaPaginateOption,
+) (*MerchantMetaPageList, error) {
+
+	pager, err := newMerchantMetaPager(opts)
+	if err != nil {
+		return nil, err
+	}
+
+	if mm, err = pager.ApplyFilter(mm); err != nil {
+		return nil, err
+	}
+
+	ret := &MerchantMetaPageList{}
+
+	ret.PageDetails = &PageDetails{
+		Page: pageNum,
+		Size: pageSize,
+	}
+
+	count, err := mm.Clone().Count(ctx)
+
+	if err != nil {
+		return nil, err
+	}
+
+	ret.PageDetails.Total = uint64(count)
+
+	if pager.Order != nil {
+		mm = mm.Order(pager.Order)
+	} else {
+		mm = mm.Order(DefaultMerchantMetaOrder)
+	}
+
+	mm = mm.Offset(int((pageNum - 1) * pageSize)).Limit(int(pageSize))
+	list, err := mm.All(ctx)
 	if err != nil {
 		return nil, err
 	}

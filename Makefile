@@ -46,7 +46,7 @@ gen-rpc: # Generate RPC files from proto | 生成 RPC 的代码
 
 .PHONY: gen-ent
 gen-ent: # Generate Ent codes | 生成 Ent 的代码
-	go run -mod=mod entgo.io/ent/cmd/ent generate --template glob="./rpc/ent/template/*.tmpl" ./rpc/ent/schema
+	go run entgo.io/ent/cmd/ent generate --template glob="./rpc/ent/template/*.tmpl" ./rpc/ent/schema
 	@echo "Generate Ent files successfully"
 
 .PHONY: gen-rpc-ent-logic
