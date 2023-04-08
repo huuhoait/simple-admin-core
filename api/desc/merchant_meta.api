@@ -1,0 +1,89 @@
+import "base.api"
+
+type (
+    // The response data of merchant meta information | 字典键值信息
+    MerchantMetaInfo {
+        BaseIDInfo
+
+        // Status | 状态
+        Status  uint32 `json:"status,optional"`
+
+        // Title | 显示名称
+        Title  string `json:"title,optional"`
+
+        // Key | 键
+        Key  string `json:"key,optional"`
+
+        // Value | 值
+        Value  string `json:"value,optional"`
+
+        // Merchant ID | 所属字典ID
+        MerchantId  uint64 `json:"merchantId,optional"`
+
+        // Sort | 排序
+        Sort uint32 `json:"sort,optional"`
+    }
+
+    // The response data of merchant meta list | 字典键值列表数据
+    MerchantMetaListResp {
+        BaseDataInfo
+
+        // MerchantMeta list data | 字典键值列表数据
+        Data MerchantMetaListInfo `json:"data"`
+    }
+
+    // MerchantMeta list data | 字典键值列表数据
+    MerchantMetaListInfo {
+        BaseListInfo
+
+        // The API list data | 字典键值列表数据
+        Data  []MerchantMetaInfo  `json:"data"`
+    }
+
+    // Get merchant meta list request params | 字典键值列表请求参数
+    MerchantMetaListReq {
+        PageInfo
+
+        // Key | 键
+        Key  string `json:"key,optional"`
+
+        // Dictionary ID | 所属字典ID
+        MerchantId  uint64 `json:"merchantId,optional"`
+    }
+
+    // MerchantMeta information response | 字典键值信息返回体
+    MerchantMetaInfoResp {
+        BaseDataInfo
+
+        // MerchantMeta information | 字典键值数据
+        Data MerchantMetaInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: merchantmeta
+    middleware: Authority
+)
+
+service core {
+    // Create merchant meta information | 创建字典键值
+    @handler createMerchantMeta
+    post /merchant_meta/create (MerchantMetaInfo) returns (BaseMsgResp)
+
+    // Update merchant meta information | 更新字典键值
+    @handler updateMerchantMeta
+    post /merchant_meta/update (MerchantMetaInfo) returns (BaseMsgResp)
+
+    // Delete merchant meta information | 删除字典键值信息
+    @handler deleteMerchantMeta
+    post /merchant_meta/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get merchant meta list | 获取字典键值列表
+    @handler getMerchantMetaList
+    post /merchant_meta/list (MerchantMetaListReq) returns (MerchantMetaListResp)
+
+    // Get MerchantMeta by ID | 通过ID获取字典键值
+    @handler getMerchantMetaById
+    post /merchant_meta (IDReq) returns (MerchantMetaInfoResp)
+}

@@ -14,6 +14,8 @@ import (
 	dictionarydetail "github.com/huuhoait/zero-admin-core/api/internal/handler/dictionarydetail"
 	menu "github.com/huuhoait/zero-admin-core/api/internal/handler/menu"
 	menuparam "github.com/huuhoait/zero-admin-core/api/internal/handler/menuparam"
+	merchant "github.com/huuhoait/zero-admin-core/api/internal/handler/merchant"
+	merchantmeta "github.com/huuhoait/zero-admin-core/api/internal/handler/merchantmeta"
 	oauthprovider "github.com/huuhoait/zero-admin-core/api/internal/handler/oauthprovider"
 	position "github.com/huuhoait/zero-admin-core/api/internal/handler/position"
 	role "github.com/huuhoait/zero-admin-core/api/internal/handler/role"
@@ -606,6 +608,74 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Method:  http.MethodPost,
 					Path:    "/task_log",
 					Handler: tasklog.GetTaskLogByIdHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Authority},
+			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/Merchant/create",
+					Handler: merchant.CreateMerchantHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/Merchant/update",
+					Handler: merchant.UpdateMerchantHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/Merchant/delete",
+					Handler: merchant.DeleteMerchantHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/Merchant/list",
+					Handler: merchant.GetMerchantListHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/Merchant",
+					Handler: merchant.GetMerchantByIdHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Authority},
+			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/merchant_meta/create",
+					Handler: merchantmeta.CreateMerchantMetaHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/merchant_meta/update",
+					Handler: merchantmeta.UpdateMerchantMetaHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/merchant_meta/delete",
+					Handler: merchantmeta.DeleteMerchantMetaHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/merchant_meta/list",
+					Handler: merchantmeta.GetMerchantMetaListHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/merchant_meta",
+					Handler: merchantmeta.GetMerchantMetaByIdHandler(serverCtx),
 				},
 			}...,
 		),

@@ -1,0 +1,100 @@
+import "base.api"
+
+type (
+    // The response data of Merchant information | 部门信息
+    MerchantInfo {
+        BaseIDInfo
+
+        // Translated Name | 展示名称
+        Trans string `json:"trans,optional"`
+
+        // Status | 状态
+        Status  uint32 `json:"status,optional"`
+
+        // Sort | 排序
+        Sort  uint32 `json:"sort,optional"`
+
+        // Name | 部门名称
+        Name  string `json:"name,optional"`
+
+        // Leader | 部门负责人
+        Leader  string `json:"leader,optional"`
+
+        // Phone | 电话号码
+        Phone  string `json:"phone,optional"`
+
+        // Email | 邮箱
+        Email  string `json:"email,optional"`
+
+        // Remark | 备注
+        Remark  string `json:"remark,optional"`
+
+        // ParentId | 父级 ID
+        ParentId  uint64 `json:"parentId,optional"`
+
+
+    }
+
+    // The response data of Merchant list | 部门列表数据
+    MerchantListResp {
+        BaseDataInfo
+
+        // Merchant list data | 部门列表数据
+        Data MerchantListInfo `json:"data"`
+    }
+
+    // Merchant list data | 部门列表数据
+    MerchantListInfo {
+        BaseListInfo
+
+        // The API list data | 部门列表数据
+        Data  []MerchantInfo  `json:"data"`
+    }
+
+    // Get Merchant list request params | 部门列表请求参数
+    MerchantListReq {
+        PageInfo
+
+        // Name | 部门名称
+        Name  string `json:"name,optional"`
+
+        // Leader | 部门负责人
+        Leader  string `json:"leader,optional"`
+    }
+
+    // Merchant information response | 部门信息返回体
+    MerchantInfoResp {
+        BaseDataInfo
+
+        // Merchant information | 部门数据
+        Data MerchantInfo `json:"data"`
+    }
+)
+
+@server(
+    jwt: Auth
+    group: merchant
+    middleware: Authority
+)
+
+service core {
+    // Create Merchant information | 创建部门
+    @handler createMerchant
+    post /Merchant/create (MerchantInfo) returns (BaseMsgResp)
+
+    // Update Merchant information | 更新部门
+    @handler updateMerchant
+    post /Merchant/update (MerchantInfo) returns (BaseMsgResp)
+
+    // Delete Merchant information | 删除部门信息
+    @handler deleteMerchant
+    post /Merchant/delete (IDsReq) returns (BaseMsgResp)
+
+    // Get Merchant list | 获取部门列表
+    @handler getMerchantList
+    post /Merchant/list (MerchantListReq) returns (MerchantListResp)
+
+    // Get Merchant by ID | 通过ID获取部门
+    @handler getMerchantById
+    post /Merchant (IDReq) returns (MerchantInfoResp)
+}

@@ -6,8 +6,6 @@ package server
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/Merchant"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/MerchantMeta"
 	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/api"
 	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/audit"
 	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/authority"
@@ -17,6 +15,8 @@ import (
 	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/dictionarydetail"
 	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/menu"
 	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/menuparam"
+	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/merchant"
+	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/merchantmeta"
 	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/oauthprovider"
 	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/position"
 	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/role"
@@ -217,55 +217,55 @@ func (s *CoreServer) DeleteMenuParam(ctx context.Context, in *core.IDsReq) (*cor
 	return l.DeleteMenuParam(in)
 }
 
-// Merchant management
+// merchant management
 func (s *CoreServer) CreateMerchant(ctx context.Context, in *core.MerchantInfo) (*core.BaseIDResp, error) {
-	l := Merchant.NewCreateMerchantLogic(ctx, s.svcCtx)
+	l := merchant.NewCreateMerchantLogic(ctx, s.svcCtx)
 	return l.CreateMerchant(in)
 }
 
 func (s *CoreServer) UpdateMerchant(ctx context.Context, in *core.MerchantInfo) (*core.BaseResp, error) {
-	l := Merchant.NewUpdateMerchantLogic(ctx, s.svcCtx)
+	l := merchant.NewUpdateMerchantLogic(ctx, s.svcCtx)
 	return l.UpdateMerchant(in)
 }
 
 func (s *CoreServer) GetMerchantList(ctx context.Context, in *core.MerchantListReq) (*core.MerchantListResp, error) {
-	l := Merchant.NewGetMerchantListLogic(ctx, s.svcCtx)
+	l := merchant.NewGetMerchantListLogic(ctx, s.svcCtx)
 	return l.GetMerchantList(in)
 }
 
 func (s *CoreServer) GetMerchantById(ctx context.Context, in *core.IDReq) (*core.MerchantInfo, error) {
-	l := Merchant.NewGetMerchantByIdLogic(ctx, s.svcCtx)
+	l := merchant.NewGetMerchantByIdLogic(ctx, s.svcCtx)
 	return l.GetMerchantById(in)
 }
 
 func (s *CoreServer) DeleteMerchant(ctx context.Context, in *core.IDsReq) (*core.BaseResp, error) {
-	l := Merchant.NewDeleteMerchantLogic(ctx, s.svcCtx)
+	l := merchant.NewDeleteMerchantLogic(ctx, s.svcCtx)
 	return l.DeleteMerchant(in)
 }
 
 // MerchantMeta management
 func (s *CoreServer) CreateMerchantMeta(ctx context.Context, in *core.MerchantMetaInfo) (*core.BaseIDResp, error) {
-	l := MerchantMeta.NewCreateMerchantMetaLogic(ctx, s.svcCtx)
+	l := merchantmeta.NewCreateMerchantMetaLogic(ctx, s.svcCtx)
 	return l.CreateMerchantMeta(in)
 }
 
 func (s *CoreServer) UpdateMerchantMeta(ctx context.Context, in *core.MerchantMetaInfo) (*core.BaseResp, error) {
-	l := MerchantMeta.NewUpdateMerchantMetaLogic(ctx, s.svcCtx)
+	l := merchantmeta.NewUpdateMerchantMetaLogic(ctx, s.svcCtx)
 	return l.UpdateMerchantMeta(in)
 }
 
 func (s *CoreServer) GetMerchantMetaList(ctx context.Context, in *core.MerchantMetaListReq) (*core.MerchantMetaListResp, error) {
-	l := MerchantMeta.NewGetMerchantMetaListLogic(ctx, s.svcCtx)
+	l := merchantmeta.NewGetMerchantMetaListLogic(ctx, s.svcCtx)
 	return l.GetMerchantMetaList(in)
 }
 
 func (s *CoreServer) GetMerchantMetaById(ctx context.Context, in *core.IDReq) (*core.MerchantMetaInfo, error) {
-	l := MerchantMeta.NewGetMerchantMetaByIdLogic(ctx, s.svcCtx)
+	l := merchantmeta.NewGetMerchantMetaByIdLogic(ctx, s.svcCtx)
 	return l.GetMerchantMetaById(in)
 }
 
 func (s *CoreServer) DeleteMerchantMeta(ctx context.Context, in *core.IDsReq) (*core.BaseResp, error) {
-	l := MerchantMeta.NewDeleteMerchantMetaLogic(ctx, s.svcCtx)
+	l := merchantmeta.NewDeleteMerchantMetaLogic(ctx, s.svcCtx)
 	return l.DeleteMerchantMeta(in)
 }
 

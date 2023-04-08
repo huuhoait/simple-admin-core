@@ -115,7 +115,7 @@ type (
 		GetMenuParamList(ctx context.Context, in *MenuParamListReq, opts ...grpc.CallOption) (*MenuParamListResp, error)
 		GetMenuParamById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MenuParamInfo, error)
 		DeleteMenuParam(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
-		// Merchant management
+		// merchant management
 		CreateMerchant(ctx context.Context, in *MerchantInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
 		UpdateMerchant(ctx context.Context, in *MerchantInfo, opts ...grpc.CallOption) (*BaseResp, error)
 		GetMerchantList(ctx context.Context, in *MerchantListReq, opts ...grpc.CallOption) (*MerchantListResp, error)
@@ -354,7 +354,7 @@ func (m *defaultCore) DeleteMenuParam(ctx context.Context, in *IDsReq, opts ...g
 	return client.DeleteMenuParam(ctx, in, opts...)
 }
 
-// Merchant management
+// merchant management
 func (m *defaultCore) CreateMerchant(ctx context.Context, in *MerchantInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.CreateMerchant(ctx, in, opts...)

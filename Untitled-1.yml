@@ -1,0 +1,2 @@
+goctls rpc ent --schema=/Volumes/XData/Work/Golang/zero-admin-dev/zero-admin-core/rpc/ent/schema  --style=go_zero --multiple=false --service_name=example --o=/Volumes/XData/Work/Golang/zero-admin-dev/zero-admin-core/tesst --model=Merchant --group=merchant --proto_out=/Volumes/XData/Work/Golang/zero-admin-dev/zero-admin-core/tesst/merchant.proto
+

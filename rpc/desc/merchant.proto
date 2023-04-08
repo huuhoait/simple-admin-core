@@ -1,17 +1,21 @@
 syntax = "proto3";
 
-// Merchant message
+// merchant message
 
 message MerchantInfo {
   uint64 id = 1;
   int64 created_at = 2;
   int64 updated_at = 3;
   uint32 status = 4;
-  string title = 5;
-  string key = 6;
-  string value = 7;
-  uint64 merchant_id = 8;
-  uint32 sort = 9;
+  uint32 sort = 5;
+  string name = 6; 
+  string leader = 7;
+  string phone = 8;
+  string email = 9;
+  string remark = 10;
+  uint64 parent_id = 11;
+  string created_by = 12;
+  string updated_by = 13;
 }
 
 message MerchantListResp {
@@ -29,16 +33,16 @@ message MerchantListReq {
 
 service Core {
 
-  // Merchant management
-  // group: Merchant
+  // merchant management
+  // group: merchant
   rpc createMerchant (MerchantInfo) returns (BaseIDResp);
-  // group: Merchant
+  // group: merchant
   rpc updateMerchant (MerchantInfo) returns (BaseResp);
-  // group: Merchant
+  // group: merchant
   rpc getMerchantList (MerchantListReq) returns (MerchantListResp);
-  // group: Merchant
+  // group: merchant
   rpc getMerchantById (IDReq) returns (MerchantInfo);
-  // group: Merchant
+  // group: merchant
   rpc deleteMerchant (IDsReq) returns (BaseResp);
 
 

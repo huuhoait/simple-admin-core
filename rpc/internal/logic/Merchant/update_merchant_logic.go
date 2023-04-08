@@ -1,10 +1,14 @@
-package Merchant
+package merchant
 
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+
+	"github.com/huuhoait/zero-admin-core/internal/svc"
+	"github.com/huuhoait/zero-admin-core/internal/utils/dberrorhandler"
+    "github.com/huuhoait/zero-admin-core/core"
+
+    "github.com/suyuan32/simple-admin-common/i18n"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -24,7 +28,22 @@ func NewUpdateMerchantLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Up
 }
 
 func (l *UpdateMerchantLogic) UpdateMerchant(in *core.MerchantInfo) (*core.BaseResp, error) {
-	// todo: add your logic here and delete this line
+    err := l.svcCtx.DB.Merchant.UpdateOneID(in.Id).
+			SetNotEmptyCreatedBy(in.CreatedBy).
+			SetNotEmptyUpdatedBy(in.UpdatedBy).
+			SetNotEmptyStatus(uint8(in.Status)).
+			SetNotEmptySort(in.Sort).
+			SetNotEmptyName(in.Name).
+			SetNotEmptyLeader(in.Leader).
+			SetNotEmptyPhone(in.Phone).
+			SetNotEmptyEmail(in.Email).
+			SetNotEmptyRemark(in.Remark).
+			SetNotEmptyParentID(in.ParentId).
+			Exec(l.ctx)
 
-	return &core.BaseResp{}, nil
+    if err != nil {
+		return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+	}
+
+    return &core.BaseResp{Msg: i18n.UpdateSuccess}, nil
 }

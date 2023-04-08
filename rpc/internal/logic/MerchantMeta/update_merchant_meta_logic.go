@@ -1,10 +1,14 @@
-package MerchantMeta
+package merchantmeta
 
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+
+	"github.com/huuhoait/zero-admin-core/internal/svc"
+	"github.com/huuhoait/zero-admin-core/internal/utils/dberrorhandler"
+    "github.com/huuhoait/zero-admin-core/core"
+
+    "github.com/suyuan32/simple-admin-common/i18n"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -24,7 +28,20 @@ func NewUpdateMerchantMetaLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 }
 
 func (l *UpdateMerchantMetaLogic) UpdateMerchantMeta(in *core.MerchantMetaInfo) (*core.BaseResp, error) {
-	// todo: add your logic here and delete this line
+    err := l.svcCtx.DB.MerchantMeta.UpdateOneID(in.Id).
+			SetNotEmptyCreatedBy(in.CreatedBy).
+			SetNotEmptyUpdatedBy(in.UpdatedBy).
+			SetNotEmptyStatus(uint8(in.Status)).
+			SetNotEmptySort(in.Sort).
+			SetNotEmptyTitle(in.Title).
+			SetNotEmptyKey(in.Key).
+			SetNotEmptyValue(in.Value).
+			SetNotEmptyMerchantID(in.MerchantId).
+			Exec(l.ctx)
 
-	return &core.BaseResp{}, nil
+    if err != nil {
+		return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+	}
+
+    return &core.BaseResp{Msg: i18n.UpdateSuccess}, nil
 }

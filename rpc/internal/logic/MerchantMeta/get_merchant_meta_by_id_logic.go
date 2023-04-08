@@ -1,10 +1,11 @@
-package MerchantMeta
+package merchantmeta
 
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/huuhoait/zero-admin-core/internal/svc"
+	"github.com/huuhoait/zero-admin-core/internal/utils/dberrorhandler"
+	"github.com/huuhoait/zero-admin-core/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -24,7 +25,23 @@ func NewGetMerchantMetaByIdLogic(ctx context.Context, svcCtx *svc.ServiceContext
 }
 
 func (l *GetMerchantMetaByIdLogic) GetMerchantMetaById(in *core.IDReq) (*core.MerchantMetaInfo, error) {
-	// todo: add your logic here and delete this line
+	result, err := l.svcCtx.DB.MerchantMeta.Get(l.ctx, in.Id)
+	if err != nil {
+		return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+	}
 
-	return &core.MerchantMetaInfo{}, nil
+	return &core.MerchantMetaInfo{
+		Id:          result.ID,
+		CreatedAt:   result.CreatedAt.UnixMilli(),
+		UpdatedAt:   result.UpdatedAt.UnixMilli(),
+			CreatedBy:	result.CreatedBy,
+			UpdatedBy:	result.UpdatedBy,
+			Status:	uint32(result.Status),
+			Sort:	result.Sort,
+			Title:	result.Title,
+			Key:	result.Key,
+			Value:	result.Value,
+			MerchantId:	result.MerchantID,
+	}, nil
 }
+

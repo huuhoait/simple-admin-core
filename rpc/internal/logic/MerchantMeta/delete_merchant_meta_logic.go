@@ -1,12 +1,15 @@
-package MerchantMeta
+package merchantmeta
 
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+    "github.com/huuhoait/zero-admin-core/ent/merchantmeta"
+    "github.com/huuhoait/zero-admin-core/internal/svc"
+    "github.com/huuhoait/zero-admin-core/internal/utils/dberrorhandler"
+    "github.com/huuhoait/zero-admin-core/core"
 
-	"github.com/zeromicro/go-zero/core/logx"
+    "github.com/suyuan32/simple-admin-common/i18n"
+    "github.com/zeromicro/go-zero/core/logx"
 )
 
 type DeleteMerchantMetaLogic struct {
@@ -24,7 +27,11 @@ func NewDeleteMerchantMetaLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 }
 
 func (l *DeleteMerchantMetaLogic) DeleteMerchantMeta(in *core.IDsReq) (*core.BaseResp, error) {
-	// todo: add your logic here and delete this line
+	_, err := l.svcCtx.DB.MerchantMeta.Delete().Where(merchantmeta.IDIn(in.Ids...)).Exec(l.ctx)
 
-	return &core.BaseResp{}, nil
+    if err != nil {
+		return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
+	}
+
+    return &core.BaseResp{Msg: i18n.DeleteSuccess}, nil
 }

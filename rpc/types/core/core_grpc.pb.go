@@ -97,27 +97,27 @@ type CoreClient interface {
 	GetMenuParamById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MenuParamInfo, error)
 	// group: menuparam
 	DeleteMenuParam(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
-	// Merchant management
-	// group: Merchant
+	// merchant management
+	// group: merchant
 	CreateMerchant(ctx context.Context, in *MerchantInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
-	// group: Merchant
+	// group: merchant
 	UpdateMerchant(ctx context.Context, in *MerchantInfo, opts ...grpc.CallOption) (*BaseResp, error)
-	// group: Merchant
+	// group: merchant
 	GetMerchantList(ctx context.Context, in *MerchantListReq, opts ...grpc.CallOption) (*MerchantListResp, error)
-	// group: Merchant
+	// group: merchant
 	GetMerchantById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MerchantInfo, error)
-	// group: Merchant
+	// group: merchant
 	DeleteMerchant(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 	// MerchantMeta management
-	// group: MerchantMeta
+	// group: merchantmeta
 	CreateMerchantMeta(ctx context.Context, in *MerchantMetaInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
-	// group: MerchantMeta
+	// group: merchantmeta
 	UpdateMerchantMeta(ctx context.Context, in *MerchantMetaInfo, opts ...grpc.CallOption) (*BaseResp, error)
-	// group: MerchantMeta
+	// group: merchantmeta
 	GetMerchantMetaList(ctx context.Context, in *MerchantMetaListReq, opts ...grpc.CallOption) (*MerchantMetaListResp, error)
-	// group: MerchantMeta
+	// group: merchantmeta
 	GetMerchantMetaById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MerchantMetaInfo, error)
-	// group: MerchantMeta
+	// group: merchantmeta
 	DeleteMerchantMeta(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 	// OauthProvider management
 	// group: oauthprovider
@@ -937,27 +937,27 @@ type CoreServer interface {
 	GetMenuParamById(context.Context, *IDReq) (*MenuParamInfo, error)
 	// group: menuparam
 	DeleteMenuParam(context.Context, *IDsReq) (*BaseResp, error)
-	// Merchant management
-	// group: Merchant
+	// merchant management
+	// group: merchant
 	CreateMerchant(context.Context, *MerchantInfo) (*BaseIDResp, error)
-	// group: Merchant
+	// group: merchant
 	UpdateMerchant(context.Context, *MerchantInfo) (*BaseResp, error)
-	// group: Merchant
+	// group: merchant
 	GetMerchantList(context.Context, *MerchantListReq) (*MerchantListResp, error)
-	// group: Merchant
+	// group: merchant
 	GetMerchantById(context.Context, *IDReq) (*MerchantInfo, error)
-	// group: Merchant
+	// group: merchant
 	DeleteMerchant(context.Context, *IDsReq) (*BaseResp, error)
 	// MerchantMeta management
-	// group: MerchantMeta
+	// group: merchantmeta
 	CreateMerchantMeta(context.Context, *MerchantMetaInfo) (*BaseIDResp, error)
-	// group: MerchantMeta
+	// group: merchantmeta
 	UpdateMerchantMeta(context.Context, *MerchantMetaInfo) (*BaseResp, error)
-	// group: MerchantMeta
+	// group: merchantmeta
 	GetMerchantMetaList(context.Context, *MerchantMetaListReq) (*MerchantMetaListResp, error)
-	// group: MerchantMeta
+	// group: merchantmeta
 	GetMerchantMetaById(context.Context, *IDReq) (*MerchantMetaInfo, error)
-	// group: MerchantMeta
+	// group: merchantmeta
 	DeleteMerchantMeta(context.Context, *IDsReq) (*BaseResp, error)
 	// OauthProvider management
 	// group: oauthprovider

@@ -1258,3 +1258,113 @@ type TaskLogInfoResp struct {
 	// TaskLog information | 任务日志数据
 	Data TaskLogInfo `json:"data"`
 }
+
+// The response data of Merchant information | 部门信息
+// swagger:model MerchantInfo
+type MerchantInfo struct {
+	BaseIDInfo
+	// Translated Name | 展示名称
+	Trans string `json:"trans,optional"`
+	// Status | 状态
+	Status uint32 `json:"status,optional"`
+	// Sort | 排序
+	Sort uint32 `json:"sort,optional"`
+	// Name | 部门名称
+	Name string `json:"name,optional"`
+	// Leader | 部门负责人
+	Leader string `json:"leader,optional"`
+	// Phone | 电话号码
+	Phone string `json:"phone,optional"`
+	// Email | 邮箱
+	Email string `json:"email,optional"`
+	// Remark | 备注
+	Remark string `json:"remark,optional"`
+	// ParentId | 父级 ID
+	ParentId uint64 `json:"parentId,optional"`
+}
+
+// The response data of Merchant list | 部门列表数据
+// swagger:model MerchantListResp
+type MerchantListResp struct {
+	BaseDataInfo
+	// Merchant list data | 部门列表数据
+	Data MerchantListInfo `json:"data"`
+}
+
+// Merchant list data | 部门列表数据
+// swagger:model MerchantListInfo
+type MerchantListInfo struct {
+	BaseListInfo
+	// The API list data | 部门列表数据
+	Data []MerchantInfo `json:"data"`
+}
+
+// Get Merchant list request params | 部门列表请求参数
+// swagger:model MerchantListReq
+type MerchantListReq struct {
+	PageInfo
+	// Name | 部门名称
+	Name string `json:"name,optional"`
+	// Leader | 部门负责人
+	Leader string `json:"leader,optional"`
+}
+
+// Merchant information response | 部门信息返回体
+// swagger:model MerchantInfoResp
+type MerchantInfoResp struct {
+	BaseDataInfo
+	// Merchant information | 部门数据
+	Data MerchantInfo `json:"data"`
+}
+
+// The response data of merchant meta information | 字典键值信息
+// swagger:model MerchantMetaInfo
+type MerchantMetaInfo struct {
+	BaseIDInfo
+	// Status | 状态
+	Status uint32 `json:"status,optional"`
+	// Title | 显示名称
+	Title string `json:"title,optional"`
+	// Key | 键
+	Key string `json:"key,optional"`
+	// Value | 值
+	Value string `json:"value,optional"`
+	// Merchant ID | 所属字典ID
+	MerchantId uint64 `json:"merchantId,optional"`
+	// Sort | 排序
+	Sort uint32 `json:"sort,optional"`
+}
+
+// The response data of merchant meta list | 字典键值列表数据
+// swagger:model MerchantMetaListResp
+type MerchantMetaListResp struct {
+	BaseDataInfo
+	// MerchantMeta list data | 字典键值列表数据
+	Data MerchantMetaListInfo `json:"data"`
+}
+
+// MerchantMeta list data | 字典键值列表数据
+// swagger:model MerchantMetaListInfo
+type MerchantMetaListInfo struct {
+	BaseListInfo
+	// The API list data | 字典键值列表数据
+	Data []MerchantMetaInfo `json:"data"`
+}
+
+// Get merchant meta list request params | 字典键值列表请求参数
+// swagger:model MerchantMetaListReq
+type MerchantMetaListReq struct {
+	PageInfo
+	// Key | 键
+	Key string `json:"key,optional"`
+	// Dictionary ID | 所属字典ID
+	MerchantId uint64 `json:"merchantId,optional"`
+}
+
+// MerchantMeta information response | 字典键值信息返回体
+// swagger:model MerchantMetaInfoResp
+type MerchantMetaInfoResp struct {
+	BaseDataInfo
+	// MerchantMeta information | 字典键值数据
+	Data MerchantMetaInfo `json:"data"`
+}
