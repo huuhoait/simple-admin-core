@@ -95,6 +95,7 @@ require (
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
+	github.com/suyuan32/simple-admin-common v0.2.9 // indirect
 	github.com/zclconf/go-cty v1.13.1 // indirect
 	go.etcd.io/etcd/api/v3 v3.5.7 // indirect
 	go.etcd.io/etcd/client/pkg/v3 v3.5.7 // indirect

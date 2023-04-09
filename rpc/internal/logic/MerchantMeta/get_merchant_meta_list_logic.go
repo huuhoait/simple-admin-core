@@ -3,13 +3,13 @@ package merchantmeta
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/ent/merchantmeta"
-	"github.com/huuhoait/zero-admin-core/ent/predicate"
 	"github.com/huuhoait/zero-admin-core/internal/svc"
 	"github.com/huuhoait/zero-admin-core/internal/utils/dberrorhandler"
-    "github.com/huuhoait/zero-admin-core/core"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/merchantmeta"
+	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
+	"github.com/huuhoait/zero-admin-core/rpc/types/core"
 
-    "github.com/zeromicro/go-zero/core/logx"
+	"github.com/zeromicro/go-zero/core/logx"
 )
 
 type GetMerchantMetaListLogic struct {
@@ -48,17 +48,17 @@ func (l *GetMerchantMetaListLogic) GetMerchantMetaList(in *core.MerchantMetaList
 
 	for _, v := range result.List {
 		resp.Data = append(resp.Data, &core.MerchantMetaInfo{
-			Id:          v.ID,
-			CreatedAt:   v.CreatedAt.UnixMilli(),
-			UpdatedAt:   v.UpdatedAt.UnixMilli(),
-			CreatedBy:	v.CreatedBy,
-			UpdatedBy:	v.UpdatedBy,
-			Status:	uint32(v.Status),
-			Sort:	v.Sort,
-			Title:	v.Title,
-			Key:	v.Key,
-			Value:	v.Value,
-			MerchantId:	v.MerchantID,
+			Id:         v.ID,
+			CreatedAt:  v.CreatedAt.UnixMilli(),
+			UpdatedAt:  v.UpdatedAt.UnixMilli(),
+			CreatedBy:  v.CreatedBy,
+			UpdatedBy:  v.UpdatedBy,
+			Status:     uint32(v.Status),
+			Sort:       v.Sort,
+			Title:      v.Title,
+			Key:        v.Key,
+			Value:      v.Value,
+			MerchantId: v.MerchantID,
 		})
 	}
 
