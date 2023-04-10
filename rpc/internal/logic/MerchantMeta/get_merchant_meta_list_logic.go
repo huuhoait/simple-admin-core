@@ -3,10 +3,7 @@ package merchantmeta
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/internal/svc"
-	"github.com/huuhoait/zero-admin-core/internal/utils/dberrorhandler"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/merchantmeta"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
+	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
 	"github.com/huuhoait/zero-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"

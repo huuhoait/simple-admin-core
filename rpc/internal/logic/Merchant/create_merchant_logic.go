@@ -4,9 +4,7 @@ import (
 	"context"
 
 	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/utils/dberrorhandler"
 	"github.com/huuhoait/zero-admin-core/rpc/types/core"
-	"github.com/suyuan32/simple-admin-common/i18n"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -25,6 +23,7 @@ func NewCreateMerchantLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Cr
 	}
 }
 
+// merchant management
 func (l *CreateMerchantLogic) CreateMerchant(in *core.MerchantInfo) (*core.BaseIDResp, error) {
 	result, err := l.svcCtx.DB.Merchant.Create().
 		SetCreatedBy(in.CreatedBy).

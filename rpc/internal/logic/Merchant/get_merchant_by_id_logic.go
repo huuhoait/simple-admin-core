@@ -3,9 +3,8 @@ package merchant
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/internal/svc"
-	"github.com/huuhoait/zero-admin-core/internal/utils/dberrorhandler"
-	"github.com/huuhoait/zero-admin-core/core"
+	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
+	"github.com/huuhoait/zero-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -31,19 +30,18 @@ func (l *GetMerchantByIdLogic) GetMerchantById(in *core.IDReq) (*core.MerchantIn
 	}
 
 	return &core.MerchantInfo{
-		Id:          result.ID,
-		CreatedAt:   result.CreatedAt.UnixMilli(),
-		UpdatedAt:   result.UpdatedAt.UnixMilli(),
-			CreatedBy:	result.CreatedBy,
-			UpdatedBy:	result.UpdatedBy,
-			Status:	uint32(result.Status),
-			Sort:	result.Sort,
-			Name:	result.Name,
-			Leader:	result.Leader,
-			Phone:	result.Phone,
-			Email:	result.Email,
-			Remark:	result.Remark,
-			ParentId:	result.ParentID,
+		Id:        result.ID,
+		CreatedAt: result.CreatedAt.UnixMilli(),
+		UpdatedAt: result.UpdatedAt.UnixMilli(),
+		CreatedBy: result.CreatedBy,
+		UpdatedBy: result.UpdatedBy,
+		Status:    uint32(result.Status),
+		Sort:      result.Sort,
+		Name:      result.Name,
+		Leader:    result.Leader,
+		Phone:     result.Phone,
+		Email:     result.Email,
+		Remark:    result.Remark,
+		ParentId:  result.ParentID,
 	}, nil
 }
-

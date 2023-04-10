@@ -3,12 +3,8 @@ package merchantmeta
 import (
 	"context"
 
-
-	"github.com/huuhoait/zero-admin-core/internal/svc"
-	"github.com/huuhoait/zero-admin-core/internal/utils/dberrorhandler"
-    "github.com/huuhoait/zero-admin-core/core"
-
-    "github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
+	"github.com/huuhoait/zero-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -28,20 +24,20 @@ func NewUpdateMerchantMetaLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 }
 
 func (l *UpdateMerchantMetaLogic) UpdateMerchantMeta(in *core.MerchantMetaInfo) (*core.BaseResp, error) {
-    err := l.svcCtx.DB.MerchantMeta.UpdateOneID(in.Id).
-			SetNotEmptyCreatedBy(in.CreatedBy).
-			SetNotEmptyUpdatedBy(in.UpdatedBy).
-			SetNotEmptyStatus(uint8(in.Status)).
-			SetNotEmptySort(in.Sort).
-			SetNotEmptyTitle(in.Title).
-			SetNotEmptyKey(in.Key).
-			SetNotEmptyValue(in.Value).
-			SetNotEmptyMerchantID(in.MerchantId).
-			Exec(l.ctx)
+	err := l.svcCtx.DB.MerchantMeta.UpdateOneID(in.Id).
+		SetNotEmptyCreatedBy(in.CreatedBy).
+		SetNotEmptyUpdatedBy(in.UpdatedBy).
+		SetNotEmptyStatus(uint8(in.Status)).
+		SetNotEmptySort(in.Sort).
+		SetNotEmptyTitle(in.Title).
+		SetNotEmptyKey(in.Key).
+		SetNotEmptyValue(in.Value).
+		SetNotEmptyMerchantID(in.MerchantId).
+		Exec(l.ctx)
 
-    if err != nil {
+	if err != nil {
 		return nil, dberrorhandler.DefaultEntError(l.Logger, err, in)
 	}
 
-    return &core.BaseResp{Msg: i18n.UpdateSuccess}, nil
+	return &core.BaseResp{Msg: i18n.UpdateSuccess}, nil
 }
