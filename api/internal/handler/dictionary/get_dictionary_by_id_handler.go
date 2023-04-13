@@ -5,9 +5,9 @@ import (
 
 	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"github.com/huuhoait/zero-admin-core/api/internal/logic/dictionary"
-	"github.com/huuhoait/zero-admin-core/api/internal/svc"
-	"github.com/huuhoait/zero-admin-core/api/internal/types"
+	"github.com/suyuan32/simple-admin-core/api/internal/logic/dictionary"
+	"github.com/suyuan32/simple-admin-core/api/internal/svc"
+	"github.com/suyuan32/simple-admin-core/api/internal/types"
 )
 
 // swagger:route post /dictionary dictionary GetDictionaryById

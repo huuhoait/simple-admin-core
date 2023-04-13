@@ -12,9 +12,7 @@ var (
 	// SysApisColumns holds the columns for the "sys_apis" table.
 	SysApisColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "path", Type: field.TypeString},
 		{Name: "description", Type: field.TypeString},
@@ -30,33 +28,14 @@ var (
 			{
 				Name:    "api_path_method",
 				Unique:  true,
-				Columns: []*schema.Column{SysApisColumns[5], SysApisColumns[8]},
+				Columns: []*schema.Column{SysApisColumns[3], SysApisColumns[6]},
 			},
 		},
-	}
-	// SysAuditsColumns holds the columns for the "sys_audits" table.
-	SysAuditsColumns = []*schema.Column{
-		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_by", Type: field.TypeString, Nullable: true},
-		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_by", Type: field.TypeString, Nullable: true},
-		{Name: "updated_at", Type: field.TypeTime},
-		{Name: "object_name", Type: field.TypeString},
-		{Name: "action_name", Type: field.TypeString},
-		{Name: "changed_data", Type: field.TypeString},
-	}
-	// SysAuditsTable holds the schema information for the "sys_audits" table.
-	SysAuditsTable = &schema.Table{
-		Name:       "sys_audits",
-		Columns:    SysAuditsColumns,
-		PrimaryKey: []*schema.Column{SysAuditsColumns[0]},
 	}
 	// SysDepartmentsColumns holds the columns for the "sys_departments" table.
 	SysDepartmentsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
 		{Name: "sort", Type: field.TypeUint32, Default: 1},
@@ -76,7 +55,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "sys_departments_sys_departments_children",
-				Columns:    []*schema.Column{SysDepartmentsColumns[13]},
+				Columns:    []*schema.Column{SysDepartmentsColumns[11]},
 				RefColumns: []*schema.Column{SysDepartmentsColumns[0]},
 				OnDelete:   schema.SetNull,
 			},
@@ -85,9 +64,7 @@ var (
 	// SysDictionariesColumns holds the columns for the "sys_dictionaries" table.
 	SysDictionariesColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
 		{Name: "title", Type: field.TypeString},
@@ -103,9 +80,7 @@ var (
 	// SysDictionaryDetailsColumns holds the columns for the "sys_dictionary_details" table.
 	SysDictionaryDetailsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
 		{Name: "sort", Type: field.TypeUint32, Default: 1},
@@ -122,7 +97,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "sys_dictionary_details_sys_dictionaries_dictionary_details",
-				Columns:    []*schema.Column{SysDictionaryDetailsColumns[10]},
+				Columns:    []*schema.Column{SysDictionaryDetailsColumns[8]},
 				RefColumns: []*schema.Column{SysDictionariesColumns[0]},
 				OnDelete:   schema.SetNull,
 			},
@@ -131,9 +106,7 @@ var (
 	// SysMenusColumns holds the columns for the "sys_menus" table.
 	SysMenusColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "sort", Type: field.TypeUint32, Default: 1},
 		{Name: "menu_level", Type: field.TypeUint32},
@@ -165,92 +138,8 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "sys_menus_sys_menus_children",
-				Columns:    []*schema.Column{SysMenusColumns[25]},
+				Columns:    []*schema.Column{SysMenusColumns[23]},
 				RefColumns: []*schema.Column{SysMenusColumns[0]},
-				OnDelete:   schema.SetNull,
-			},
-		},
-	}
-	// SysMenuParamsColumns holds the columns for the "sys_menu_params" table.
-	SysMenuParamsColumns = []*schema.Column{
-		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_by", Type: field.TypeString, Nullable: true},
-		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_by", Type: field.TypeString, Nullable: true},
-		{Name: "updated_at", Type: field.TypeTime},
-		{Name: "type", Type: field.TypeString},
-		{Name: "key", Type: field.TypeString},
-		{Name: "value", Type: field.TypeString},
-		{Name: "menu_id", Type: field.TypeUint64, Nullable: true},
-	}
-	// SysMenuParamsTable holds the schema information for the "sys_menu_params" table.
-	SysMenuParamsTable = &schema.Table{
-		Name:       "sys_menu_params",
-		Columns:    SysMenuParamsColumns,
-		PrimaryKey: []*schema.Column{SysMenuParamsColumns[0]},
-		ForeignKeys: []*schema.ForeignKey{
-			{
-				Symbol:     "sys_menu_params_sys_menus_params",
-				Columns:    []*schema.Column{SysMenuParamsColumns[8]},
-				RefColumns: []*schema.Column{SysMenusColumns[0]},
-				OnDelete:   schema.SetNull,
-			},
-		},
-	}
-	// SysMerchantsColumns holds the columns for the "sys_Merchants" table.
-	SysMerchantsColumns = []*schema.Column{
-		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_by", Type: field.TypeString, Nullable: true},
-		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_by", Type: field.TypeString, Nullable: true},
-		{Name: "updated_at", Type: field.TypeTime},
-		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
-		{Name: "sort", Type: field.TypeUint32, Default: 1},
-		{Name: "name", Type: field.TypeString},
-		{Name: "leader", Type: field.TypeString},
-		{Name: "phone", Type: field.TypeString},
-		{Name: "email", Type: field.TypeString},
-		{Name: "remark", Type: field.TypeString},
-		{Name: "parent_id", Type: field.TypeUint64, Nullable: true, Default: 0},
-	}
-	// SysMerchantsTable holds the schema information for the "sys_Merchants" table.
-	SysMerchantsTable = &schema.Table{
-		Name:       "sys_Merchants",
-		Columns:    SysMerchantsColumns,
-		PrimaryKey: []*schema.Column{SysMerchantsColumns[0]},
-		ForeignKeys: []*schema.ForeignKey{
-			{
-				Symbol:     "sys_Merchants_sys_Merchants_children",
-				Columns:    []*schema.Column{SysMerchantsColumns[12]},
-				RefColumns: []*schema.Column{SysMerchantsColumns[0]},
-				OnDelete:   schema.SetNull,
-			},
-		},
-	}
-	// SysMerchantMetaColumns holds the columns for the "sys_merchant_meta" table.
-	SysMerchantMetaColumns = []*schema.Column{
-		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_by", Type: field.TypeString, Nullable: true},
-		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_by", Type: field.TypeString, Nullable: true},
-		{Name: "updated_at", Type: field.TypeTime},
-		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
-		{Name: "sort", Type: field.TypeUint32, Default: 1},
-		{Name: "title", Type: field.TypeString},
-		{Name: "key", Type: field.TypeString},
-		{Name: "value", Type: field.TypeString},
-		{Name: "merchant_id", Type: field.TypeUint64, Nullable: true},
-	}
-	// SysMerchantMetaTable holds the schema information for the "sys_merchant_meta" table.
-	SysMerchantMetaTable = &schema.Table{
-		Name:       "sys_merchant_meta",
-		Columns:    SysMerchantMetaColumns,
-		PrimaryKey: []*schema.Column{SysMerchantMetaColumns[0]},
-		ForeignKeys: []*schema.ForeignKey{
-			{
-				Symbol:     "sys_merchant_meta_sys_Merchants_merchant_meta",
-				Columns:    []*schema.Column{SysMerchantMetaColumns[10]},
-				RefColumns: []*schema.Column{SysMerchantsColumns[0]},
 				OnDelete:   schema.SetNull,
 			},
 		},
@@ -258,9 +147,7 @@ var (
 	// SysOauthProvidersColumns holds the columns for the "sys_oauth_providers" table.
 	SysOauthProvidersColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "name", Type: field.TypeString, Unique: true},
 		{Name: "client_id", Type: field.TypeString},
@@ -281,9 +168,7 @@ var (
 	// SysPositionsColumns holds the columns for the "sys_positions" table.
 	SysPositionsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
 		{Name: "sort", Type: field.TypeUint32, Default: 1},
@@ -300,16 +185,14 @@ var (
 			{
 				Name:    "position_code",
 				Unique:  true,
-				Columns: []*schema.Column{SysPositionsColumns[8]},
+				Columns: []*schema.Column{SysPositionsColumns[6]},
 			},
 		},
 	}
 	// SysRolesColumns holds the columns for the "sys_roles" table.
 	SysRolesColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUint64, Increment: true},
-		{Name: "created_by", Type: field.TypeString, Nullable: true},
 		{Name: "created_at", Type: field.TypeTime},
-		{Name: "updated_by", Type: field.TypeString, Nullable: true},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "status", Type: field.TypeUint8, Nullable: true, Default: 1},
 		{Name: "name", Type: field.TypeString},
@@ -327,7 +210,7 @@ var (
 			{
 				Name:    "role_code",
 				Unique:  true,
-				Columns: []*schema.Column{SysRolesColumns[7]},
+				Columns: []*schema.Column{SysRolesColumns[5]},
 			},
 		},
 	}
@@ -475,14 +358,10 @@ var (
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
 		SysApisTable,
-		SysAuditsTable,
 		SysDepartmentsTable,
 		SysDictionariesTable,
 		SysDictionaryDetailsTable,
 		SysMenusTable,
-		SysMenuParamsTable,
-		SysMerchantsTable,
-		SysMerchantMetaTable,
 		SysOauthProvidersTable,
 		SysPositionsTable,
 		SysRolesTable,
@@ -498,9 +377,6 @@ func init() {
 	SysApisTable.Annotation = &entsql.Annotation{
 		Table: "sys_apis",
 	}
-	SysAuditsTable.Annotation = &entsql.Annotation{
-		Table: "sys_audits",
-	}
 	SysDepartmentsTable.ForeignKeys[0].RefTable = SysDepartmentsTable
 	SysDepartmentsTable.Annotation = &entsql.Annotation{
 		Table: "sys_departments",
@@ -515,18 +391,6 @@ func init() {
 	SysMenusTable.ForeignKeys[0].RefTable = SysMenusTable
 	SysMenusTable.Annotation = &entsql.Annotation{
 		Table: "sys_menus",
-	}
-	SysMenuParamsTable.ForeignKeys[0].RefTable = SysMenusTable
-	SysMenuParamsTable.Annotation = &entsql.Annotation{
-		Table: "sys_menu_params",
-	}
-	SysMerchantsTable.ForeignKeys[0].RefTable = SysMerchantsTable
-	SysMerchantsTable.Annotation = &entsql.Annotation{
-		Table: "sys_Merchants",
-	}
-	SysMerchantMetaTable.ForeignKeys[0].RefTable = SysMerchantsTable
-	SysMerchantMetaTable.Annotation = &entsql.Annotation{
-		Table: "sys_merchant_meta",
 	}
 	SysOauthProvidersTable.Annotation = &entsql.Annotation{
 		Table: "sys_oauth_providers",

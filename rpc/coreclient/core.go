@@ -6,7 +6,7 @@ package coreclient
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"
@@ -16,9 +16,6 @@ type (
 	ApiInfo                  = core.ApiInfo
 	ApiListReq               = core.ApiListReq
 	ApiListResp              = core.ApiListResp
-	AuditInfo                = core.AuditInfo
-	AuditListReq             = core.AuditListReq
-	AuditListResp            = core.AuditListResp
 	BaseIDResp               = core.BaseIDResp
 	BaseMsg                  = core.BaseMsg
 	BaseResp                 = core.BaseResp
@@ -38,17 +35,8 @@ type (
 	IDsReq                   = core.IDsReq
 	MenuInfo                 = core.MenuInfo
 	MenuInfoList             = core.MenuInfoList
-	MenuParamInfo            = core.MenuParamInfo
-	MenuParamListReq         = core.MenuParamListReq
-	MenuParamListResp        = core.MenuParamListResp
 	MenuRoleInfo             = core.MenuRoleInfo
 	MenuRoleListResp         = core.MenuRoleListResp
-	MerchantInfo             = core.MerchantInfo
-	MerchantListReq          = core.MerchantListReq
-	MerchantListResp         = core.MerchantListResp
-	MerchantMetaInfo         = core.MerchantMetaInfo
-	MerchantMetaListReq      = core.MerchantMetaListReq
-	MerchantMetaListResp     = core.MerchantMetaListResp
 	Meta                     = core.Meta
 	OauthLoginReq            = core.OauthLoginReq
 	OauthProviderInfo        = core.OauthProviderInfo
@@ -81,8 +69,6 @@ type (
 		GetApiList(ctx context.Context, in *ApiListReq, opts ...grpc.CallOption) (*ApiListResp, error)
 		GetApiById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*ApiInfo, error)
 		DeleteApi(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
-		GetAuditList(ctx context.Context, in *AuditListReq, opts ...grpc.CallOption) (*AuditListResp, error)
-		GetAuditById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*AuditInfo, error)
 		GetMenuAuthority(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*RoleMenuAuthorityResp, error)
 		CreateOrUpdateMenuAuthority(ctx context.Context, in *RoleMenuAuthorityReq, opts ...grpc.CallOption) (*BaseResp, error)
 		InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
@@ -109,24 +95,6 @@ type (
 		DeleteMenu(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*BaseResp, error)
 		GetMenuListByRole(ctx context.Context, in *BaseMsg, opts ...grpc.CallOption) (*MenuInfoList, error)
 		GetMenuList(ctx context.Context, in *PageInfoReq, opts ...grpc.CallOption) (*MenuInfoList, error)
-		// MenuParam management
-		CreateMenuParam(ctx context.Context, in *MenuParamInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
-		UpdateMenuParam(ctx context.Context, in *MenuParamInfo, opts ...grpc.CallOption) (*BaseResp, error)
-		GetMenuParamList(ctx context.Context, in *MenuParamListReq, opts ...grpc.CallOption) (*MenuParamListResp, error)
-		GetMenuParamById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MenuParamInfo, error)
-		DeleteMenuParam(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
-		// merchant management
-		CreateMerchant(ctx context.Context, in *MerchantInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
-		UpdateMerchant(ctx context.Context, in *MerchantInfo, opts ...grpc.CallOption) (*BaseResp, error)
-		GetMerchantList(ctx context.Context, in *MerchantListReq, opts ...grpc.CallOption) (*MerchantListResp, error)
-		GetMerchantById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MerchantInfo, error)
-		DeleteMerchant(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
-		// MerchantMeta management
-		CreateMerchantMeta(ctx context.Context, in *MerchantMetaInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
-		UpdateMerchantMeta(ctx context.Context, in *MerchantMetaInfo, opts ...grpc.CallOption) (*BaseResp, error)
-		GetMerchantMetaList(ctx context.Context, in *MerchantMetaListReq, opts ...grpc.CallOption) (*MerchantMetaListResp, error)
-		GetMerchantMetaById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MerchantMetaInfo, error)
-		DeleteMerchantMeta(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 		// OauthProvider management
 		CreateOauthProvider(ctx context.Context, in *OauthProviderInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
 		UpdateOauthProvider(ctx context.Context, in *OauthProviderInfo, opts ...grpc.CallOption) (*BaseResp, error)
@@ -149,7 +117,6 @@ type (
 		DeleteRole(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 		// Token management
 		CreateToken(ctx context.Context, in *TokenInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
-		UpdateToken(ctx context.Context, in *TokenInfo, opts ...grpc.CallOption) (*BaseResp, error)
 		DeleteToken(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 		GetTokenList(ctx context.Context, in *TokenListReq, opts ...grpc.CallOption) (*TokenListResp, error)
 		GetTokenById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*TokenInfo, error)
@@ -198,16 +165,6 @@ func (m *defaultCore) GetApiById(ctx context.Context, in *IDReq, opts ...grpc.Ca
 func (m *defaultCore) DeleteApi(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.DeleteApi(ctx, in, opts...)
-}
-
-func (m *defaultCore) GetAuditList(ctx context.Context, in *AuditListReq, opts ...grpc.CallOption) (*AuditListResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.GetAuditList(ctx, in, opts...)
-}
-
-func (m *defaultCore) GetAuditById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*AuditInfo, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.GetAuditById(ctx, in, opts...)
 }
 
 func (m *defaultCore) GetMenuAuthority(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*RoleMenuAuthorityResp, error) {
@@ -328,84 +285,6 @@ func (m *defaultCore) GetMenuList(ctx context.Context, in *PageInfoReq, opts ...
 	return client.GetMenuList(ctx, in, opts...)
 }
 
-// MenuParam management
-func (m *defaultCore) CreateMenuParam(ctx context.Context, in *MenuParamInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.CreateMenuParam(ctx, in, opts...)
-}
-
-func (m *defaultCore) UpdateMenuParam(ctx context.Context, in *MenuParamInfo, opts ...grpc.CallOption) (*BaseResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.UpdateMenuParam(ctx, in, opts...)
-}
-
-func (m *defaultCore) GetMenuParamList(ctx context.Context, in *MenuParamListReq, opts ...grpc.CallOption) (*MenuParamListResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.GetMenuParamList(ctx, in, opts...)
-}
-
-func (m *defaultCore) GetMenuParamById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MenuParamInfo, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.GetMenuParamById(ctx, in, opts...)
-}
-
-func (m *defaultCore) DeleteMenuParam(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.DeleteMenuParam(ctx, in, opts...)
-}
-
-// merchant management
-func (m *defaultCore) CreateMerchant(ctx context.Context, in *MerchantInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.CreateMerchant(ctx, in, opts...)
-}
-
-func (m *defaultCore) UpdateMerchant(ctx context.Context, in *MerchantInfo, opts ...grpc.CallOption) (*BaseResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.UpdateMerchant(ctx, in, opts...)
-}
-
-func (m *defaultCore) GetMerchantList(ctx context.Context, in *MerchantListReq, opts ...grpc.CallOption) (*MerchantListResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.GetMerchantList(ctx, in, opts...)
-}
-
-func (m *defaultCore) GetMerchantById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MerchantInfo, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.GetMerchantById(ctx, in, opts...)
-}
-
-func (m *defaultCore) DeleteMerchant(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.DeleteMerchant(ctx, in, opts...)
-}
-
-// MerchantMeta management
-func (m *defaultCore) CreateMerchantMeta(ctx context.Context, in *MerchantMetaInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.CreateMerchantMeta(ctx, in, opts...)
-}
-
-func (m *defaultCore) UpdateMerchantMeta(ctx context.Context, in *MerchantMetaInfo, opts ...grpc.CallOption) (*BaseResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.UpdateMerchantMeta(ctx, in, opts...)
-}
-
-func (m *defaultCore) GetMerchantMetaList(ctx context.Context, in *MerchantMetaListReq, opts ...grpc.CallOption) (*MerchantMetaListResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.GetMerchantMetaList(ctx, in, opts...)
-}
-
-func (m *defaultCore) GetMerchantMetaById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*MerchantMetaInfo, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.GetMerchantMetaById(ctx, in, opts...)
-}
-
-func (m *defaultCore) DeleteMerchantMeta(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.DeleteMerchantMeta(ctx, in, opts...)
-}
-
 // OauthProvider management
 func (m *defaultCore) CreateOauthProvider(ctx context.Context, in *OauthProviderInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
@@ -498,11 +377,6 @@ func (m *defaultCore) DeleteRole(ctx context.Context, in *IDsReq, opts ...grpc.C
 func (m *defaultCore) CreateToken(ctx context.Context, in *TokenInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
 	client := core.NewCoreClient(m.cli.Conn())
 	return client.CreateToken(ctx, in, opts...)
-}
-
-func (m *defaultCore) UpdateToken(ctx context.Context, in *TokenInfo, opts ...grpc.CallOption) (*BaseResp, error) {
-	client := core.NewCoreClient(m.cli.Conn())
-	return client.UpdateToken(ctx, in, opts...)
 }
 
 func (m *defaultCore) DeleteToken(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error) {

@@ -3,12 +3,12 @@ package oauthprovider
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/rpc/ent/oauthprovider"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/oauthprovider"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
 
-	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/utils/errorhandler"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/utils/errorhandler"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -31,12 +31,6 @@ func (l *GetOauthProviderListLogic) GetOauthProviderList(in *core.OauthProviderL
 	var predicates []predicate.OauthProvider
 	if in.Name != "" {
 		predicates = append(predicates, oauthprovider.NameContains(in.Name))
-	}
-	if in.ClientId != "" {
-		predicates = append(predicates, oauthprovider.ClientIDContains(in.ClientId))
-	}
-	if in.ClientSecret != "" {
-		predicates = append(predicates, oauthprovider.ClientSecretContains(in.ClientSecret))
 	}
 	result, err := l.svcCtx.DB.OauthProvider.Query().Where(predicates...).Page(l.ctx, in.Page, in.PageSize)
 	if err != nil {

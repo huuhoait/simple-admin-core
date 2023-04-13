@@ -3,9 +3,9 @@ package menu
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/api/internal/svc"
-	"github.com/huuhoait/zero-admin-core/api/internal/types"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/suyuan32/simple-admin-core/api/internal/svc"
+	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -42,7 +42,6 @@ func (l *CreateMenuLogic) CreateMenu(req *types.MenuPlainInfo) (resp *types.Base
 		Component: req.Component,
 		Sort:      req.Sort,
 		Disabled:  req.Disabled,
-		CreatedBy: l.ctx.Value("userId").(string),
 		Meta: &core.Meta{
 			Title:              req.Title,
 			Icon:               req.Icon,

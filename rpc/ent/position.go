@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect/sql"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/position"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/position"
 )
 
 // Position is the model entity for the Position schema.
@@ -16,12 +16,8 @@ type Position struct {
 	config `json:"-"`
 	// ID of the ent.
 	ID uint64 `json:"id,omitempty"`
-	// CreatedBy holds the value of the "created_by" field.
-	CreatedBy string `json:"created_by,omitempty"`
 	// CreatedAt holds the value of the "created_at" field.
 	CreatedAt time.Time `json:"created_at,omitempty"`
-	// UpdatedBy holds the value of the "updated_by" field.
-	UpdatedBy string `json:"updated_by,omitempty"`
 	// UpdatedAt holds the value of the "updated_at" field.
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// status 1 normal 2 ban | 状态 1 正常 2 禁用
@@ -64,7 +60,7 @@ func (*Position) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case position.FieldID, position.FieldStatus, position.FieldSort:
 			values[i] = new(sql.NullInt64)
-		case position.FieldCreatedBy, position.FieldUpdatedBy, position.FieldName, position.FieldCode, position.FieldRemark:
+		case position.FieldName, position.FieldCode, position.FieldRemark:
 			values[i] = new(sql.NullString)
 		case position.FieldCreatedAt, position.FieldUpdatedAt:
 			values[i] = new(sql.NullTime)
@@ -89,23 +85,11 @@ func (po *Position) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			po.ID = uint64(value.Int64)
-		case position.FieldCreatedBy:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field created_by", values[i])
-			} else if value.Valid {
-				po.CreatedBy = value.String
-			}
 		case position.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
 				po.CreatedAt = value.Time
-			}
-		case position.FieldUpdatedBy:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field updated_by", values[i])
-			} else if value.Valid {
-				po.UpdatedBy = value.String
 			}
 		case position.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
@@ -176,14 +160,8 @@ func (po *Position) String() string {
 	var builder strings.Builder
 	builder.WriteString("Position(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", po.ID))
-	builder.WriteString("created_by=")
-	builder.WriteString(po.CreatedBy)
-	builder.WriteString(", ")
 	builder.WriteString("created_at=")
 	builder.WriteString(po.CreatedAt.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("updated_by=")
-	builder.WriteString(po.UpdatedBy)
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
 	builder.WriteString(po.UpdatedAt.Format(time.ANSIC))

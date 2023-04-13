@@ -9,9 +9,6 @@ import (
 // API is the predicate function for api builders.
 type API func(*sql.Selector)
 
-// Audit is the predicate function for audit builders.
-type Audit func(*sql.Selector)
-
 // Department is the predicate function for department builders.
 type Department func(*sql.Selector)
 
@@ -23,15 +20,6 @@ type DictionaryDetail func(*sql.Selector)
 
 // Menu is the predicate function for menu builders.
 type Menu func(*sql.Selector)
-
-// MenuParam is the predicate function for menuparam builders.
-type MenuParam func(*sql.Selector)
-
-// Merchant is the predicate function for merchant builders.
-type Merchant func(*sql.Selector)
-
-// MerchantMeta is the predicate function for merchantmeta builders.
-type MerchantMeta func(*sql.Selector)
 
 // OauthProvider is the predicate function for oauthprovider builders.
 type OauthProvider func(*sql.Selector)

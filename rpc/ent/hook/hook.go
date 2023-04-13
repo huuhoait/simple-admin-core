@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/huuhoait/zero-admin-core/rpc/ent"
+	"github.com/suyuan32/simple-admin-core/rpc/ent"
 )
 
 // The APIFunc type is an adapter to allow the use of ordinary
@@ -19,18 +19,6 @@ func (f APIFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) 
 		return f(ctx, mv)
 	}
 	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.APIMutation", m)
-}
-
-// The AuditFunc type is an adapter to allow the use of ordinary
-// function as Audit mutator.
-type AuditFunc func(context.Context, *ent.AuditMutation) (ent.Value, error)
-
-// Mutate calls f(ctx, m).
-func (f AuditFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
-	if mv, ok := m.(*ent.AuditMutation); ok {
-		return f(ctx, mv)
-	}
-	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.AuditMutation", m)
 }
 
 // The DepartmentFunc type is an adapter to allow the use of ordinary
@@ -79,42 +67,6 @@ func (f MenuFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error)
 		return f(ctx, mv)
 	}
 	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.MenuMutation", m)
-}
-
-// The MenuParamFunc type is an adapter to allow the use of ordinary
-// function as MenuParam mutator.
-type MenuParamFunc func(context.Context, *ent.MenuParamMutation) (ent.Value, error)
-
-// Mutate calls f(ctx, m).
-func (f MenuParamFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
-	if mv, ok := m.(*ent.MenuParamMutation); ok {
-		return f(ctx, mv)
-	}
-	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.MenuParamMutation", m)
-}
-
-// The MerchantFunc type is an adapter to allow the use of ordinary
-// function as Merchant mutator.
-type MerchantFunc func(context.Context, *ent.MerchantMutation) (ent.Value, error)
-
-// Mutate calls f(ctx, m).
-func (f MerchantFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
-	if mv, ok := m.(*ent.MerchantMutation); ok {
-		return f(ctx, mv)
-	}
-	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.MerchantMutation", m)
-}
-
-// The MerchantMetaFunc type is an adapter to allow the use of ordinary
-// function as MerchantMeta mutator.
-type MerchantMetaFunc func(context.Context, *ent.MerchantMetaMutation) (ent.Value, error)
-
-// Mutate calls f(ctx, m).
-func (f MerchantMetaFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
-	if mv, ok := m.(*ent.MerchantMetaMutation); ok {
-		return f(ctx, mv)
-	}
-	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.MerchantMetaMutation", m)
 }
 
 // The OauthProviderFunc type is an adapter to allow the use of ordinary

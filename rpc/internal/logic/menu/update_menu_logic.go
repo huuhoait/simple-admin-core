@@ -3,14 +3,14 @@ package menu
 import (
 	"context"
 
-	"github.com/huuhoait/zero-tools/enum/common"
-	"github.com/huuhoait/zero-tools/i18n"
+	"github.com/suyuan32/simple-admin-common/enum/common"
+	"github.com/suyuan32/simple-admin-common/i18n"
 
-	"github.com/huuhoait/zero-admin-core/rpc/ent/menu"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/menu"
 
-	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/utils/errorhandler"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/utils/errorhandler"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

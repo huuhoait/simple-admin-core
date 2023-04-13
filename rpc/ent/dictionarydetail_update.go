@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionary"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionarydetail"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
 )
 
 // DictionaryDetailUpdate is the builder for updating DictionaryDetail entities.
@@ -26,46 +26,6 @@ type DictionaryDetailUpdate struct {
 // Where appends a list predicates to the DictionaryDetailUpdate builder.
 func (ddu *DictionaryDetailUpdate) Where(ps ...predicate.DictionaryDetail) *DictionaryDetailUpdate {
 	ddu.mutation.Where(ps...)
-	return ddu
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (ddu *DictionaryDetailUpdate) SetCreatedBy(s string) *DictionaryDetailUpdate {
-	ddu.mutation.SetCreatedBy(s)
-	return ddu
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (ddu *DictionaryDetailUpdate) SetNillableCreatedBy(s *string) *DictionaryDetailUpdate {
-	if s != nil {
-		ddu.SetCreatedBy(*s)
-	}
-	return ddu
-}
-
-// ClearCreatedBy clears the value of the "created_by" field.
-func (ddu *DictionaryDetailUpdate) ClearCreatedBy() *DictionaryDetailUpdate {
-	ddu.mutation.ClearCreatedBy()
-	return ddu
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (ddu *DictionaryDetailUpdate) SetUpdatedBy(s string) *DictionaryDetailUpdate {
-	ddu.mutation.SetUpdatedBy(s)
-	return ddu
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (ddu *DictionaryDetailUpdate) SetNillableUpdatedBy(s *string) *DictionaryDetailUpdate {
-	if s != nil {
-		ddu.SetUpdatedBy(*s)
-	}
-	return ddu
-}
-
-// ClearUpdatedBy clears the value of the "updated_by" field.
-func (ddu *DictionaryDetailUpdate) ClearUpdatedBy() *DictionaryDetailUpdate {
-	ddu.mutation.ClearUpdatedBy()
 	return ddu
 }
 
@@ -236,18 +196,6 @@ func (ddu *DictionaryDetailUpdate) sqlSave(ctx context.Context) (n int, err erro
 			}
 		}
 	}
-	if value, ok := ddu.mutation.CreatedBy(); ok {
-		_spec.SetField(dictionarydetail.FieldCreatedBy, field.TypeString, value)
-	}
-	if ddu.mutation.CreatedByCleared() {
-		_spec.ClearField(dictionarydetail.FieldCreatedBy, field.TypeString)
-	}
-	if value, ok := ddu.mutation.UpdatedBy(); ok {
-		_spec.SetField(dictionarydetail.FieldUpdatedBy, field.TypeString, value)
-	}
-	if ddu.mutation.UpdatedByCleared() {
-		_spec.ClearField(dictionarydetail.FieldUpdatedBy, field.TypeString)
-	}
 	if value, ok := ddu.mutation.UpdatedAt(); ok {
 		_spec.SetField(dictionarydetail.FieldUpdatedAt, field.TypeTime, value)
 	}
@@ -313,7 +261,6 @@ func (ddu *DictionaryDetailUpdate) sqlSave(ctx context.Context) (n int, err erro
 		return 0, err
 	}
 	ddu.mutation.done = true
-
 	return n, nil
 }
 
@@ -323,46 +270,6 @@ type DictionaryDetailUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *DictionaryDetailMutation
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (dduo *DictionaryDetailUpdateOne) SetCreatedBy(s string) *DictionaryDetailUpdateOne {
-	dduo.mutation.SetCreatedBy(s)
-	return dduo
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (dduo *DictionaryDetailUpdateOne) SetNillableCreatedBy(s *string) *DictionaryDetailUpdateOne {
-	if s != nil {
-		dduo.SetCreatedBy(*s)
-	}
-	return dduo
-}
-
-// ClearCreatedBy clears the value of the "created_by" field.
-func (dduo *DictionaryDetailUpdateOne) ClearCreatedBy() *DictionaryDetailUpdateOne {
-	dduo.mutation.ClearCreatedBy()
-	return dduo
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (dduo *DictionaryDetailUpdateOne) SetUpdatedBy(s string) *DictionaryDetailUpdateOne {
-	dduo.mutation.SetUpdatedBy(s)
-	return dduo
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (dduo *DictionaryDetailUpdateOne) SetNillableUpdatedBy(s *string) *DictionaryDetailUpdateOne {
-	if s != nil {
-		dduo.SetUpdatedBy(*s)
-	}
-	return dduo
-}
-
-// ClearUpdatedBy clears the value of the "updated_by" field.
-func (dduo *DictionaryDetailUpdateOne) ClearUpdatedBy() *DictionaryDetailUpdateOne {
-	dduo.mutation.ClearUpdatedBy()
-	return dduo
 }
 
 // SetUpdatedAt sets the "updated_at" field.
@@ -542,13 +449,6 @@ func (dduo *DictionaryDetailUpdateOne) sqlSave(ctx context.Context) (_node *Dict
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "DictionaryDetail.id" for update`)}
 	}
-
-	//0
-
-	//1
-
-	//2
-
 	_spec.Node.ID.Value = id
 	if fields := dduo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
@@ -568,18 +468,6 @@ func (dduo *DictionaryDetailUpdateOne) sqlSave(ctx context.Context) (_node *Dict
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := dduo.mutation.CreatedBy(); ok {
-		_spec.SetField(dictionarydetail.FieldCreatedBy, field.TypeString, value)
-	}
-	if dduo.mutation.CreatedByCleared() {
-		_spec.ClearField(dictionarydetail.FieldCreatedBy, field.TypeString)
-	}
-	if value, ok := dduo.mutation.UpdatedBy(); ok {
-		_spec.SetField(dictionarydetail.FieldUpdatedBy, field.TypeString, value)
-	}
-	if dduo.mutation.UpdatedByCleared() {
-		_spec.ClearField(dictionarydetail.FieldUpdatedBy, field.TypeString)
 	}
 	if value, ok := dduo.mutation.UpdatedAt(); ok {
 		_spec.SetField(dictionarydetail.FieldUpdatedAt, field.TypeTime, value)
@@ -648,14 +536,6 @@ func (dduo *DictionaryDetailUpdateOne) sqlSave(ctx context.Context) (_node *Dict
 		}
 		return nil, err
 	}
-
-	//0
-
-	//1
-
-	//2
-
 	dduo.mutation.done = true
-
 	return _node, nil
 }

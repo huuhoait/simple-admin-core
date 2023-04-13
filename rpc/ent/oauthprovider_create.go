@@ -10,7 +10,7 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/oauthprovider"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/oauthprovider"
 )
 
 // OauthProviderCreate is the builder for creating a OauthProvider entity.
@@ -18,20 +18,6 @@ type OauthProviderCreate struct {
 	config
 	mutation *OauthProviderMutation
 	hooks    []Hook
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (opc *OauthProviderCreate) SetCreatedBy(s string) *OauthProviderCreate {
-	opc.mutation.SetCreatedBy(s)
-	return opc
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (opc *OauthProviderCreate) SetNillableCreatedBy(s *string) *OauthProviderCreate {
-	if s != nil {
-		opc.SetCreatedBy(*s)
-	}
-	return opc
 }
 
 // SetCreatedAt sets the "created_at" field.
@@ -44,20 +30,6 @@ func (opc *OauthProviderCreate) SetCreatedAt(t time.Time) *OauthProviderCreate {
 func (opc *OauthProviderCreate) SetNillableCreatedAt(t *time.Time) *OauthProviderCreate {
 	if t != nil {
 		opc.SetCreatedAt(*t)
-	}
-	return opc
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (opc *OauthProviderCreate) SetUpdatedBy(s string) *OauthProviderCreate {
-	opc.mutation.SetUpdatedBy(s)
-	return opc
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (opc *OauthProviderCreate) SetNillableUpdatedBy(s *string) *OauthProviderCreate {
-	if s != nil {
-		opc.SetUpdatedBy(*s)
 	}
 	return opc
 }
@@ -248,17 +220,9 @@ func (opc *OauthProviderCreate) createSpec() (*OauthProvider, *sqlgraph.CreateSp
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := opc.mutation.CreatedBy(); ok {
-		_spec.SetField(oauthprovider.FieldCreatedBy, field.TypeString, value)
-		_node.CreatedBy = value
-	}
 	if value, ok := opc.mutation.CreatedAt(); ok {
 		_spec.SetField(oauthprovider.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
-	}
-	if value, ok := opc.mutation.UpdatedBy(); ok {
-		_spec.SetField(oauthprovider.FieldUpdatedBy, field.TypeString, value)
-		_node.UpdatedBy = value
 	}
 	if value, ok := opc.mutation.UpdatedAt(); ok {
 		_spec.SetField(oauthprovider.FieldUpdatedAt, field.TypeTime, value)

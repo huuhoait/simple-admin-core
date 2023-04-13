@@ -7,7 +7,7 @@ import (
 	"entgo.io/ent/schema/edge"
 	"entgo.io/ent/schema/field"
 
-	"github.com/huuhoait/zero-tools/orm/ent/mixins"
+	"github.com/suyuan32/simple-admin-common/orm/ent/mixins"
 )
 
 type Menu struct {
@@ -51,7 +51,6 @@ func (Menu) Edges() []ent.Edge {
 	return []ent.Edge{
 		edge.From("roles", Role.Type).Ref("menus"),
 		edge.To("children", Menu.Type).From("parent").Unique().Field("parent_id"),
-		edge.To("params", MenuParam.Type),
 	}
 }
 

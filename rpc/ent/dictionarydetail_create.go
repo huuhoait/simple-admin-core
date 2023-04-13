@@ -10,8 +10,8 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionary"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionarydetail"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
 )
 
 // DictionaryDetailCreate is the builder for creating a DictionaryDetail entity.
@@ -19,20 +19,6 @@ type DictionaryDetailCreate struct {
 	config
 	mutation *DictionaryDetailMutation
 	hooks    []Hook
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (ddc *DictionaryDetailCreate) SetCreatedBy(s string) *DictionaryDetailCreate {
-	ddc.mutation.SetCreatedBy(s)
-	return ddc
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (ddc *DictionaryDetailCreate) SetNillableCreatedBy(s *string) *DictionaryDetailCreate {
-	if s != nil {
-		ddc.SetCreatedBy(*s)
-	}
-	return ddc
 }
 
 // SetCreatedAt sets the "created_at" field.
@@ -45,20 +31,6 @@ func (ddc *DictionaryDetailCreate) SetCreatedAt(t time.Time) *DictionaryDetailCr
 func (ddc *DictionaryDetailCreate) SetNillableCreatedAt(t *time.Time) *DictionaryDetailCreate {
 	if t != nil {
 		ddc.SetCreatedAt(*t)
-	}
-	return ddc
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (ddc *DictionaryDetailCreate) SetUpdatedBy(s string) *DictionaryDetailCreate {
-	ddc.mutation.SetUpdatedBy(s)
-	return ddc
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (ddc *DictionaryDetailCreate) SetNillableUpdatedBy(s *string) *DictionaryDetailCreate {
-	if s != nil {
-		ddc.SetUpdatedBy(*s)
 	}
 	return ddc
 }
@@ -267,17 +239,9 @@ func (ddc *DictionaryDetailCreate) createSpec() (*DictionaryDetail, *sqlgraph.Cr
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := ddc.mutation.CreatedBy(); ok {
-		_spec.SetField(dictionarydetail.FieldCreatedBy, field.TypeString, value)
-		_node.CreatedBy = value
-	}
 	if value, ok := ddc.mutation.CreatedAt(); ok {
 		_spec.SetField(dictionarydetail.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
-	}
-	if value, ok := ddc.mutation.UpdatedBy(); ok {
-		_spec.SetField(dictionarydetail.FieldUpdatedBy, field.TypeString, value)
-		_node.UpdatedBy = value
 	}
 	if value, ok := ddc.mutation.UpdatedAt(); ok {
 		_spec.SetField(dictionarydetail.FieldUpdatedAt, field.TypeTime, value)

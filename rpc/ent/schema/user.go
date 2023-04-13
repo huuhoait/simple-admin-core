@@ -9,7 +9,7 @@ import (
 	"entgo.io/ent/schema/field"
 	"entgo.io/ent/schema/index"
 
-	"github.com/huuhoait/zero-tools/orm/ent/mixins"
+	"github.com/suyuan32/simple-admin-common/orm/ent/mixins"
 )
 
 type User struct {

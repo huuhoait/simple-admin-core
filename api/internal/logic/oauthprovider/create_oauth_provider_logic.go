@@ -3,9 +3,9 @@ package oauthprovider
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/api/internal/svc"
-	"github.com/huuhoait/zero-admin-core/api/internal/types"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/suyuan32/simple-admin-core/api/internal/svc"
+	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -37,7 +37,6 @@ func (l *CreateOauthProviderLogic) CreateOauthProvider(req *types.OauthProviderI
 			TokenUrl:     req.TokenUrl,
 			AuthStyle:    req.AuthStyle,
 			InfoUrl:      req.InfoUrl,
-			CreatedBy:    l.ctx.Value("userId").(string),
 		})
 	if err != nil {
 		return nil, err

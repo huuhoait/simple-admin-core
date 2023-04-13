@@ -5,9 +5,9 @@ import (
 
 	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"github.com/huuhoait/zero-admin-core/api/internal/logic/user"
-	"github.com/huuhoait/zero-admin-core/api/internal/svc"
-	"github.com/huuhoait/zero-admin-core/api/internal/types"
+	"github.com/suyuan32/simple-admin-core/api/internal/logic/user"
+	"github.com/suyuan32/simple-admin-core/api/internal/svc"
+	"github.com/suyuan32/simple-admin-core/api/internal/types"
 )
 
 // swagger:route post /user/profile user UpdateUserProfile
@@ -20,14 +20,14 @@ import (
 //  + name: body
 //    require: true
 //    in: body
-//    type: ProfileReq
+//    type: ProfileInfo
 //
 // Responses:
 //  200: BaseMsgResp
 
 func UpdateUserProfileHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.ProfileReq
+		var req types.ProfileInfo
 		if err := httpx.Parse(r, &req, true); err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 			return

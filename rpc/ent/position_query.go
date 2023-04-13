@@ -12,9 +12,9 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/position"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/position"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
 )
 
 // PositionQuery is the builder for querying Position entities.
@@ -299,12 +299,12 @@ func (pq *PositionQuery) WithUsers(opts ...func(*UserQuery)) *PositionQuery {
 // Example:
 //
 //	var v []struct {
-//		CreatedBy string `json:"created_by,omitempty"`
+//		CreatedAt time.Time `json:"created_at,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.Position.Query().
-//		GroupBy(position.FieldCreatedBy).
+//		GroupBy(position.FieldCreatedAt).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (pq *PositionQuery) GroupBy(field string, fields ...string) *PositionGroupBy {
@@ -322,11 +322,11 @@ func (pq *PositionQuery) GroupBy(field string, fields ...string) *PositionGroupB
 // Example:
 //
 //	var v []struct {
-//		CreatedBy string `json:"created_by,omitempty"`
+//		CreatedAt time.Time `json:"created_at,omitempty"`
 //	}
 //
 //	client.Position.Query().
-//		Select(position.FieldCreatedBy).
+//		Select(position.FieldCreatedAt).
 //		Scan(ctx, &v)
 func (pq *PositionQuery) Select(fields ...string) *PositionSelect {
 	pq.ctx.Fields = append(pq.ctx.Fields, fields...)

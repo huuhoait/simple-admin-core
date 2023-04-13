@@ -1,11 +1,11 @@
 package base
 
 import (
-	"github.com/huuhoait/zero-tools/enum/common"
+	"github.com/suyuan32/simple-admin-common/enum/common"
 	"github.com/zeromicro/go-zero/core/errorx"
 	"github.com/zeromicro/go-zero/core/logx"
 
-	"github.com/huuhoait/zero-admin-core/rpc/ent"
+	"github.com/suyuan32/simple-admin-core/rpc/ent"
 )
 
 // init menu data

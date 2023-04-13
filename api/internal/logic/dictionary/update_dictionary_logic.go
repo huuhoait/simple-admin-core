@@ -3,9 +3,9 @@ package dictionary
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/api/internal/svc"
-	"github.com/huuhoait/zero-admin-core/api/internal/types"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/suyuan32/simple-admin-core/api/internal/svc"
+	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -27,12 +27,11 @@ func NewUpdateDictionaryLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 func (l *UpdateDictionaryLogic) UpdateDictionary(req *types.DictionaryInfo) (resp *types.BaseMsgResp, err error) {
 	data, err := l.svcCtx.CoreRpc.UpdateDictionary(l.ctx,
 		&core.DictionaryInfo{
-			Id:        req.Id,
-			Title:     req.Title,
-			Name:      req.Name,
-			Status:    req.Status,
-			Desc:      req.Desc,
-			UpdatedBy: l.ctx.Value("userId").(string),
+			Id:     req.Id,
+			Title:  req.Title,
+			Name:   req.Name,
+			Status: req.Status,
+			Desc:   req.Desc,
 		})
 	if err != nil {
 		return nil, err

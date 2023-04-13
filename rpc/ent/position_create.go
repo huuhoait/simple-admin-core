@@ -11,8 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/position"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/position"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
 )
 
 // PositionCreate is the builder for creating a Position entity.
@@ -20,20 +20,6 @@ type PositionCreate struct {
 	config
 	mutation *PositionMutation
 	hooks    []Hook
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (pc *PositionCreate) SetCreatedBy(s string) *PositionCreate {
-	pc.mutation.SetCreatedBy(s)
-	return pc
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (pc *PositionCreate) SetNillableCreatedBy(s *string) *PositionCreate {
-	if s != nil {
-		pc.SetCreatedBy(*s)
-	}
-	return pc
 }
 
 // SetCreatedAt sets the "created_at" field.
@@ -46,20 +32,6 @@ func (pc *PositionCreate) SetCreatedAt(t time.Time) *PositionCreate {
 func (pc *PositionCreate) SetNillableCreatedAt(t *time.Time) *PositionCreate {
 	if t != nil {
 		pc.SetCreatedAt(*t)
-	}
-	return pc
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (pc *PositionCreate) SetUpdatedBy(s string) *PositionCreate {
-	pc.mutation.SetUpdatedBy(s)
-	return pc
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (pc *PositionCreate) SetNillableUpdatedBy(s *string) *PositionCreate {
-	if s != nil {
-		pc.SetUpdatedBy(*s)
 	}
 	return pc
 }
@@ -250,17 +222,9 @@ func (pc *PositionCreate) createSpec() (*Position, *sqlgraph.CreateSpec) {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := pc.mutation.CreatedBy(); ok {
-		_spec.SetField(position.FieldCreatedBy, field.TypeString, value)
-		_node.CreatedBy = value
-	}
 	if value, ok := pc.mutation.CreatedAt(); ok {
 		_spec.SetField(position.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
-	}
-	if value, ok := pc.mutation.UpdatedBy(); ok {
-		_spec.SetField(position.FieldUpdatedBy, field.TypeString, value)
-		_node.UpdatedBy = value
 	}
 	if value, ok := pc.mutation.UpdatedAt(); ok {
 		_spec.SetField(position.FieldUpdatedAt, field.TypeTime, value)

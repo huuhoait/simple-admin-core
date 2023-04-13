@@ -9,26 +9,22 @@ import (
 	"log"
 
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/migrate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/migrate"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/api"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/audit"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/department"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionary"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionarydetail"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/menu"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/menuparam"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/merchant"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/merchantmeta"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/oauthprovider"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/position"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/role"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/token"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/api"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/menu"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/oauthprovider"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/position"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/role"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/token"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
 )
 
 // Client is the client that holds all ent builders.
@@ -38,8 +34,6 @@ type Client struct {
 	Schema *migrate.Schema
 	// API is the client for interacting with the API builders.
 	API *APIClient
-	// Audit is the client for interacting with the Audit builders.
-	Audit *AuditClient
 	// Department is the client for interacting with the Department builders.
 	Department *DepartmentClient
 	// Dictionary is the client for interacting with the Dictionary builders.
@@ -48,12 +42,6 @@ type Client struct {
 	DictionaryDetail *DictionaryDetailClient
 	// Menu is the client for interacting with the Menu builders.
 	Menu *MenuClient
-	// MenuParam is the client for interacting with the MenuParam builders.
-	MenuParam *MenuParamClient
-	// Merchant is the client for interacting with the Merchant builders.
-	Merchant *MerchantClient
-	// MerchantMeta is the client for interacting with the MerchantMeta builders.
-	MerchantMeta *MerchantMetaClient
 	// OauthProvider is the client for interacting with the OauthProvider builders.
 	OauthProvider *OauthProviderClient
 	// Position is the client for interacting with the Position builders.
@@ -78,14 +66,10 @@ func NewClient(opts ...Option) *Client {
 func (c *Client) init() {
 	c.Schema = migrate.NewSchema(c.driver)
 	c.API = NewAPIClient(c.config)
-	c.Audit = NewAuditClient(c.config)
 	c.Department = NewDepartmentClient(c.config)
 	c.Dictionary = NewDictionaryClient(c.config)
 	c.DictionaryDetail = NewDictionaryDetailClient(c.config)
 	c.Menu = NewMenuClient(c.config)
-	c.MenuParam = NewMenuParamClient(c.config)
-	c.Merchant = NewMerchantClient(c.config)
-	c.MerchantMeta = NewMerchantMetaClient(c.config)
 	c.OauthProvider = NewOauthProviderClient(c.config)
 	c.Position = NewPositionClient(c.config)
 	c.Role = NewRoleClient(c.config)
@@ -174,14 +158,10 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 		ctx:              ctx,
 		config:           cfg,
 		API:              NewAPIClient(cfg),
-		Audit:            NewAuditClient(cfg),
 		Department:       NewDepartmentClient(cfg),
 		Dictionary:       NewDictionaryClient(cfg),
 		DictionaryDetail: NewDictionaryDetailClient(cfg),
 		Menu:             NewMenuClient(cfg),
-		MenuParam:        NewMenuParamClient(cfg),
-		Merchant:         NewMerchantClient(cfg),
-		MerchantMeta:     NewMerchantMetaClient(cfg),
 		OauthProvider:    NewOauthProviderClient(cfg),
 		Position:         NewPositionClient(cfg),
 		Role:             NewRoleClient(cfg),
@@ -207,14 +187,10 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 		ctx:              ctx,
 		config:           cfg,
 		API:              NewAPIClient(cfg),
-		Audit:            NewAuditClient(cfg),
 		Department:       NewDepartmentClient(cfg),
 		Dictionary:       NewDictionaryClient(cfg),
 		DictionaryDetail: NewDictionaryDetailClient(cfg),
 		Menu:             NewMenuClient(cfg),
-		MenuParam:        NewMenuParamClient(cfg),
-		Merchant:         NewMerchantClient(cfg),
-		MerchantMeta:     NewMerchantMetaClient(cfg),
 		OauthProvider:    NewOauthProviderClient(cfg),
 		Position:         NewPositionClient(cfg),
 		Role:             NewRoleClient(cfg),
@@ -249,9 +225,8 @@ func (c *Client) Close() error {
 // In order to add hooks to a specific client, call: `client.Node.Use(...)`.
 func (c *Client) Use(hooks ...Hook) {
 	for _, n := range []interface{ Use(...Hook) }{
-		c.API, c.Audit, c.Department, c.Dictionary, c.DictionaryDetail, c.Menu,
-		c.MenuParam, c.Merchant, c.MerchantMeta, c.OauthProvider, c.Position, c.Role,
-		c.Token, c.User,
+		c.API, c.Department, c.Dictionary, c.DictionaryDetail, c.Menu, c.OauthProvider,
+		c.Position, c.Role, c.Token, c.User,
 	} {
 		n.Use(hooks...)
 	}
@@ -261,9 +236,8 @@ func (c *Client) Use(hooks ...Hook) {
 // In order to add interceptors to a specific client, call: `client.Node.Intercept(...)`.
 func (c *Client) Intercept(interceptors ...Interceptor) {
 	for _, n := range []interface{ Intercept(...Interceptor) }{
-		c.API, c.Audit, c.Department, c.Dictionary, c.DictionaryDetail, c.Menu,
-		c.MenuParam, c.Merchant, c.MerchantMeta, c.OauthProvider, c.Position, c.Role,
-		c.Token, c.User,
+		c.API, c.Department, c.Dictionary, c.DictionaryDetail, c.Menu, c.OauthProvider,
+		c.Position, c.Role, c.Token, c.User,
 	} {
 		n.Intercept(interceptors...)
 	}
@@ -274,8 +248,6 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 	switch m := m.(type) {
 	case *APIMutation:
 		return c.API.mutate(ctx, m)
-	case *AuditMutation:
-		return c.Audit.mutate(ctx, m)
 	case *DepartmentMutation:
 		return c.Department.mutate(ctx, m)
 	case *DictionaryMutation:
@@ -284,12 +256,6 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 		return c.DictionaryDetail.mutate(ctx, m)
 	case *MenuMutation:
 		return c.Menu.mutate(ctx, m)
-	case *MenuParamMutation:
-		return c.MenuParam.mutate(ctx, m)
-	case *MerchantMutation:
-		return c.Merchant.mutate(ctx, m)
-	case *MerchantMetaMutation:
-		return c.MerchantMeta.mutate(ctx, m)
 	case *OauthProviderMutation:
 		return c.OauthProvider.mutate(ctx, m)
 	case *PositionMutation:
@@ -420,124 +386,6 @@ func (c *APIClient) mutate(ctx context.Context, m *APIMutation) (Value, error) {
 		return (&APIDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
 	default:
 		return nil, fmt.Errorf("ent: unknown API mutation op: %q", m.Op())
-	}
-}
-
-// AuditClient is a client for the Audit schema.
-type AuditClient struct {
-	config
-}
-
-// NewAuditClient returns a client for the Audit from the given config.
-func NewAuditClient(c config) *AuditClient {
-	return &AuditClient{config: c}
-}
-
-// Use adds a list of mutation hooks to the hooks stack.
-// A call to `Use(f, g, h)` equals to `audit.Hooks(f(g(h())))`.
-func (c *AuditClient) Use(hooks ...Hook) {
-	c.hooks.Audit = append(c.hooks.Audit, hooks...)
-}
-
-// Intercept adds a list of query interceptors to the interceptors stack.
-// A call to `Intercept(f, g, h)` equals to `audit.Intercept(f(g(h())))`.
-func (c *AuditClient) Intercept(interceptors ...Interceptor) {
-	c.inters.Audit = append(c.inters.Audit, interceptors...)
-}
-
-// Create returns a builder for creating a Audit entity.
-func (c *AuditClient) Create() *AuditCreate {
-	mutation := newAuditMutation(c.config, OpCreate)
-	return &AuditCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// CreateBulk returns a builder for creating a bulk of Audit entities.
-func (c *AuditClient) CreateBulk(builders ...*AuditCreate) *AuditCreateBulk {
-	return &AuditCreateBulk{config: c.config, builders: builders}
-}
-
-// Update returns an update builder for Audit.
-func (c *AuditClient) Update() *AuditUpdate {
-	mutation := newAuditMutation(c.config, OpUpdate)
-	return &AuditUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// UpdateOne returns an update builder for the given entity.
-func (c *AuditClient) UpdateOne(a *Audit) *AuditUpdateOne {
-	mutation := newAuditMutation(c.config, OpUpdateOne, withAudit(a))
-	return &AuditUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// UpdateOneID returns an update builder for the given id.
-func (c *AuditClient) UpdateOneID(id uint64) *AuditUpdateOne {
-	mutation := newAuditMutation(c.config, OpUpdateOne, withAuditID(id))
-	return &AuditUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// Delete returns a delete builder for Audit.
-func (c *AuditClient) Delete() *AuditDelete {
-	mutation := newAuditMutation(c.config, OpDelete)
-	return &AuditDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// DeleteOne returns a builder for deleting the given entity.
-func (c *AuditClient) DeleteOne(a *Audit) *AuditDeleteOne {
-	return c.DeleteOneID(a.ID)
-}
-
-// DeleteOneID returns a builder for deleting the given entity by its id.
-func (c *AuditClient) DeleteOneID(id uint64) *AuditDeleteOne {
-	builder := c.Delete().Where(audit.ID(id))
-	builder.mutation.id = &id
-	builder.mutation.op = OpDeleteOne
-	return &AuditDeleteOne{builder}
-}
-
-// Query returns a query builder for Audit.
-func (c *AuditClient) Query() *AuditQuery {
-	return &AuditQuery{
-		config: c.config,
-		ctx:    &QueryContext{Type: TypeAudit},
-		inters: c.Interceptors(),
-	}
-}
-
-// Get returns a Audit entity by its id.
-func (c *AuditClient) Get(ctx context.Context, id uint64) (*Audit, error) {
-	return c.Query().Where(audit.ID(id)).Only(ctx)
-}
-
-// GetX is like Get, but panics if an error occurs.
-func (c *AuditClient) GetX(ctx context.Context, id uint64) *Audit {
-	obj, err := c.Get(ctx, id)
-	if err != nil {
-		panic(err)
-	}
-	return obj
-}
-
-// Hooks returns the client hooks.
-func (c *AuditClient) Hooks() []Hook {
-	return c.hooks.Audit
-}
-
-// Interceptors returns the client interceptors.
-func (c *AuditClient) Interceptors() []Interceptor {
-	return c.inters.Audit
-}
-
-func (c *AuditClient) mutate(ctx context.Context, m *AuditMutation) (Value, error) {
-	switch m.Op() {
-	case OpCreate:
-		return (&AuditCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpUpdate:
-		return (&AuditUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpUpdateOne:
-		return (&AuditUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpDelete, OpDeleteOne:
-		return (&AuditDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
-	default:
-		return nil, fmt.Errorf("ent: unknown Audit mutation op: %q", m.Op())
 	}
 }
 
@@ -1116,22 +964,6 @@ func (c *MenuClient) QueryChildren(m *Menu) *MenuQuery {
 	return query
 }
 
-// QueryParams queries the params edge of a Menu.
-func (c *MenuClient) QueryParams(m *Menu) *MenuParamQuery {
-	query := (&MenuParamClient{config: c.config}).Query()
-	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := m.ID
-		step := sqlgraph.NewStep(
-			sqlgraph.From(menu.Table, menu.FieldID, id),
-			sqlgraph.To(menuparam.Table, menuparam.FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, menu.ParamsTable, menu.ParamsColumn),
-		)
-		fromV = sqlgraph.Neighbors(m.driver.Dialect(), step)
-		return fromV, nil
-	}
-	return query
-}
-
 // Hooks returns the client hooks.
 func (c *MenuClient) Hooks() []Hook {
 	return c.hooks.Menu
@@ -1154,440 +986,6 @@ func (c *MenuClient) mutate(ctx context.Context, m *MenuMutation) (Value, error)
 		return (&MenuDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
 	default:
 		return nil, fmt.Errorf("ent: unknown Menu mutation op: %q", m.Op())
-	}
-}
-
-// MenuParamClient is a client for the MenuParam schema.
-type MenuParamClient struct {
-	config
-}
-
-// NewMenuParamClient returns a client for the MenuParam from the given config.
-func NewMenuParamClient(c config) *MenuParamClient {
-	return &MenuParamClient{config: c}
-}
-
-// Use adds a list of mutation hooks to the hooks stack.
-// A call to `Use(f, g, h)` equals to `menuparam.Hooks(f(g(h())))`.
-func (c *MenuParamClient) Use(hooks ...Hook) {
-	c.hooks.MenuParam = append(c.hooks.MenuParam, hooks...)
-}
-
-// Intercept adds a list of query interceptors to the interceptors stack.
-// A call to `Intercept(f, g, h)` equals to `menuparam.Intercept(f(g(h())))`.
-func (c *MenuParamClient) Intercept(interceptors ...Interceptor) {
-	c.inters.MenuParam = append(c.inters.MenuParam, interceptors...)
-}
-
-// Create returns a builder for creating a MenuParam entity.
-func (c *MenuParamClient) Create() *MenuParamCreate {
-	mutation := newMenuParamMutation(c.config, OpCreate)
-	return &MenuParamCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// CreateBulk returns a builder for creating a bulk of MenuParam entities.
-func (c *MenuParamClient) CreateBulk(builders ...*MenuParamCreate) *MenuParamCreateBulk {
-	return &MenuParamCreateBulk{config: c.config, builders: builders}
-}
-
-// Update returns an update builder for MenuParam.
-func (c *MenuParamClient) Update() *MenuParamUpdate {
-	mutation := newMenuParamMutation(c.config, OpUpdate)
-	return &MenuParamUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// UpdateOne returns an update builder for the given entity.
-func (c *MenuParamClient) UpdateOne(mp *MenuParam) *MenuParamUpdateOne {
-	mutation := newMenuParamMutation(c.config, OpUpdateOne, withMenuParam(mp))
-	return &MenuParamUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// UpdateOneID returns an update builder for the given id.
-func (c *MenuParamClient) UpdateOneID(id uint64) *MenuParamUpdateOne {
-	mutation := newMenuParamMutation(c.config, OpUpdateOne, withMenuParamID(id))
-	return &MenuParamUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// Delete returns a delete builder for MenuParam.
-func (c *MenuParamClient) Delete() *MenuParamDelete {
-	mutation := newMenuParamMutation(c.config, OpDelete)
-	return &MenuParamDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// DeleteOne returns a builder for deleting the given entity.
-func (c *MenuParamClient) DeleteOne(mp *MenuParam) *MenuParamDeleteOne {
-	return c.DeleteOneID(mp.ID)
-}
-
-// DeleteOneID returns a builder for deleting the given entity by its id.
-func (c *MenuParamClient) DeleteOneID(id uint64) *MenuParamDeleteOne {
-	builder := c.Delete().Where(menuparam.ID(id))
-	builder.mutation.id = &id
-	builder.mutation.op = OpDeleteOne
-	return &MenuParamDeleteOne{builder}
-}
-
-// Query returns a query builder for MenuParam.
-func (c *MenuParamClient) Query() *MenuParamQuery {
-	return &MenuParamQuery{
-		config: c.config,
-		ctx:    &QueryContext{Type: TypeMenuParam},
-		inters: c.Interceptors(),
-	}
-}
-
-// Get returns a MenuParam entity by its id.
-func (c *MenuParamClient) Get(ctx context.Context, id uint64) (*MenuParam, error) {
-	return c.Query().Where(menuparam.ID(id)).Only(ctx)
-}
-
-// GetX is like Get, but panics if an error occurs.
-func (c *MenuParamClient) GetX(ctx context.Context, id uint64) *MenuParam {
-	obj, err := c.Get(ctx, id)
-	if err != nil {
-		panic(err)
-	}
-	return obj
-}
-
-// QueryMenus queries the menus edge of a MenuParam.
-func (c *MenuParamClient) QueryMenus(mp *MenuParam) *MenuQuery {
-	query := (&MenuClient{config: c.config}).Query()
-	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := mp.ID
-		step := sqlgraph.NewStep(
-			sqlgraph.From(menuparam.Table, menuparam.FieldID, id),
-			sqlgraph.To(menu.Table, menu.FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, menuparam.MenusTable, menuparam.MenusColumn),
-		)
-		fromV = sqlgraph.Neighbors(mp.driver.Dialect(), step)
-		return fromV, nil
-	}
-	return query
-}
-
-// Hooks returns the client hooks.
-func (c *MenuParamClient) Hooks() []Hook {
-	return c.hooks.MenuParam
-}
-
-// Interceptors returns the client interceptors.
-func (c *MenuParamClient) Interceptors() []Interceptor {
-	return c.inters.MenuParam
-}
-
-func (c *MenuParamClient) mutate(ctx context.Context, m *MenuParamMutation) (Value, error) {
-	switch m.Op() {
-	case OpCreate:
-		return (&MenuParamCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpUpdate:
-		return (&MenuParamUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpUpdateOne:
-		return (&MenuParamUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpDelete, OpDeleteOne:
-		return (&MenuParamDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
-	default:
-		return nil, fmt.Errorf("ent: unknown MenuParam mutation op: %q", m.Op())
-	}
-}
-
-// MerchantClient is a client for the Merchant schema.
-type MerchantClient struct {
-	config
-}
-
-// NewMerchantClient returns a client for the Merchant from the given config.
-func NewMerchantClient(c config) *MerchantClient {
-	return &MerchantClient{config: c}
-}
-
-// Use adds a list of mutation hooks to the hooks stack.
-// A call to `Use(f, g, h)` equals to `merchant.Hooks(f(g(h())))`.
-func (c *MerchantClient) Use(hooks ...Hook) {
-	c.hooks.Merchant = append(c.hooks.Merchant, hooks...)
-}
-
-// Intercept adds a list of query interceptors to the interceptors stack.
-// A call to `Intercept(f, g, h)` equals to `merchant.Intercept(f(g(h())))`.
-func (c *MerchantClient) Intercept(interceptors ...Interceptor) {
-	c.inters.Merchant = append(c.inters.Merchant, interceptors...)
-}
-
-// Create returns a builder for creating a Merchant entity.
-func (c *MerchantClient) Create() *MerchantCreate {
-	mutation := newMerchantMutation(c.config, OpCreate)
-	return &MerchantCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// CreateBulk returns a builder for creating a bulk of Merchant entities.
-func (c *MerchantClient) CreateBulk(builders ...*MerchantCreate) *MerchantCreateBulk {
-	return &MerchantCreateBulk{config: c.config, builders: builders}
-}
-
-// Update returns an update builder for Merchant.
-func (c *MerchantClient) Update() *MerchantUpdate {
-	mutation := newMerchantMutation(c.config, OpUpdate)
-	return &MerchantUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// UpdateOne returns an update builder for the given entity.
-func (c *MerchantClient) UpdateOne(m *Merchant) *MerchantUpdateOne {
-	mutation := newMerchantMutation(c.config, OpUpdateOne, withMerchant(m))
-	return &MerchantUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// UpdateOneID returns an update builder for the given id.
-func (c *MerchantClient) UpdateOneID(id uint64) *MerchantUpdateOne {
-	mutation := newMerchantMutation(c.config, OpUpdateOne, withMerchantID(id))
-	return &MerchantUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// Delete returns a delete builder for Merchant.
-func (c *MerchantClient) Delete() *MerchantDelete {
-	mutation := newMerchantMutation(c.config, OpDelete)
-	return &MerchantDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// DeleteOne returns a builder for deleting the given entity.
-func (c *MerchantClient) DeleteOne(m *Merchant) *MerchantDeleteOne {
-	return c.DeleteOneID(m.ID)
-}
-
-// DeleteOneID returns a builder for deleting the given entity by its id.
-func (c *MerchantClient) DeleteOneID(id uint64) *MerchantDeleteOne {
-	builder := c.Delete().Where(merchant.ID(id))
-	builder.mutation.id = &id
-	builder.mutation.op = OpDeleteOne
-	return &MerchantDeleteOne{builder}
-}
-
-// Query returns a query builder for Merchant.
-func (c *MerchantClient) Query() *MerchantQuery {
-	return &MerchantQuery{
-		config: c.config,
-		ctx:    &QueryContext{Type: TypeMerchant},
-		inters: c.Interceptors(),
-	}
-}
-
-// Get returns a Merchant entity by its id.
-func (c *MerchantClient) Get(ctx context.Context, id uint64) (*Merchant, error) {
-	return c.Query().Where(merchant.ID(id)).Only(ctx)
-}
-
-// GetX is like Get, but panics if an error occurs.
-func (c *MerchantClient) GetX(ctx context.Context, id uint64) *Merchant {
-	obj, err := c.Get(ctx, id)
-	if err != nil {
-		panic(err)
-	}
-	return obj
-}
-
-// QueryParent queries the parent edge of a Merchant.
-func (c *MerchantClient) QueryParent(m *Merchant) *MerchantQuery {
-	query := (&MerchantClient{config: c.config}).Query()
-	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := m.ID
-		step := sqlgraph.NewStep(
-			sqlgraph.From(merchant.Table, merchant.FieldID, id),
-			sqlgraph.To(merchant.Table, merchant.FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, merchant.ParentTable, merchant.ParentColumn),
-		)
-		fromV = sqlgraph.Neighbors(m.driver.Dialect(), step)
-		return fromV, nil
-	}
-	return query
-}
-
-// QueryChildren queries the children edge of a Merchant.
-func (c *MerchantClient) QueryChildren(m *Merchant) *MerchantQuery {
-	query := (&MerchantClient{config: c.config}).Query()
-	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := m.ID
-		step := sqlgraph.NewStep(
-			sqlgraph.From(merchant.Table, merchant.FieldID, id),
-			sqlgraph.To(merchant.Table, merchant.FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, merchant.ChildrenTable, merchant.ChildrenColumn),
-		)
-		fromV = sqlgraph.Neighbors(m.driver.Dialect(), step)
-		return fromV, nil
-	}
-	return query
-}
-
-// QueryMerchantMeta queries the merchant_meta edge of a Merchant.
-func (c *MerchantClient) QueryMerchantMeta(m *Merchant) *MerchantMetaQuery {
-	query := (&MerchantMetaClient{config: c.config}).Query()
-	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := m.ID
-		step := sqlgraph.NewStep(
-			sqlgraph.From(merchant.Table, merchant.FieldID, id),
-			sqlgraph.To(merchantmeta.Table, merchantmeta.FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, merchant.MerchantMetaTable, merchant.MerchantMetaColumn),
-		)
-		fromV = sqlgraph.Neighbors(m.driver.Dialect(), step)
-		return fromV, nil
-	}
-	return query
-}
-
-// Hooks returns the client hooks.
-func (c *MerchantClient) Hooks() []Hook {
-	return c.hooks.Merchant
-}
-
-// Interceptors returns the client interceptors.
-func (c *MerchantClient) Interceptors() []Interceptor {
-	return c.inters.Merchant
-}
-
-func (c *MerchantClient) mutate(ctx context.Context, m *MerchantMutation) (Value, error) {
-	switch m.Op() {
-	case OpCreate:
-		return (&MerchantCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpUpdate:
-		return (&MerchantUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpUpdateOne:
-		return (&MerchantUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpDelete, OpDeleteOne:
-		return (&MerchantDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
-	default:
-		return nil, fmt.Errorf("ent: unknown Merchant mutation op: %q", m.Op())
-	}
-}
-
-// MerchantMetaClient is a client for the MerchantMeta schema.
-type MerchantMetaClient struct {
-	config
-}
-
-// NewMerchantMetaClient returns a client for the MerchantMeta from the given config.
-func NewMerchantMetaClient(c config) *MerchantMetaClient {
-	return &MerchantMetaClient{config: c}
-}
-
-// Use adds a list of mutation hooks to the hooks stack.
-// A call to `Use(f, g, h)` equals to `merchantmeta.Hooks(f(g(h())))`.
-func (c *MerchantMetaClient) Use(hooks ...Hook) {
-	c.hooks.MerchantMeta = append(c.hooks.MerchantMeta, hooks...)
-}
-
-// Intercept adds a list of query interceptors to the interceptors stack.
-// A call to `Intercept(f, g, h)` equals to `merchantmeta.Intercept(f(g(h())))`.
-func (c *MerchantMetaClient) Intercept(interceptors ...Interceptor) {
-	c.inters.MerchantMeta = append(c.inters.MerchantMeta, interceptors...)
-}
-
-// Create returns a builder for creating a MerchantMeta entity.
-func (c *MerchantMetaClient) Create() *MerchantMetaCreate {
-	mutation := newMerchantMetaMutation(c.config, OpCreate)
-	return &MerchantMetaCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// CreateBulk returns a builder for creating a bulk of MerchantMeta entities.
-func (c *MerchantMetaClient) CreateBulk(builders ...*MerchantMetaCreate) *MerchantMetaCreateBulk {
-	return &MerchantMetaCreateBulk{config: c.config, builders: builders}
-}
-
-// Update returns an update builder for MerchantMeta.
-func (c *MerchantMetaClient) Update() *MerchantMetaUpdate {
-	mutation := newMerchantMetaMutation(c.config, OpUpdate)
-	return &MerchantMetaUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// UpdateOne returns an update builder for the given entity.
-func (c *MerchantMetaClient) UpdateOne(mm *MerchantMeta) *MerchantMetaUpdateOne {
-	mutation := newMerchantMetaMutation(c.config, OpUpdateOne, withMerchantMeta(mm))
-	return &MerchantMetaUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// UpdateOneID returns an update builder for the given id.
-func (c *MerchantMetaClient) UpdateOneID(id uint64) *MerchantMetaUpdateOne {
-	mutation := newMerchantMetaMutation(c.config, OpUpdateOne, withMerchantMetaID(id))
-	return &MerchantMetaUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// Delete returns a delete builder for MerchantMeta.
-func (c *MerchantMetaClient) Delete() *MerchantMetaDelete {
-	mutation := newMerchantMetaMutation(c.config, OpDelete)
-	return &MerchantMetaDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// DeleteOne returns a builder for deleting the given entity.
-func (c *MerchantMetaClient) DeleteOne(mm *MerchantMeta) *MerchantMetaDeleteOne {
-	return c.DeleteOneID(mm.ID)
-}
-
-// DeleteOneID returns a builder for deleting the given entity by its id.
-func (c *MerchantMetaClient) DeleteOneID(id uint64) *MerchantMetaDeleteOne {
-	builder := c.Delete().Where(merchantmeta.ID(id))
-	builder.mutation.id = &id
-	builder.mutation.op = OpDeleteOne
-	return &MerchantMetaDeleteOne{builder}
-}
-
-// Query returns a query builder for MerchantMeta.
-func (c *MerchantMetaClient) Query() *MerchantMetaQuery {
-	return &MerchantMetaQuery{
-		config: c.config,
-		ctx:    &QueryContext{Type: TypeMerchantMeta},
-		inters: c.Interceptors(),
-	}
-}
-
-// Get returns a MerchantMeta entity by its id.
-func (c *MerchantMetaClient) Get(ctx context.Context, id uint64) (*MerchantMeta, error) {
-	return c.Query().Where(merchantmeta.ID(id)).Only(ctx)
-}
-
-// GetX is like Get, but panics if an error occurs.
-func (c *MerchantMetaClient) GetX(ctx context.Context, id uint64) *MerchantMeta {
-	obj, err := c.Get(ctx, id)
-	if err != nil {
-		panic(err)
-	}
-	return obj
-}
-
-// QueryMerchant queries the merchant edge of a MerchantMeta.
-func (c *MerchantMetaClient) QueryMerchant(mm *MerchantMeta) *MerchantQuery {
-	query := (&MerchantClient{config: c.config}).Query()
-	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := mm.ID
-		step := sqlgraph.NewStep(
-			sqlgraph.From(merchantmeta.Table, merchantmeta.FieldID, id),
-			sqlgraph.To(merchant.Table, merchant.FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, merchantmeta.MerchantTable, merchantmeta.MerchantColumn),
-		)
-		fromV = sqlgraph.Neighbors(mm.driver.Dialect(), step)
-		return fromV, nil
-	}
-	return query
-}
-
-// Hooks returns the client hooks.
-func (c *MerchantMetaClient) Hooks() []Hook {
-	return c.hooks.MerchantMeta
-}
-
-// Interceptors returns the client interceptors.
-func (c *MerchantMetaClient) Interceptors() []Interceptor {
-	return c.inters.MerchantMeta
-}
-
-func (c *MerchantMetaClient) mutate(ctx context.Context, m *MerchantMetaMutation) (Value, error) {
-	switch m.Op() {
-	case OpCreate:
-		return (&MerchantMetaCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpUpdate:
-		return (&MerchantMetaUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpUpdateOne:
-		return (&MerchantMetaUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpDelete, OpDeleteOne:
-		return (&MerchantMetaDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
-	default:
-		return nil, fmt.Errorf("ent: unknown MerchantMeta mutation op: %q", m.Op())
 	}
 }
 
@@ -2280,11 +1678,11 @@ func (c *UserClient) mutate(ctx context.Context, m *UserMutation) (Value, error)
 // hooks and interceptors per client, for fast access.
 type (
 	hooks struct {
-		API, Audit, Department, Dictionary, DictionaryDetail, Menu, MenuParam, Merchant,
-		MerchantMeta, OauthProvider, Position, Role, Token, User []ent.Hook
+		API, Department, Dictionary, DictionaryDetail, Menu, OauthProvider, Position,
+		Role, Token, User []ent.Hook
 	}
 	inters struct {
-		API, Audit, Department, Dictionary, DictionaryDetail, Menu, MenuParam, Merchant,
-		MerchantMeta, OauthProvider, Position, Role, Token, User []ent.Interceptor
+		API, Department, Dictionary, DictionaryDetail, Menu, OauthProvider, Position,
+		Role, Token, User []ent.Interceptor
 	}
 )

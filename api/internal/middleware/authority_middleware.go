@@ -6,13 +6,13 @@ import (
 	"strings"
 
 	"github.com/casbin/casbin/v2"
-	"github.com/huuhoait/zero-tools/enum/errorcode"
+	"github.com/suyuan32/simple-admin-common/enum/errorcode"
 	"github.com/zeromicro/go-zero/core/errorx"
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/stores/redis"
 	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"github.com/huuhoait/zero-tools/i18n"
+	"github.com/suyuan32/simple-admin-common/i18n"
 )
 
 type AuthorityMiddleware struct {
@@ -31,13 +31,13 @@ func NewAuthorityMiddleware(cbn *casbin.Enforcer, rds *redis.Redis, trans *i18n.
 
 func (m *AuthorityMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		//r.Header.Add("Accept-Language", "en")
 		// get the path
 		obj := r.URL.Path
 		// get the method
 		act := r.Method
 		// get the role id
 		roleIds := r.Context().Value("roleId").(string)
+
 		// check jwt blacklist
 		jwtResult, err := m.Rds.Get("token_" + r.Header.Get("Authorization"))
 		if err != nil {
@@ -50,7 +50,7 @@ func (m *AuthorityMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 			httpx.Error(w, errorx.NewApiErrorWithoutMsg(http.StatusUnauthorized))
 			return
 		}
-		//fmt.Println("-----------:Cbn"+m.Cbn)
+
 		result := batchCheck(m.Cbn, roleIds, act, obj)
 
 		if result {

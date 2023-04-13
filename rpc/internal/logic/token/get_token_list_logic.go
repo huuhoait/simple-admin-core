@@ -3,16 +3,16 @@ package token
 import (
 	"context"
 
-	"github.com/huuhoait/zero-tools/utils/uuidx"
+	"github.com/suyuan32/simple-admin-common/utils/uuidx"
 
-	"github.com/huuhoait/zero-admin-core/rpc/ent"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/token"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
+	"github.com/suyuan32/simple-admin-core/rpc/ent"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/token"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
 
-	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/utils/errorhandler"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/utils/errorhandler"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

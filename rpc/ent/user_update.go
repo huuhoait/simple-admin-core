@@ -11,11 +11,11 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/department"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/position"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/role"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/position"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/role"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
 )
 
 // UserUpdate is the builder for updating User entities.
@@ -519,7 +519,6 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		return 0, err
 	}
 	uu.mutation.done = true
-
 	return n, nil
 }
 
@@ -853,13 +852,6 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "User.id" for update`)}
 	}
-
-	//0
-
-	//1
-
-	//2
-
 	_spec.Node.ID.Value = id
 	if fields := uuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
@@ -1058,14 +1050,6 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 		}
 		return nil, err
 	}
-
-	//0
-
-	//1
-
-	//2
-
 	uuo.mutation.done = true
-
 	return _node, nil
 }

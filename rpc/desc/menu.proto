@@ -14,8 +14,6 @@ message MenuInfo {
   bool disabled = 11;
   Meta meta = 12;
   uint32 menu_type = 13;
-    string created_by = 14;
-  string updated_by = 15;
 }
 
 message Meta {

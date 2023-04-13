@@ -12,11 +12,9 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/google/go-cmp/cmp"
-	"github.com/google/go-cmp/cmp/cmpopts"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/department"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
 )
 
 // DepartmentUpdate is the builder for updating Department entities.
@@ -29,46 +27,6 @@ type DepartmentUpdate struct {
 // Where appends a list predicates to the DepartmentUpdate builder.
 func (du *DepartmentUpdate) Where(ps ...predicate.Department) *DepartmentUpdate {
 	du.mutation.Where(ps...)
-	return du
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (du *DepartmentUpdate) SetCreatedBy(s string) *DepartmentUpdate {
-	du.mutation.SetCreatedBy(s)
-	return du
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (du *DepartmentUpdate) SetNillableCreatedBy(s *string) *DepartmentUpdate {
-	if s != nil {
-		du.SetCreatedBy(*s)
-	}
-	return du
-}
-
-// ClearCreatedBy clears the value of the "created_by" field.
-func (du *DepartmentUpdate) ClearCreatedBy() *DepartmentUpdate {
-	du.mutation.ClearCreatedBy()
-	return du
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (du *DepartmentUpdate) SetUpdatedBy(s string) *DepartmentUpdate {
-	du.mutation.SetUpdatedBy(s)
-	return du
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (du *DepartmentUpdate) SetNillableUpdatedBy(s *string) *DepartmentUpdate {
-	if s != nil {
-		du.SetUpdatedBy(*s)
-	}
-	return du
-}
-
-// ClearUpdatedBy clears the value of the "updated_by" field.
-func (du *DepartmentUpdate) ClearUpdatedBy() *DepartmentUpdate {
-	du.mutation.ClearUpdatedBy()
 	return du
 }
 
@@ -315,18 +273,6 @@ func (du *DepartmentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			}
 		}
 	}
-	if value, ok := du.mutation.CreatedBy(); ok {
-		_spec.SetField(department.FieldCreatedBy, field.TypeString, value)
-	}
-	if du.mutation.CreatedByCleared() {
-		_spec.ClearField(department.FieldCreatedBy, field.TypeString)
-	}
-	if value, ok := du.mutation.UpdatedBy(); ok {
-		_spec.SetField(department.FieldUpdatedBy, field.TypeString, value)
-	}
-	if du.mutation.UpdatedByCleared() {
-		_spec.ClearField(department.FieldUpdatedBy, field.TypeString)
-	}
 	if value, ok := du.mutation.UpdatedAt(); ok {
 		_spec.SetField(department.FieldUpdatedAt, field.TypeTime, value)
 	}
@@ -491,7 +437,6 @@ func (du *DepartmentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		return 0, err
 	}
 	du.mutation.done = true
-
 	return n, nil
 }
 
@@ -501,46 +446,6 @@ type DepartmentUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *DepartmentMutation
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (duo *DepartmentUpdateOne) SetCreatedBy(s string) *DepartmentUpdateOne {
-	duo.mutation.SetCreatedBy(s)
-	return duo
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (duo *DepartmentUpdateOne) SetNillableCreatedBy(s *string) *DepartmentUpdateOne {
-	if s != nil {
-		duo.SetCreatedBy(*s)
-	}
-	return duo
-}
-
-// ClearCreatedBy clears the value of the "created_by" field.
-func (duo *DepartmentUpdateOne) ClearCreatedBy() *DepartmentUpdateOne {
-	duo.mutation.ClearCreatedBy()
-	return duo
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (duo *DepartmentUpdateOne) SetUpdatedBy(s string) *DepartmentUpdateOne {
-	duo.mutation.SetUpdatedBy(s)
-	return duo
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (duo *DepartmentUpdateOne) SetNillableUpdatedBy(s *string) *DepartmentUpdateOne {
-	if s != nil {
-		duo.SetUpdatedBy(*s)
-	}
-	return duo
-}
-
-// ClearUpdatedBy clears the value of the "updated_by" field.
-func (duo *DepartmentUpdateOne) ClearUpdatedBy() *DepartmentUpdateOne {
-	duo.mutation.ClearUpdatedBy()
-	return duo
 }
 
 // SetUpdatedAt sets the "updated_at" field.
@@ -796,23 +701,6 @@ func (duo *DepartmentUpdateOne) sqlSave(ctx context.Context) (_node *Department,
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Department.id" for update`)}
 	}
-
-	//0
-
-	// Load the old value of entity.
-
-	var _nodeOld *Department
-	if _nodeOld, err = duo.mutation.oldValue(ctx); err != nil {
-		return nil, err
-	}
-	fmt.Println("*************************")
-	fmt.Println(_nodeOld)
-	fmt.Println("*************************")
-
-	//1
-
-	//2
-
 	_spec.Node.ID.Value = id
 	if fields := duo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
@@ -832,18 +720,6 @@ func (duo *DepartmentUpdateOne) sqlSave(ctx context.Context) (_node *Department,
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := duo.mutation.CreatedBy(); ok {
-		_spec.SetField(department.FieldCreatedBy, field.TypeString, value)
-	}
-	if duo.mutation.CreatedByCleared() {
-		_spec.ClearField(department.FieldCreatedBy, field.TypeString)
-	}
-	if value, ok := duo.mutation.UpdatedBy(); ok {
-		_spec.SetField(department.FieldUpdatedBy, field.TypeString, value)
-	}
-	if duo.mutation.UpdatedByCleared() {
-		_spec.ClearField(department.FieldUpdatedBy, field.TypeString)
 	}
 	if value, ok := duo.mutation.UpdatedAt(); ok {
 		_spec.SetField(department.FieldUpdatedAt, field.TypeTime, value)
@@ -1011,32 +887,6 @@ func (duo *DepartmentUpdateOne) sqlSave(ctx context.Context) (_node *Department,
 		}
 		return nil, err
 	}
-
-	//0
-
-	/* huuhoait edit */
-	var r DiffReporter
-	opts := []cmp.Option{
-		//cmpopts.IgnoreUnexported(Department{}),
-		cmpopts.IgnoreFields(Department{}, "config", "Edges", "CreatedAt", "UpdatedAt"),
-		cmp.Reporter(&r),
-	}
-	cmp.Diff(_nodeOld, _node, opts...)
-
-	duo.mutation.Client().
-		Audit.Create().
-		SetObjectName("Department").
-		SetActionName("Update").
-		SetChangedData(r.String()).
-		SetCreatedBy(_node.UpdatedBy).
-		SaveX(ctx)
-		/* huuhoait edit end*/
-
-		//1
-
-		//2
-
 	duo.mutation.done = true
-
 	return _node, nil
 }

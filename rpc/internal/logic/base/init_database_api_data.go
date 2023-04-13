@@ -4,7 +4,7 @@ import (
 	"github.com/zeromicro/go-zero/core/errorx"
 	"github.com/zeromicro/go-zero/core/logx"
 
-	"github.com/huuhoait/zero-admin-core/rpc/ent"
+	"github.com/suyuan32/simple-admin-core/rpc/ent"
 )
 
 // insert init api data
@@ -560,35 +560,35 @@ func (l *InitDatabaseLogic) insertApiData() error {
 	apis = append(apis, l.svcCtx.DB.API.Create().
 		SetPath("/task_log/create").
 		SetDescription("apiDesc.createTaskLog").
-		SetAPIGroup("tasklog").
+		SetAPIGroup("task_log").
 		SetMethod("POST"),
 	)
 
 	apis = append(apis, l.svcCtx.DB.API.Create().
 		SetPath("/task_log/update").
 		SetDescription("apiDesc.updateTaskLog").
-		SetAPIGroup("tasklog").
+		SetAPIGroup("task_log").
 		SetMethod("POST"),
 	)
 
 	apis = append(apis, l.svcCtx.DB.API.Create().
 		SetPath("/task_log/delete").
 		SetDescription("apiDesc.deleteTaskLog").
-		SetAPIGroup("tasklog").
+		SetAPIGroup("task_log").
 		SetMethod("POST"),
 	)
 
 	apis = append(apis, l.svcCtx.DB.API.Create().
 		SetPath("/task_log/list").
 		SetDescription("apiDesc.getTaskLogList").
-		SetAPIGroup("tasklog").
+		SetAPIGroup("task_log").
 		SetMethod("POST"),
 	)
 
 	apis = append(apis, l.svcCtx.DB.API.Create().
 		SetPath("/task_log").
 		SetDescription("apiDesc.getTaskLogById").
-		SetAPIGroup("tasklog").
+		SetAPIGroup("task_log").
 		SetMethod("POST"),
 	)
 

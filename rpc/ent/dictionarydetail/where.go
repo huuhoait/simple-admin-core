@@ -7,7 +7,7 @@ import (
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
 )
 
 // ID filters vertices based on their ID field.
@@ -55,19 +55,9 @@ func IDLTE(id uint64) predicate.DictionaryDetail {
 	return predicate.DictionaryDetail(sql.FieldLTE(FieldID, id))
 }
 
-// CreatedBy applies equality check predicate on the "created_by" field. It's identical to CreatedByEQ.
-func CreatedBy(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldEQ(FieldCreatedBy, v))
-}
-
 // CreatedAt applies equality check predicate on the "created_at" field. It's identical to CreatedAtEQ.
 func CreatedAt(v time.Time) predicate.DictionaryDetail {
 	return predicate.DictionaryDetail(sql.FieldEQ(FieldCreatedAt, v))
-}
-
-// UpdatedBy applies equality check predicate on the "updated_by" field. It's identical to UpdatedByEQ.
-func UpdatedBy(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldEQ(FieldUpdatedBy, v))
 }
 
 // UpdatedAt applies equality check predicate on the "updated_at" field. It's identical to UpdatedAtEQ.
@@ -103,81 +93,6 @@ func Value(v string) predicate.DictionaryDetail {
 // DictionaryID applies equality check predicate on the "dictionary_id" field. It's identical to DictionaryIDEQ.
 func DictionaryID(v uint64) predicate.DictionaryDetail {
 	return predicate.DictionaryDetail(sql.FieldEQ(FieldDictionaryID, v))
-}
-
-// CreatedByEQ applies the EQ predicate on the "created_by" field.
-func CreatedByEQ(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldEQ(FieldCreatedBy, v))
-}
-
-// CreatedByNEQ applies the NEQ predicate on the "created_by" field.
-func CreatedByNEQ(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldNEQ(FieldCreatedBy, v))
-}
-
-// CreatedByIn applies the In predicate on the "created_by" field.
-func CreatedByIn(vs ...string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldIn(FieldCreatedBy, vs...))
-}
-
-// CreatedByNotIn applies the NotIn predicate on the "created_by" field.
-func CreatedByNotIn(vs ...string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldNotIn(FieldCreatedBy, vs...))
-}
-
-// CreatedByGT applies the GT predicate on the "created_by" field.
-func CreatedByGT(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldGT(FieldCreatedBy, v))
-}
-
-// CreatedByGTE applies the GTE predicate on the "created_by" field.
-func CreatedByGTE(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldGTE(FieldCreatedBy, v))
-}
-
-// CreatedByLT applies the LT predicate on the "created_by" field.
-func CreatedByLT(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldLT(FieldCreatedBy, v))
-}
-
-// CreatedByLTE applies the LTE predicate on the "created_by" field.
-func CreatedByLTE(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldLTE(FieldCreatedBy, v))
-}
-
-// CreatedByContains applies the Contains predicate on the "created_by" field.
-func CreatedByContains(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldContains(FieldCreatedBy, v))
-}
-
-// CreatedByHasPrefix applies the HasPrefix predicate on the "created_by" field.
-func CreatedByHasPrefix(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldHasPrefix(FieldCreatedBy, v))
-}
-
-// CreatedByHasSuffix applies the HasSuffix predicate on the "created_by" field.
-func CreatedByHasSuffix(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldHasSuffix(FieldCreatedBy, v))
-}
-
-// CreatedByIsNil applies the IsNil predicate on the "created_by" field.
-func CreatedByIsNil() predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldIsNull(FieldCreatedBy))
-}
-
-// CreatedByNotNil applies the NotNil predicate on the "created_by" field.
-func CreatedByNotNil() predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldNotNull(FieldCreatedBy))
-}
-
-// CreatedByEqualFold applies the EqualFold predicate on the "created_by" field.
-func CreatedByEqualFold(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldEqualFold(FieldCreatedBy, v))
-}
-
-// CreatedByContainsFold applies the ContainsFold predicate on the "created_by" field.
-func CreatedByContainsFold(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldContainsFold(FieldCreatedBy, v))
 }
 
 // CreatedAtEQ applies the EQ predicate on the "created_at" field.
@@ -218,81 +133,6 @@ func CreatedAtLT(v time.Time) predicate.DictionaryDetail {
 // CreatedAtLTE applies the LTE predicate on the "created_at" field.
 func CreatedAtLTE(v time.Time) predicate.DictionaryDetail {
 	return predicate.DictionaryDetail(sql.FieldLTE(FieldCreatedAt, v))
-}
-
-// UpdatedByEQ applies the EQ predicate on the "updated_by" field.
-func UpdatedByEQ(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldEQ(FieldUpdatedBy, v))
-}
-
-// UpdatedByNEQ applies the NEQ predicate on the "updated_by" field.
-func UpdatedByNEQ(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldNEQ(FieldUpdatedBy, v))
-}
-
-// UpdatedByIn applies the In predicate on the "updated_by" field.
-func UpdatedByIn(vs ...string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldIn(FieldUpdatedBy, vs...))
-}
-
-// UpdatedByNotIn applies the NotIn predicate on the "updated_by" field.
-func UpdatedByNotIn(vs ...string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldNotIn(FieldUpdatedBy, vs...))
-}
-
-// UpdatedByGT applies the GT predicate on the "updated_by" field.
-func UpdatedByGT(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldGT(FieldUpdatedBy, v))
-}
-
-// UpdatedByGTE applies the GTE predicate on the "updated_by" field.
-func UpdatedByGTE(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldGTE(FieldUpdatedBy, v))
-}
-
-// UpdatedByLT applies the LT predicate on the "updated_by" field.
-func UpdatedByLT(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldLT(FieldUpdatedBy, v))
-}
-
-// UpdatedByLTE applies the LTE predicate on the "updated_by" field.
-func UpdatedByLTE(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldLTE(FieldUpdatedBy, v))
-}
-
-// UpdatedByContains applies the Contains predicate on the "updated_by" field.
-func UpdatedByContains(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldContains(FieldUpdatedBy, v))
-}
-
-// UpdatedByHasPrefix applies the HasPrefix predicate on the "updated_by" field.
-func UpdatedByHasPrefix(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldHasPrefix(FieldUpdatedBy, v))
-}
-
-// UpdatedByHasSuffix applies the HasSuffix predicate on the "updated_by" field.
-func UpdatedByHasSuffix(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldHasSuffix(FieldUpdatedBy, v))
-}
-
-// UpdatedByIsNil applies the IsNil predicate on the "updated_by" field.
-func UpdatedByIsNil() predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldIsNull(FieldUpdatedBy))
-}
-
-// UpdatedByNotNil applies the NotNil predicate on the "updated_by" field.
-func UpdatedByNotNil() predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldNotNull(FieldUpdatedBy))
-}
-
-// UpdatedByEqualFold applies the EqualFold predicate on the "updated_by" field.
-func UpdatedByEqualFold(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldEqualFold(FieldUpdatedBy, v))
-}
-
-// UpdatedByContainsFold applies the ContainsFold predicate on the "updated_by" field.
-func UpdatedByContainsFold(v string) predicate.DictionaryDetail {
-	return predicate.DictionaryDetail(sql.FieldContainsFold(FieldUpdatedBy, v))
 }
 
 // UpdatedAtEQ applies the EQ predicate on the "updated_at" field.

@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/api"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/api"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
 )
 
 // APIQuery is the builder for querying API entities.
@@ -261,12 +261,12 @@ func (aq *APIQuery) Clone() *APIQuery {
 // Example:
 //
 //	var v []struct {
-//		CreatedBy string `json:"created_by,omitempty"`
+//		CreatedAt time.Time `json:"created_at,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.API.Query().
-//		GroupBy(api.FieldCreatedBy).
+//		GroupBy(api.FieldCreatedAt).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (aq *APIQuery) GroupBy(field string, fields ...string) *APIGroupBy {
@@ -284,11 +284,11 @@ func (aq *APIQuery) GroupBy(field string, fields ...string) *APIGroupBy {
 // Example:
 //
 //	var v []struct {
-//		CreatedBy string `json:"created_by,omitempty"`
+//		CreatedAt time.Time `json:"created_at,omitempty"`
 //	}
 //
 //	client.API.Query().
-//		Select(api.FieldCreatedBy).
+//		Select(api.FieldCreatedAt).
 //		Scan(ctx, &v)
 func (aq *APIQuery) Select(fields ...string) *APISelect {
 	aq.ctx.Fields = append(aq.ctx.Fields, fields...)

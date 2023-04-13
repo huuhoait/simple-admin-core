@@ -2,20 +2,19 @@ package user
 
 import (
 	"context"
-
 	"time"
 
-	"github.com/huuhoait/zero-tools/enum/errorcode"
-	"github.com/huuhoait/zero-tools/utils/encrypt"
-	"github.com/huuhoait/zero-tools/utils/jwt"
+	"github.com/suyuan32/simple-admin-common/enum/errorcode"
+	"github.com/suyuan32/simple-admin-common/utils/encrypt"
+	"github.com/suyuan32/simple-admin-common/utils/jwt"
 	"github.com/zeromicro/go-zero/core/errorx"
 
-	"github.com/huuhoait/zero-tools/i18n"
+	"github.com/suyuan32/simple-admin-common/i18n"
 
-	"github.com/huuhoait/zero-admin-core/api/internal/logic/captcha"
-	"github.com/huuhoait/zero-admin-core/api/internal/svc"
-	"github.com/huuhoait/zero-admin-core/api/internal/types"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/suyuan32/simple-admin-core/api/internal/logic/captcha"
+	"github.com/suyuan32/simple-admin-core/api/internal/svc"
+	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -35,9 +34,7 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 }
 
 func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err error) {
-
 	if ok := captcha.Store.Verify(req.CaptchaId, req.Captcha, true); ok {
-
 		user, err := l.svcCtx.CoreRpc.GetUserByUsername(l.ctx,
 			&core.UsernameReq{
 				Username: req.Username,
@@ -50,7 +47,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 			return nil, errorx.NewCodeInvalidArgumentError("login.wrongUsernameOrPassword")
 		}
 
-		token, err := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, user.Username, user.Id, "roleId", time.Now().Unix(),
+		token, err := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, user.Id, "roleId", time.Now().Unix(),
 			l.svcCtx.Config.Auth.AccessExpire, user.RoleCodes)
 		if err != nil {
 			return nil, err
@@ -61,7 +58,6 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 		_, err = l.svcCtx.CoreRpc.CreateToken(l.ctx, &core.TokenInfo{
 			Id:        "",
 			CreatedAt: 0,
-			UserName:  user.Username,
 			Uuid:      user.Id,
 			Token:     token,
 			Source:    "core_user",

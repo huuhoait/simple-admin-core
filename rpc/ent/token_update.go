@@ -12,8 +12,8 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/token"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/token"
 )
 
 // TokenUpdate is the builder for updating Token entities.
@@ -169,7 +169,6 @@ func (tu *TokenUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		return 0, err
 	}
 	tu.mutation.done = true
-
 	return n, nil
 }
 
@@ -298,13 +297,6 @@ func (tuo *TokenUpdateOne) sqlSave(ctx context.Context) (_node *Token, err error
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Token.id" for update`)}
 	}
-
-	//0
-
-	//1
-
-	//2
-
 	_spec.Node.ID.Value = id
 	if fields := tuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
@@ -360,14 +352,6 @@ func (tuo *TokenUpdateOne) sqlSave(ctx context.Context) (_node *Token, err error
 		}
 		return nil, err
 	}
-
-	//0
-
-	//1
-
-	//2
-
 	tuo.mutation.done = true
-
 	return _node, nil
 }

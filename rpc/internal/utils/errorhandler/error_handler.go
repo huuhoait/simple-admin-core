@@ -4,11 +4,11 @@ import (
 	"github.com/zeromicro/go-zero/core/errorx"
 	"github.com/zeromicro/go-zero/core/logx"
 
-	"github.com/huuhoait/zero-tools/msg/logmsg"
+	"github.com/suyuan32/simple-admin-common/msg/logmsg"
 
-	"github.com/huuhoait/zero-tools/i18n"
+	"github.com/suyuan32/simple-admin-common/i18n"
 
-	"github.com/huuhoait/zero-admin-core/rpc/ent"
+	"github.com/suyuan32/simple-admin-core/rpc/ent"
 )
 
 // DefaultEntError returns errors dealing with default functions.

@@ -8,22 +8,22 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/huuhoait/zero-tools/msg/logmsg"
+	"github.com/suyuan32/simple-admin-common/msg/logmsg"
 	"github.com/zeromicro/go-zero/core/errorx"
 	"golang.org/x/oauth2"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/huuhoait/zero-tools/i18n"
+	"github.com/suyuan32/simple-admin-common/i18n"
 
-	"github.com/huuhoait/zero-admin-core/rpc/ent"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/oauthprovider"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
+	"github.com/suyuan32/simple-admin-core/rpc/ent"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/oauthprovider"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
 
-	user2 "github.com/huuhoait/zero-admin-core/rpc/internal/logic/user"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/utils/errorhandler"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	user2 "github.com/suyuan32/simple-admin-core/rpc/internal/logic/user"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/utils/errorhandler"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

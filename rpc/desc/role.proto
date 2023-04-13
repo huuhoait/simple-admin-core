@@ -12,8 +12,6 @@ message RoleInfo {
   string default_router = 7;
   string remark = 8;
   uint32 sort = 9;
-  string created_by = 10;
-  string updated_by = 11;
 }
 
 message RoleListResp {

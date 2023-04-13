@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/department"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
 )
 
 // DepartmentQuery is the builder for querying Department entities.
@@ -368,12 +368,12 @@ func (dq *DepartmentQuery) WithUsers(opts ...func(*UserQuery)) *DepartmentQuery 
 // Example:
 //
 //	var v []struct {
-//		CreatedBy string `json:"created_by,omitempty"`
+//		CreatedAt time.Time `json:"created_at,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.Department.Query().
-//		GroupBy(department.FieldCreatedBy).
+//		GroupBy(department.FieldCreatedAt).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (dq *DepartmentQuery) GroupBy(field string, fields ...string) *DepartmentGroupBy {
@@ -391,11 +391,11 @@ func (dq *DepartmentQuery) GroupBy(field string, fields ...string) *DepartmentGr
 // Example:
 //
 //	var v []struct {
-//		CreatedBy string `json:"created_by,omitempty"`
+//		CreatedAt time.Time `json:"created_at,omitempty"`
 //	}
 //
 //	client.Department.Query().
-//		Select(department.FieldCreatedBy).
+//		Select(department.FieldCreatedAt).
 //		Scan(ctx, &v)
 func (dq *DepartmentQuery) Select(fields ...string) *DepartmentSelect {
 	dq.ctx.Fields = append(dq.ctx.Fields, fields...)

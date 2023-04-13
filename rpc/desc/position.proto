@@ -11,8 +11,6 @@ message PositionInfo {
   string name = 6;
   string code = 7;
   string remark = 8;
-    string created_by =9;
-  string updated_by = 10;
 }
 
 message PositionListResp {

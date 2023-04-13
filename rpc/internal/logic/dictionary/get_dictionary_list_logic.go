@@ -5,12 +5,12 @@ import (
 
 	"github.com/zeromicro/go-zero/core/logx"
 
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionary"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
 
-	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/utils/errorhandler"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/utils/errorhandler"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 )
 
 type GetDictionaryListLogic struct {

@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect/sql"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionary"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionarydetail"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
 )
 
 // DictionaryDetail is the model entity for the DictionaryDetail schema.
@@ -17,12 +17,8 @@ type DictionaryDetail struct {
 	config `json:"-"`
 	// ID of the ent.
 	ID uint64 `json:"id,omitempty"`
-	// CreatedBy holds the value of the "created_by" field.
-	CreatedBy string `json:"created_by,omitempty"`
 	// CreatedAt holds the value of the "created_at" field.
 	CreatedAt time.Time `json:"created_at,omitempty"`
-	// UpdatedBy holds the value of the "updated_by" field.
-	UpdatedBy string `json:"updated_by,omitempty"`
 	// UpdatedAt holds the value of the "updated_at" field.
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// status 1 normal 2 ban | 状态 1 正常 2 禁用
@@ -71,7 +67,7 @@ func (*DictionaryDetail) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case dictionarydetail.FieldID, dictionarydetail.FieldStatus, dictionarydetail.FieldSort, dictionarydetail.FieldDictionaryID:
 			values[i] = new(sql.NullInt64)
-		case dictionarydetail.FieldCreatedBy, dictionarydetail.FieldUpdatedBy, dictionarydetail.FieldTitle, dictionarydetail.FieldKey, dictionarydetail.FieldValue:
+		case dictionarydetail.FieldTitle, dictionarydetail.FieldKey, dictionarydetail.FieldValue:
 			values[i] = new(sql.NullString)
 		case dictionarydetail.FieldCreatedAt, dictionarydetail.FieldUpdatedAt:
 			values[i] = new(sql.NullTime)
@@ -96,23 +92,11 @@ func (dd *DictionaryDetail) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			dd.ID = uint64(value.Int64)
-		case dictionarydetail.FieldCreatedBy:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field created_by", values[i])
-			} else if value.Valid {
-				dd.CreatedBy = value.String
-			}
 		case dictionarydetail.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
 				dd.CreatedAt = value.Time
-			}
-		case dictionarydetail.FieldUpdatedBy:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field updated_by", values[i])
-			} else if value.Valid {
-				dd.UpdatedBy = value.String
 			}
 		case dictionarydetail.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
@@ -189,14 +173,8 @@ func (dd *DictionaryDetail) String() string {
 	var builder strings.Builder
 	builder.WriteString("DictionaryDetail(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", dd.ID))
-	builder.WriteString("created_by=")
-	builder.WriteString(dd.CreatedBy)
-	builder.WriteString(", ")
 	builder.WriteString("created_at=")
 	builder.WriteString(dd.CreatedAt.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("updated_by=")
-	builder.WriteString(dd.UpdatedBy)
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
 	builder.WriteString(dd.UpdatedAt.Format(time.ANSIC))

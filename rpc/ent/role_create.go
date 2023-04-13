@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/menu"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/role"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/menu"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/role"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
 )
 
 // RoleCreate is the builder for creating a Role entity.
@@ -21,20 +21,6 @@ type RoleCreate struct {
 	config
 	mutation *RoleMutation
 	hooks    []Hook
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (rc *RoleCreate) SetCreatedBy(s string) *RoleCreate {
-	rc.mutation.SetCreatedBy(s)
-	return rc
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (rc *RoleCreate) SetNillableCreatedBy(s *string) *RoleCreate {
-	if s != nil {
-		rc.SetCreatedBy(*s)
-	}
-	return rc
 }
 
 // SetCreatedAt sets the "created_at" field.
@@ -47,20 +33,6 @@ func (rc *RoleCreate) SetCreatedAt(t time.Time) *RoleCreate {
 func (rc *RoleCreate) SetNillableCreatedAt(t *time.Time) *RoleCreate {
 	if t != nil {
 		rc.SetCreatedAt(*t)
-	}
-	return rc
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (rc *RoleCreate) SetUpdatedBy(s string) *RoleCreate {
-	rc.mutation.SetUpdatedBy(s)
-	return rc
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (rc *RoleCreate) SetNillableUpdatedBy(s *string) *RoleCreate {
-	if s != nil {
-		rc.SetUpdatedBy(*s)
 	}
 	return rc
 }
@@ -299,17 +271,9 @@ func (rc *RoleCreate) createSpec() (*Role, *sqlgraph.CreateSpec) {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := rc.mutation.CreatedBy(); ok {
-		_spec.SetField(role.FieldCreatedBy, field.TypeString, value)
-		_node.CreatedBy = value
-	}
 	if value, ok := rc.mutation.CreatedAt(); ok {
 		_spec.SetField(role.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
-	}
-	if value, ok := rc.mutation.UpdatedBy(); ok {
-		_spec.SetField(role.FieldUpdatedBy, field.TypeString, value)
-		_node.UpdatedBy = value
 	}
 	if value, ok := rc.mutation.UpdatedAt(); ok {
 		_spec.SetField(role.FieldUpdatedAt, field.TypeTime, value)

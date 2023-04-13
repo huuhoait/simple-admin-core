@@ -5,12 +5,12 @@ import (
 
 	"github.com/zeromicro/go-zero/core/logx"
 
-	"github.com/huuhoait/zero-admin-core/rpc/ent/department"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
 
-	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/utils/errorhandler"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/utils/errorhandler"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 )
 
 type GetDepartmentListLogic struct {
@@ -57,8 +57,6 @@ func (l *GetDepartmentListLogic) GetDepartmentList(in *core.DepartmentListReq) (
 			Email:     v.Email,
 			Remark:    v.Remark,
 			ParentId:  v.ParentID,
-			CreatedBy: v.CreatedBy,
-			UpdatedBy: v.UpdatedBy,
 		})
 	}
 

@@ -3,16 +3,16 @@ package captcha
 import (
 	"context"
 
-	"github.com/huuhoait/zero-tools/enum/errorcode"
-	"github.com/huuhoait/zero-tools/utils/captcha"
 	"github.com/mojocn/base64Captcha"
+	"github.com/suyuan32/simple-admin-common/enum/errorcode"
+	"github.com/suyuan32/simple-admin-common/utils/captcha"
 	"github.com/zeromicro/go-zero/core/stores/redis"
 
-	"github.com/huuhoait/zero-tools/i18n"
+	"github.com/suyuan32/simple-admin-common/i18n"
 
-	"github.com/huuhoait/zero-admin-core/api/internal/config"
-	"github.com/huuhoait/zero-admin-core/api/internal/svc"
-	"github.com/huuhoait/zero-admin-core/api/internal/types"
+	"github.com/suyuan32/simple-admin-core/api/internal/config"
+	"github.com/suyuan32/simple-admin-core/api/internal/svc"
+	"github.com/suyuan32/simple-admin-core/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

@@ -3,9 +3,9 @@ package role
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/api/internal/svc"
-	"github.com/huuhoait/zero-admin-core/api/internal/types"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/suyuan32/simple-admin-core/api/internal/svc"
+	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -34,7 +34,6 @@ func (l *CreateRoleLogic) CreateRole(req *types.RoleInfo) (resp *types.BaseMsgRe
 			DefaultRouter: req.DefaultRouter,
 			Remark:        req.Remark,
 			Sort:          req.Sort,
-			CreatedBy:     l.ctx.Value("userId").(string),
 		})
 	if err != nil {
 		return nil, err

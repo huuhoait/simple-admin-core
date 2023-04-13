@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect/sql"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/menu"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/menu"
 )
 
 // Menu is the model entity for the Menu schema.
@@ -16,12 +16,8 @@ type Menu struct {
 	config `json:"-"`
 	// ID of the ent.
 	ID uint64 `json:"id,omitempty"`
-	// CreatedBy holds the value of the "created_by" field.
-	CreatedBy string `json:"created_by,omitempty"`
 	// CreatedAt holds the value of the "created_at" field.
 	CreatedAt time.Time `json:"created_at,omitempty"`
-	// UpdatedBy holds the value of the "updated_by" field.
-	UpdatedBy string `json:"updated_by,omitempty"`
 	// UpdatedAt holds the value of the "updated_at" field.
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// Sort number | 排序编号
@@ -79,11 +75,9 @@ type MenuEdges struct {
 	Parent *Menu `json:"parent,omitempty"`
 	// Children holds the value of the children edge.
 	Children []*Menu `json:"children,omitempty"`
-	// Params holds the value of the params edge.
-	Params []*MenuParam `json:"params,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [4]bool
+	loadedTypes [3]bool
 }
 
 // RolesOrErr returns the Roles value or an error if the edge
@@ -117,15 +111,6 @@ func (e MenuEdges) ChildrenOrErr() ([]*Menu, error) {
 	return nil, &NotLoadedError{edge: "children"}
 }
 
-// ParamsOrErr returns the Params value or an error if the edge
-// was not loaded in eager-loading.
-func (e MenuEdges) ParamsOrErr() ([]*MenuParam, error) {
-	if e.loadedTypes[3] {
-		return e.Params, nil
-	}
-	return nil, &NotLoadedError{edge: "params"}
-}
-
 // scanValues returns the types for scanning values from sql.Rows.
 func (*Menu) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
@@ -135,7 +120,7 @@ func (*Menu) scanValues(columns []string) ([]any, error) {
 			values[i] = new(sql.NullBool)
 		case menu.FieldID, menu.FieldSort, menu.FieldParentID, menu.FieldMenuLevel, menu.FieldMenuType, menu.FieldDynamicLevel:
 			values[i] = new(sql.NullInt64)
-		case menu.FieldCreatedBy, menu.FieldUpdatedBy, menu.FieldPath, menu.FieldName, menu.FieldRedirect, menu.FieldComponent, menu.FieldTitle, menu.FieldIcon, menu.FieldFrameSrc, menu.FieldRealPath:
+		case menu.FieldPath, menu.FieldName, menu.FieldRedirect, menu.FieldComponent, menu.FieldTitle, menu.FieldIcon, menu.FieldFrameSrc, menu.FieldRealPath:
 			values[i] = new(sql.NullString)
 		case menu.FieldCreatedAt, menu.FieldUpdatedAt:
 			values[i] = new(sql.NullTime)
@@ -160,23 +145,11 @@ func (m *Menu) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			m.ID = uint64(value.Int64)
-		case menu.FieldCreatedBy:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field created_by", values[i])
-			} else if value.Valid {
-				m.CreatedBy = value.String
-			}
 		case menu.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
 				m.CreatedAt = value.Time
-			}
-		case menu.FieldUpdatedBy:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field updated_by", values[i])
-			} else if value.Valid {
-				m.UpdatedBy = value.String
 			}
 		case menu.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
@@ -330,11 +303,6 @@ func (m *Menu) QueryChildren() *MenuQuery {
 	return NewMenuClient(m.config).QueryChildren(m)
 }
 
-// QueryParams queries the "params" edge of the Menu entity.
-func (m *Menu) QueryParams() *MenuParamQuery {
-	return NewMenuClient(m.config).QueryParams(m)
-}
-
 // Update returns a builder for updating this Menu.
 // Note that you need to call Menu.Unwrap() before calling this method if this Menu
 // was returned from a transaction, and the transaction was committed or rolled back.
@@ -358,14 +326,8 @@ func (m *Menu) String() string {
 	var builder strings.Builder
 	builder.WriteString("Menu(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", m.ID))
-	builder.WriteString("created_by=")
-	builder.WriteString(m.CreatedBy)
-	builder.WriteString(", ")
 	builder.WriteString("created_at=")
 	builder.WriteString(m.CreatedAt.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("updated_by=")
-	builder.WriteString(m.UpdatedBy)
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
 	builder.WriteString(m.UpdatedAt.Format(time.ANSIC))

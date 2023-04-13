@@ -11,7 +11,6 @@ message TokenInfo {
   string token = 6;
   string source = 7;
   int64  expired_at = 8;
-  string user_name = 9;
 }
 
 message TokenListResp {
@@ -34,8 +33,6 @@ service Core {
   // Token management
   // group: token
   rpc createToken (TokenInfo) returns (BaseUUIDResp);
-  // group: token
-  rpc updateToken (TokenInfo) returns (BaseResp);
   // group: token
   rpc deleteToken (UUIDsReq) returns (BaseResp);
   // group: token

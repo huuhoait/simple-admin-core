@@ -10,9 +10,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionary"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionarydetail"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
 )
 
 // DictionaryDetailQuery is the builder for querying DictionaryDetail entities.
@@ -297,12 +297,12 @@ func (ddq *DictionaryDetailQuery) WithDictionaries(opts ...func(*DictionaryQuery
 // Example:
 //
 //	var v []struct {
-//		CreatedBy string `json:"created_by,omitempty"`
+//		CreatedAt time.Time `json:"created_at,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.DictionaryDetail.Query().
-//		GroupBy(dictionarydetail.FieldCreatedBy).
+//		GroupBy(dictionarydetail.FieldCreatedAt).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (ddq *DictionaryDetailQuery) GroupBy(field string, fields ...string) *DictionaryDetailGroupBy {
@@ -320,11 +320,11 @@ func (ddq *DictionaryDetailQuery) GroupBy(field string, fields ...string) *Dicti
 // Example:
 //
 //	var v []struct {
-//		CreatedBy string `json:"created_by,omitempty"`
+//		CreatedAt time.Time `json:"created_at,omitempty"`
 //	}
 //
 //	client.DictionaryDetail.Query().
-//		Select(dictionarydetail.FieldCreatedBy).
+//		Select(dictionarydetail.FieldCreatedAt).
 //		Scan(ctx, &v)
 func (ddq *DictionaryDetailQuery) Select(fields ...string) *DictionaryDetailSelect {
 	ddq.ctx.Fields = append(ddq.ctx.Fields, fields...)

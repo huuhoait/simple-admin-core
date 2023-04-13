@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect/sql"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/api"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/api"
 )
 
 // API is the model entity for the API schema.
@@ -16,12 +16,8 @@ type API struct {
 	config `json:"-"`
 	// ID of the ent.
 	ID uint64 `json:"id,omitempty"`
-	// CreatedBy holds the value of the "created_by" field.
-	CreatedBy string `json:"created_by,omitempty"`
 	// CreatedAt holds the value of the "created_at" field.
 	CreatedAt time.Time `json:"created_at,omitempty"`
-	// UpdatedBy holds the value of the "updated_by" field.
-	UpdatedBy string `json:"updated_by,omitempty"`
 	// UpdatedAt holds the value of the "updated_at" field.
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// API path | API 路径
@@ -41,7 +37,7 @@ func (*API) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case api.FieldID:
 			values[i] = new(sql.NullInt64)
-		case api.FieldCreatedBy, api.FieldUpdatedBy, api.FieldPath, api.FieldDescription, api.FieldAPIGroup, api.FieldMethod:
+		case api.FieldPath, api.FieldDescription, api.FieldAPIGroup, api.FieldMethod:
 			values[i] = new(sql.NullString)
 		case api.FieldCreatedAt, api.FieldUpdatedAt:
 			values[i] = new(sql.NullTime)
@@ -66,23 +62,11 @@ func (a *API) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			a.ID = uint64(value.Int64)
-		case api.FieldCreatedBy:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field created_by", values[i])
-			} else if value.Valid {
-				a.CreatedBy = value.String
-			}
 		case api.FieldCreatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created_at", values[i])
 			} else if value.Valid {
 				a.CreatedAt = value.Time
-			}
-		case api.FieldUpdatedBy:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field updated_by", values[i])
-			} else if value.Valid {
-				a.UpdatedBy = value.String
 			}
 		case api.FieldUpdatedAt:
 			if value, ok := values[i].(*sql.NullTime); !ok {
@@ -142,14 +126,8 @@ func (a *API) String() string {
 	var builder strings.Builder
 	builder.WriteString("API(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", a.ID))
-	builder.WriteString("created_by=")
-	builder.WriteString(a.CreatedBy)
-	builder.WriteString(", ")
 	builder.WriteString("created_at=")
 	builder.WriteString(a.CreatedAt.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("updated_by=")
-	builder.WriteString(a.UpdatedBy)
 	builder.WriteString(", ")
 	builder.WriteString("updated_at=")
 	builder.WriteString(a.UpdatedAt.Format(time.ANSIC))

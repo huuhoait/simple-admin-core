@@ -10,9 +10,8 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/menu"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/menuparam"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/role"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/menu"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/role"
 )
 
 // MenuCreate is the builder for creating a Menu entity.
@@ -20,20 +19,6 @@ type MenuCreate struct {
 	config
 	mutation *MenuMutation
 	hooks    []Hook
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (mc *MenuCreate) SetCreatedBy(s string) *MenuCreate {
-	mc.mutation.SetCreatedBy(s)
-	return mc
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (mc *MenuCreate) SetNillableCreatedBy(s *string) *MenuCreate {
-	if s != nil {
-		mc.SetCreatedBy(*s)
-	}
-	return mc
 }
 
 // SetCreatedAt sets the "created_at" field.
@@ -46,20 +31,6 @@ func (mc *MenuCreate) SetCreatedAt(t time.Time) *MenuCreate {
 func (mc *MenuCreate) SetNillableCreatedAt(t *time.Time) *MenuCreate {
 	if t != nil {
 		mc.SetCreatedAt(*t)
-	}
-	return mc
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (mc *MenuCreate) SetUpdatedBy(s string) *MenuCreate {
-	mc.mutation.SetUpdatedBy(s)
-	return mc
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (mc *MenuCreate) SetNillableUpdatedBy(s *string) *MenuCreate {
-	if s != nil {
-		mc.SetUpdatedBy(*s)
 	}
 	return mc
 }
@@ -373,21 +344,6 @@ func (mc *MenuCreate) AddChildren(m ...*Menu) *MenuCreate {
 	return mc.AddChildIDs(ids...)
 }
 
-// AddParamIDs adds the "params" edge to the MenuParam entity by IDs.
-func (mc *MenuCreate) AddParamIDs(ids ...uint64) *MenuCreate {
-	mc.mutation.AddParamIDs(ids...)
-	return mc
-}
-
-// AddParams adds the "params" edges to the MenuParam entity.
-func (mc *MenuCreate) AddParams(m ...*MenuParam) *MenuCreate {
-	ids := make([]uint64, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
-	}
-	return mc.AddParamIDs(ids...)
-}
-
 // Mutation returns the MenuMutation object of the builder.
 func (mc *MenuCreate) Mutation() *MenuMutation {
 	return mc.mutation
@@ -555,17 +511,9 @@ func (mc *MenuCreate) createSpec() (*Menu, *sqlgraph.CreateSpec) {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := mc.mutation.CreatedBy(); ok {
-		_spec.SetField(menu.FieldCreatedBy, field.TypeString, value)
-		_node.CreatedBy = value
-	}
 	if value, ok := mc.mutation.CreatedAt(); ok {
 		_spec.SetField(menu.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
-	}
-	if value, ok := mc.mutation.UpdatedBy(); ok {
-		_spec.SetField(menu.FieldUpdatedBy, field.TypeString, value)
-		_node.UpdatedBy = value
 	}
 	if value, ok := mc.mutation.UpdatedAt(); ok {
 		_spec.SetField(menu.FieldUpdatedAt, field.TypeTime, value)
@@ -693,22 +641,6 @@ func (mc *MenuCreate) createSpec() (*Menu, *sqlgraph.CreateSpec) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(menu.FieldID, field.TypeUint64),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges = append(_spec.Edges, edge)
-	}
-	if nodes := mc.mutation.ParamsIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   menu.ParamsTable,
-			Columns: []string{menu.ParamsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(menuparam.FieldID, field.TypeUint64),
 			},
 		}
 		for _, k := range nodes {

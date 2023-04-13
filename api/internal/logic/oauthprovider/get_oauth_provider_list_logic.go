@@ -3,13 +3,13 @@ package oauthprovider
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/api/internal/svc"
-	"github.com/huuhoait/zero-admin-core/api/internal/types"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/suyuan32/simple-admin-core/api/internal/svc"
+	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 
-	"github.com/huuhoait/zero-tools/i18n"
+	"github.com/suyuan32/simple-admin-common/i18n"
 )
 
 type GetOauthProviderListLogic struct {
@@ -29,11 +29,9 @@ func NewGetOauthProviderListLogic(ctx context.Context, svcCtx *svc.ServiceContex
 func (l *GetOauthProviderListLogic) GetOauthProviderList(req *types.OauthProviderListReq) (resp *types.OauthProviderListResp, err error) {
 	data, err := l.svcCtx.CoreRpc.GetOauthProviderList(l.ctx,
 		&core.OauthProviderListReq{
-			Page:         req.Page,
-			PageSize:     req.PageSize,
-			Name:         req.Name,
-			ClientId:     req.ClientId,
-			ClientSecret: req.ClientSecret,
+			Page:     req.Page,
+			PageSize: req.PageSize,
+			Name:     req.Name,
 		})
 	if err != nil {
 		return nil, err

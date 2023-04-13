@@ -5,7 +5,7 @@
 //		Schemes: http, https
 //		Host: localhost:9100
 //		BasePath: /
-//		Version: 0.2.8
+//		Version: 0.3.2
 //		Contact: yuansu.china.work@gmail.com
 //		SecurityDefinitions:
 //		  Token:
@@ -27,9 +27,9 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/huuhoait/zero-admin-core/api/internal/config"
-	"github.com/huuhoait/zero-admin-core/api/internal/handler"
-	"github.com/huuhoait/zero-admin-core/api/internal/svc"
+	"github.com/suyuan32/simple-admin-core/api/internal/config"
+	"github.com/suyuan32/simple-admin-core/api/internal/handler"
+	"github.com/suyuan32/simple-admin-core/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"

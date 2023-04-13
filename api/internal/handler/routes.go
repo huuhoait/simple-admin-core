@@ -4,26 +4,22 @@ package handler
 import (
 	"net/http"
 
-	api "github.com/huuhoait/zero-admin-core/api/internal/handler/api"
-	audit "github.com/huuhoait/zero-admin-core/api/internal/handler/audit"
-	authority "github.com/huuhoait/zero-admin-core/api/internal/handler/authority"
-	base "github.com/huuhoait/zero-admin-core/api/internal/handler/base"
-	captcha "github.com/huuhoait/zero-admin-core/api/internal/handler/captcha"
-	department "github.com/huuhoait/zero-admin-core/api/internal/handler/department"
-	dictionary "github.com/huuhoait/zero-admin-core/api/internal/handler/dictionary"
-	dictionarydetail "github.com/huuhoait/zero-admin-core/api/internal/handler/dictionarydetail"
-	menu "github.com/huuhoait/zero-admin-core/api/internal/handler/menu"
-	menuparam "github.com/huuhoait/zero-admin-core/api/internal/handler/menuparam"
-	merchant "github.com/huuhoait/zero-admin-core/api/internal/handler/merchant"
-	merchantmeta "github.com/huuhoait/zero-admin-core/api/internal/handler/merchantmeta"
-	oauthprovider "github.com/huuhoait/zero-admin-core/api/internal/handler/oauthprovider"
-	position "github.com/huuhoait/zero-admin-core/api/internal/handler/position"
-	role "github.com/huuhoait/zero-admin-core/api/internal/handler/role"
-	task "github.com/huuhoait/zero-admin-core/api/internal/handler/task"
-	tasklog "github.com/huuhoait/zero-admin-core/api/internal/handler/tasklog"
-	token "github.com/huuhoait/zero-admin-core/api/internal/handler/token"
-	user "github.com/huuhoait/zero-admin-core/api/internal/handler/user"
-	"github.com/huuhoait/zero-admin-core/api/internal/svc"
+	api "github.com/suyuan32/simple-admin-core/api/internal/handler/api"
+	authority "github.com/suyuan32/simple-admin-core/api/internal/handler/authority"
+	base "github.com/suyuan32/simple-admin-core/api/internal/handler/base"
+	captcha "github.com/suyuan32/simple-admin-core/api/internal/handler/captcha"
+	department "github.com/suyuan32/simple-admin-core/api/internal/handler/department"
+	dictionary "github.com/suyuan32/simple-admin-core/api/internal/handler/dictionary"
+	dictionarydetail "github.com/suyuan32/simple-admin-core/api/internal/handler/dictionarydetail"
+	menu "github.com/suyuan32/simple-admin-core/api/internal/handler/menu"
+	oauthprovider "github.com/suyuan32/simple-admin-core/api/internal/handler/oauthprovider"
+	position "github.com/suyuan32/simple-admin-core/api/internal/handler/position"
+	role "github.com/suyuan32/simple-admin-core/api/internal/handler/role"
+	task "github.com/suyuan32/simple-admin-core/api/internal/handler/task"
+	tasklog "github.com/suyuan32/simple-admin-core/api/internal/handler/tasklog"
+	token "github.com/suyuan32/simple-admin-core/api/internal/handler/token"
+	user "github.com/suyuan32/simple-admin-core/api/internal/handler/user"
+	"github.com/suyuan32/simple-admin-core/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )
@@ -42,25 +38,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: base.InitJobDatabaseHandler(serverCtx),
 			},
 		},
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.Authority},
-			[]rest.Route{
-				{
-					Method:  http.MethodPost,
-					Path:    "/audit/list",
-					Handler: audit.GetAuditListHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/audit",
-					Handler: audit.GetAuditByIdHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 	)
 
 	server.AddRoutes(
@@ -204,11 +181,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Method:  http.MethodGet,
 					Path:    "/menu/role/list",
 					Handler: menu.GetMenuListByRoleHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/menu",
-					Handler: menu.GetMenuByIdHandler(serverCtx),
 				},
 			}...,
 		),
@@ -382,11 +354,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 				{
 					Method:  http.MethodPost,
-					Path:    "/token/update",
-					Handler: token.UpdateTokenHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
 					Path:    "/token/delete",
 					Handler: token.DeleteTokenHandler(serverCtx),
 				},
@@ -518,40 +485,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Route{
 				{
 					Method:  http.MethodPost,
-					Path:    "/menu_param/create",
-					Handler: menuparam.CreateMenuParamHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/menu_param/update",
-					Handler: menuparam.UpdateMenuParamHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/menu_param/delete",
-					Handler: menuparam.DeleteMenuParamHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/menu_param/list",
-					Handler: menuparam.GetMenuParamListHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/menu_param",
-					Handler: menuparam.GetMenuParamByIdHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.Authority},
-			[]rest.Route{
-				{
-					Method:  http.MethodPost,
 					Path:    "/task/create",
 					Handler: task.CreateTaskHandler(serverCtx),
 				},
@@ -608,74 +541,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Method:  http.MethodPost,
 					Path:    "/task_log",
 					Handler: tasklog.GetTaskLogByIdHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.Authority},
-			[]rest.Route{
-				{
-					Method:  http.MethodPost,
-					Path:    "/Merchant/create",
-					Handler: merchant.CreateMerchantHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/Merchant/update",
-					Handler: merchant.UpdateMerchantHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/Merchant/delete",
-					Handler: merchant.DeleteMerchantHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/Merchant/list",
-					Handler: merchant.GetMerchantListHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/Merchant",
-					Handler: merchant.GetMerchantByIdHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.Authority},
-			[]rest.Route{
-				{
-					Method:  http.MethodPost,
-					Path:    "/merchant_meta/create",
-					Handler: merchantmeta.CreateMerchantMetaHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/merchant_meta/update",
-					Handler: merchantmeta.UpdateMerchantMetaHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/merchant_meta/delete",
-					Handler: merchantmeta.DeleteMerchantMetaHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/merchant_meta/list",
-					Handler: merchantmeta.GetMerchantMetaListHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/merchant_meta",
-					Handler: merchantmeta.GetMerchantMetaByIdHandler(serverCtx),
 				},
 			}...,
 		),

@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionary"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionarydetail"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
 )
 
 // DictionaryUpdate is the builder for updating Dictionary entities.
@@ -26,46 +26,6 @@ type DictionaryUpdate struct {
 // Where appends a list predicates to the DictionaryUpdate builder.
 func (du *DictionaryUpdate) Where(ps ...predicate.Dictionary) *DictionaryUpdate {
 	du.mutation.Where(ps...)
-	return du
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (du *DictionaryUpdate) SetCreatedBy(s string) *DictionaryUpdate {
-	du.mutation.SetCreatedBy(s)
-	return du
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (du *DictionaryUpdate) SetNillableCreatedBy(s *string) *DictionaryUpdate {
-	if s != nil {
-		du.SetCreatedBy(*s)
-	}
-	return du
-}
-
-// ClearCreatedBy clears the value of the "created_by" field.
-func (du *DictionaryUpdate) ClearCreatedBy() *DictionaryUpdate {
-	du.mutation.ClearCreatedBy()
-	return du
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (du *DictionaryUpdate) SetUpdatedBy(s string) *DictionaryUpdate {
-	du.mutation.SetUpdatedBy(s)
-	return du
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (du *DictionaryUpdate) SetNillableUpdatedBy(s *string) *DictionaryUpdate {
-	if s != nil {
-		du.SetUpdatedBy(*s)
-	}
-	return du
-}
-
-// ClearUpdatedBy clears the value of the "updated_by" field.
-func (du *DictionaryUpdate) ClearUpdatedBy() *DictionaryUpdate {
-	du.mutation.ClearUpdatedBy()
 	return du
 }
 
@@ -206,18 +166,6 @@ func (du *DictionaryUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			}
 		}
 	}
-	if value, ok := du.mutation.CreatedBy(); ok {
-		_spec.SetField(dictionary.FieldCreatedBy, field.TypeString, value)
-	}
-	if du.mutation.CreatedByCleared() {
-		_spec.ClearField(dictionary.FieldCreatedBy, field.TypeString)
-	}
-	if value, ok := du.mutation.UpdatedBy(); ok {
-		_spec.SetField(dictionary.FieldUpdatedBy, field.TypeString, value)
-	}
-	if du.mutation.UpdatedByCleared() {
-		_spec.ClearField(dictionary.FieldUpdatedBy, field.TypeString)
-	}
 	if value, ok := du.mutation.UpdatedAt(); ok {
 		_spec.SetField(dictionary.FieldUpdatedAt, field.TypeTime, value)
 	}
@@ -293,7 +241,6 @@ func (du *DictionaryUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		return 0, err
 	}
 	du.mutation.done = true
-
 	return n, nil
 }
 
@@ -303,46 +250,6 @@ type DictionaryUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *DictionaryMutation
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (duo *DictionaryUpdateOne) SetCreatedBy(s string) *DictionaryUpdateOne {
-	duo.mutation.SetCreatedBy(s)
-	return duo
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (duo *DictionaryUpdateOne) SetNillableCreatedBy(s *string) *DictionaryUpdateOne {
-	if s != nil {
-		duo.SetCreatedBy(*s)
-	}
-	return duo
-}
-
-// ClearCreatedBy clears the value of the "created_by" field.
-func (duo *DictionaryUpdateOne) ClearCreatedBy() *DictionaryUpdateOne {
-	duo.mutation.ClearCreatedBy()
-	return duo
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (duo *DictionaryUpdateOne) SetUpdatedBy(s string) *DictionaryUpdateOne {
-	duo.mutation.SetUpdatedBy(s)
-	return duo
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (duo *DictionaryUpdateOne) SetNillableUpdatedBy(s *string) *DictionaryUpdateOne {
-	if s != nil {
-		duo.SetUpdatedBy(*s)
-	}
-	return duo
-}
-
-// ClearUpdatedBy clears the value of the "updated_by" field.
-func (duo *DictionaryUpdateOne) ClearUpdatedBy() *DictionaryUpdateOne {
-	duo.mutation.ClearUpdatedBy()
-	return duo
 }
 
 // SetUpdatedAt sets the "updated_at" field.
@@ -492,13 +399,6 @@ func (duo *DictionaryUpdateOne) sqlSave(ctx context.Context) (_node *Dictionary,
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Dictionary.id" for update`)}
 	}
-
-	//0
-
-	//1
-
-	//2
-
 	_spec.Node.ID.Value = id
 	if fields := duo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
@@ -518,18 +418,6 @@ func (duo *DictionaryUpdateOne) sqlSave(ctx context.Context) (_node *Dictionary,
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := duo.mutation.CreatedBy(); ok {
-		_spec.SetField(dictionary.FieldCreatedBy, field.TypeString, value)
-	}
-	if duo.mutation.CreatedByCleared() {
-		_spec.ClearField(dictionary.FieldCreatedBy, field.TypeString)
-	}
-	if value, ok := duo.mutation.UpdatedBy(); ok {
-		_spec.SetField(dictionary.FieldUpdatedBy, field.TypeString, value)
-	}
-	if duo.mutation.UpdatedByCleared() {
-		_spec.ClearField(dictionary.FieldUpdatedBy, field.TypeString)
 	}
 	if value, ok := duo.mutation.UpdatedAt(); ok {
 		_spec.SetField(dictionary.FieldUpdatedAt, field.TypeTime, value)
@@ -608,14 +496,6 @@ func (duo *DictionaryUpdateOne) sqlSave(ctx context.Context) (_node *Dictionary,
 		}
 		return nil, err
 	}
-
-	//0
-
-	//1
-
-	//2
-
 	duo.mutation.done = true
-
 	return _node, nil
 }

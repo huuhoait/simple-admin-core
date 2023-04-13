@@ -11,10 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/google/go-cmp/cmp"
-	"github.com/google/go-cmp/cmp/cmpopts"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/oauthprovider"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/oauthprovider"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
 )
 
 // OauthProviderUpdate is the builder for updating OauthProvider entities.
@@ -27,46 +25,6 @@ type OauthProviderUpdate struct {
 // Where appends a list predicates to the OauthProviderUpdate builder.
 func (opu *OauthProviderUpdate) Where(ps ...predicate.OauthProvider) *OauthProviderUpdate {
 	opu.mutation.Where(ps...)
-	return opu
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (opu *OauthProviderUpdate) SetCreatedBy(s string) *OauthProviderUpdate {
-	opu.mutation.SetCreatedBy(s)
-	return opu
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (opu *OauthProviderUpdate) SetNillableCreatedBy(s *string) *OauthProviderUpdate {
-	if s != nil {
-		opu.SetCreatedBy(*s)
-	}
-	return opu
-}
-
-// ClearCreatedBy clears the value of the "created_by" field.
-func (opu *OauthProviderUpdate) ClearCreatedBy() *OauthProviderUpdate {
-	opu.mutation.ClearCreatedBy()
-	return opu
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (opu *OauthProviderUpdate) SetUpdatedBy(s string) *OauthProviderUpdate {
-	opu.mutation.SetUpdatedBy(s)
-	return opu
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (opu *OauthProviderUpdate) SetNillableUpdatedBy(s *string) *OauthProviderUpdate {
-	if s != nil {
-		opu.SetUpdatedBy(*s)
-	}
-	return opu
-}
-
-// ClearUpdatedBy clears the value of the "updated_by" field.
-func (opu *OauthProviderUpdate) ClearUpdatedBy() *OauthProviderUpdate {
-	opu.mutation.ClearUpdatedBy()
 	return opu
 }
 
@@ -187,18 +145,6 @@ func (opu *OauthProviderUpdate) sqlSave(ctx context.Context) (n int, err error) 
 			}
 		}
 	}
-	if value, ok := opu.mutation.CreatedBy(); ok {
-		_spec.SetField(oauthprovider.FieldCreatedBy, field.TypeString, value)
-	}
-	if opu.mutation.CreatedByCleared() {
-		_spec.ClearField(oauthprovider.FieldCreatedBy, field.TypeString)
-	}
-	if value, ok := opu.mutation.UpdatedBy(); ok {
-		_spec.SetField(oauthprovider.FieldUpdatedBy, field.TypeString, value)
-	}
-	if opu.mutation.UpdatedByCleared() {
-		_spec.ClearField(oauthprovider.FieldUpdatedBy, field.TypeString)
-	}
 	if value, ok := opu.mutation.UpdatedAt(); ok {
 		_spec.SetField(oauthprovider.FieldUpdatedAt, field.TypeTime, value)
 	}
@@ -241,7 +187,6 @@ func (opu *OauthProviderUpdate) sqlSave(ctx context.Context) (n int, err error) 
 		return 0, err
 	}
 	opu.mutation.done = true
-
 	return n, nil
 }
 
@@ -251,46 +196,6 @@ type OauthProviderUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *OauthProviderMutation
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (opuo *OauthProviderUpdateOne) SetCreatedBy(s string) *OauthProviderUpdateOne {
-	opuo.mutation.SetCreatedBy(s)
-	return opuo
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (opuo *OauthProviderUpdateOne) SetNillableCreatedBy(s *string) *OauthProviderUpdateOne {
-	if s != nil {
-		opuo.SetCreatedBy(*s)
-	}
-	return opuo
-}
-
-// ClearCreatedBy clears the value of the "created_by" field.
-func (opuo *OauthProviderUpdateOne) ClearCreatedBy() *OauthProviderUpdateOne {
-	opuo.mutation.ClearCreatedBy()
-	return opuo
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (opuo *OauthProviderUpdateOne) SetUpdatedBy(s string) *OauthProviderUpdateOne {
-	opuo.mutation.SetUpdatedBy(s)
-	return opuo
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (opuo *OauthProviderUpdateOne) SetNillableUpdatedBy(s *string) *OauthProviderUpdateOne {
-	if s != nil {
-		opuo.SetUpdatedBy(*s)
-	}
-	return opuo
-}
-
-// ClearUpdatedBy clears the value of the "updated_by" field.
-func (opuo *OauthProviderUpdateOne) ClearUpdatedBy() *OauthProviderUpdateOne {
-	opuo.mutation.ClearUpdatedBy()
-	return opuo
 }
 
 // SetUpdatedAt sets the "updated_at" field.
@@ -420,23 +325,6 @@ func (opuo *OauthProviderUpdateOne) sqlSave(ctx context.Context) (_node *OauthPr
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "OauthProvider.id" for update`)}
 	}
-
-	//0
-
-	//1
-
-	//2
-
-	// Load the old value of entity.
-
-	var _nodeOld *OauthProvider
-	if _nodeOld, err = opuo.mutation.oldValue(ctx); err != nil {
-		return nil, err
-	}
-	fmt.Println("*************************")
-	fmt.Println(_nodeOld)
-	fmt.Println("*************************")
-
 	_spec.Node.ID.Value = id
 	if fields := opuo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
@@ -456,18 +344,6 @@ func (opuo *OauthProviderUpdateOne) sqlSave(ctx context.Context) (_node *OauthPr
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := opuo.mutation.CreatedBy(); ok {
-		_spec.SetField(oauthprovider.FieldCreatedBy, field.TypeString, value)
-	}
-	if opuo.mutation.CreatedByCleared() {
-		_spec.ClearField(oauthprovider.FieldCreatedBy, field.TypeString)
-	}
-	if value, ok := opuo.mutation.UpdatedBy(); ok {
-		_spec.SetField(oauthprovider.FieldUpdatedBy, field.TypeString, value)
-	}
-	if opuo.mutation.UpdatedByCleared() {
-		_spec.ClearField(oauthprovider.FieldUpdatedBy, field.TypeString)
 	}
 	if value, ok := opuo.mutation.UpdatedAt(); ok {
 		_spec.SetField(oauthprovider.FieldUpdatedAt, field.TypeTime, value)
@@ -513,32 +389,6 @@ func (opuo *OauthProviderUpdateOne) sqlSave(ctx context.Context) (_node *OauthPr
 		}
 		return nil, err
 	}
-
-	//0
-
-	//1
-
-	//2
-
-	/* huuhoait edit */
-	var r DiffReporter
-	opts := []cmp.Option{
-		//cmpopts.IgnoreUnexported(Department{}),
-		cmpopts.IgnoreFields(OauthProvider{}, "config", "Edges", "CreatedAt", "UpdatedAt"),
-		cmp.Reporter(&r),
-	}
-	cmp.Diff(_nodeOld, _node, opts...)
-
-	opuo.mutation.Client().
-		Audit.Create().
-		SetObjectName("Department").
-		SetActionName("Update").
-		SetChangedData(r.String()).
-		SetCreatedBy(_node.UpdatedBy).
-		SaveX(ctx)
-		/* huuhoait edit end*/
-
 	opuo.mutation.done = true
-
 	return _node, nil
 }

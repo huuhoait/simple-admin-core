@@ -11,20 +11,16 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/api"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/audit"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/department"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionary"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/dictionarydetail"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/menu"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/menuparam"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/merchant"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/merchantmeta"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/oauthprovider"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/position"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/role"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/token"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/api"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/menu"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/oauthprovider"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/position"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/role"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/token"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
 )
 
 // ent aliases to avoid import conflicts in user's code.
@@ -79,14 +75,10 @@ type OrderFunc func(*sql.Selector)
 func columnChecker(table string) func(string) error {
 	checks := map[string]func(string) bool{
 		api.Table:              api.ValidColumn,
-		audit.Table:            audit.ValidColumn,
 		department.Table:       department.ValidColumn,
 		dictionary.Table:       dictionary.ValidColumn,
 		dictionarydetail.Table: dictionarydetail.ValidColumn,
 		menu.Table:             menu.ValidColumn,
-		menuparam.Table:        menuparam.ValidColumn,
-		merchant.Table:         merchant.ValidColumn,
-		merchantmeta.Table:     merchantmeta.ValidColumn,
 		oauthprovider.Table:    oauthprovider.ValidColumn,
 		position.Table:         position.ValidColumn,
 		role.Table:             role.ValidColumn,

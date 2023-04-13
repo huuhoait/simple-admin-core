@@ -6,24 +6,20 @@ package server
 import (
 	"context"
 
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/api"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/audit"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/authority"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/base"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/department"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/dictionary"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/dictionarydetail"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/menu"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/menuparam"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/merchant"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/merchantmeta"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/oauthprovider"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/position"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/role"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/token"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/logic/user"
-	"github.com/huuhoait/zero-admin-core/rpc/internal/svc"
-	"github.com/huuhoait/zero-admin-core/rpc/types/core"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/api"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/authority"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/base"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/department"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/dictionary"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/dictionarydetail"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/menu"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/oauthprovider"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/position"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/role"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/token"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/logic/user"
+	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
+	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 )
 
 type CoreServer struct {
@@ -61,16 +57,6 @@ func (s *CoreServer) GetApiById(ctx context.Context, in *core.IDReq) (*core.ApiI
 func (s *CoreServer) DeleteApi(ctx context.Context, in *core.IDsReq) (*core.BaseResp, error) {
 	l := api.NewDeleteApiLogic(ctx, s.svcCtx)
 	return l.DeleteApi(in)
-}
-
-func (s *CoreServer) GetAuditList(ctx context.Context, in *core.AuditListReq) (*core.AuditListResp, error) {
-	l := audit.NewGetAuditListLogic(ctx, s.svcCtx)
-	return l.GetAuditList(in)
-}
-
-func (s *CoreServer) GetAuditById(ctx context.Context, in *core.IDReq) (*core.AuditInfo, error) {
-	l := audit.NewGetAuditByIdLogic(ctx, s.svcCtx)
-	return l.GetAuditById(in)
 }
 
 func (s *CoreServer) GetMenuAuthority(ctx context.Context, in *core.IDReq) (*core.RoleMenuAuthorityResp, error) {
@@ -191,84 +177,6 @@ func (s *CoreServer) GetMenuList(ctx context.Context, in *core.PageInfoReq) (*co
 	return l.GetMenuList(in)
 }
 
-// MenuParam management
-func (s *CoreServer) CreateMenuParam(ctx context.Context, in *core.MenuParamInfo) (*core.BaseIDResp, error) {
-	l := menuparam.NewCreateMenuParamLogic(ctx, s.svcCtx)
-	return l.CreateMenuParam(in)
-}
-
-func (s *CoreServer) UpdateMenuParam(ctx context.Context, in *core.MenuParamInfo) (*core.BaseResp, error) {
-	l := menuparam.NewUpdateMenuParamLogic(ctx, s.svcCtx)
-	return l.UpdateMenuParam(in)
-}
-
-func (s *CoreServer) GetMenuParamList(ctx context.Context, in *core.MenuParamListReq) (*core.MenuParamListResp, error) {
-	l := menuparam.NewGetMenuParamListLogic(ctx, s.svcCtx)
-	return l.GetMenuParamList(in)
-}
-
-func (s *CoreServer) GetMenuParamById(ctx context.Context, in *core.IDReq) (*core.MenuParamInfo, error) {
-	l := menuparam.NewGetMenuParamByIdLogic(ctx, s.svcCtx)
-	return l.GetMenuParamById(in)
-}
-
-func (s *CoreServer) DeleteMenuParam(ctx context.Context, in *core.IDsReq) (*core.BaseResp, error) {
-	l := menuparam.NewDeleteMenuParamLogic(ctx, s.svcCtx)
-	return l.DeleteMenuParam(in)
-}
-
-// merchant management
-func (s *CoreServer) CreateMerchant(ctx context.Context, in *core.MerchantInfo) (*core.BaseIDResp, error) {
-	l := merchant.NewCreateMerchantLogic(ctx, s.svcCtx)
-	return l.CreateMerchant(in)
-}
-
-func (s *CoreServer) UpdateMerchant(ctx context.Context, in *core.MerchantInfo) (*core.BaseResp, error) {
-	l := merchant.NewUpdateMerchantLogic(ctx, s.svcCtx)
-	return l.UpdateMerchant(in)
-}
-
-func (s *CoreServer) GetMerchantList(ctx context.Context, in *core.MerchantListReq) (*core.MerchantListResp, error) {
-	l := merchant.NewGetMerchantListLogic(ctx, s.svcCtx)
-	return l.GetMerchantList(in)
-}
-
-func (s *CoreServer) GetMerchantById(ctx context.Context, in *core.IDReq) (*core.MerchantInfo, error) {
-	l := merchant.NewGetMerchantByIdLogic(ctx, s.svcCtx)
-	return l.GetMerchantById(in)
-}
-
-func (s *CoreServer) DeleteMerchant(ctx context.Context, in *core.IDsReq) (*core.BaseResp, error) {
-	l := merchant.NewDeleteMerchantLogic(ctx, s.svcCtx)
-	return l.DeleteMerchant(in)
-}
-
-// MerchantMeta management
-func (s *CoreServer) CreateMerchantMeta(ctx context.Context, in *core.MerchantMetaInfo) (*core.BaseIDResp, error) {
-	l := merchantmeta.NewCreateMerchantMetaLogic(ctx, s.svcCtx)
-	return l.CreateMerchantMeta(in)
-}
-
-func (s *CoreServer) UpdateMerchantMeta(ctx context.Context, in *core.MerchantMetaInfo) (*core.BaseResp, error) {
-	l := merchantmeta.NewUpdateMerchantMetaLogic(ctx, s.svcCtx)
-	return l.UpdateMerchantMeta(in)
-}
-
-func (s *CoreServer) GetMerchantMetaList(ctx context.Context, in *core.MerchantMetaListReq) (*core.MerchantMetaListResp, error) {
-	l := merchantmeta.NewGetMerchantMetaListLogic(ctx, s.svcCtx)
-	return l.GetMerchantMetaList(in)
-}
-
-func (s *CoreServer) GetMerchantMetaById(ctx context.Context, in *core.IDReq) (*core.MerchantMetaInfo, error) {
-	l := merchantmeta.NewGetMerchantMetaByIdLogic(ctx, s.svcCtx)
-	return l.GetMerchantMetaById(in)
-}
-
-func (s *CoreServer) DeleteMerchantMeta(ctx context.Context, in *core.IDsReq) (*core.BaseResp, error) {
-	l := merchantmeta.NewDeleteMerchantMetaLogic(ctx, s.svcCtx)
-	return l.DeleteMerchantMeta(in)
-}
-
 // OauthProvider management
 func (s *CoreServer) CreateOauthProvider(ctx context.Context, in *core.OauthProviderInfo) (*core.BaseIDResp, error) {
 	l := oauthprovider.NewCreateOauthProviderLogic(ctx, s.svcCtx)
@@ -361,11 +269,6 @@ func (s *CoreServer) DeleteRole(ctx context.Context, in *core.IDsReq) (*core.Bas
 func (s *CoreServer) CreateToken(ctx context.Context, in *core.TokenInfo) (*core.BaseUUIDResp, error) {
 	l := token.NewCreateTokenLogic(ctx, s.svcCtx)
 	return l.CreateToken(in)
-}
-
-func (s *CoreServer) UpdateToken(ctx context.Context, in *core.TokenInfo) (*core.BaseResp, error) {
-	l := token.NewUpdateTokenLogic(ctx, s.svcCtx)
-	return l.UpdateToken(in)
 }
 
 func (s *CoreServer) DeleteToken(ctx context.Context, in *core.UUIDsReq) (*core.BaseResp, error) {

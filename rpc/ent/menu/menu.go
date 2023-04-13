@@ -11,12 +11,8 @@ const (
 	Label = "menu"
 	// FieldID holds the string denoting the id field in the database.
 	FieldID = "id"
-	// FieldCreatedBy holds the string denoting the created_by field in the database.
-	FieldCreatedBy = "created_by"
 	// FieldCreatedAt holds the string denoting the created_at field in the database.
 	FieldCreatedAt = "created_at"
-	// FieldUpdatedBy holds the string denoting the updated_by field in the database.
-	FieldUpdatedBy = "updated_by"
 	// FieldUpdatedAt holds the string denoting the updated_at field in the database.
 	FieldUpdatedAt = "updated_at"
 	// FieldSort holds the string denoting the sort field in the database.
@@ -67,8 +63,6 @@ const (
 	EdgeParent = "parent"
 	// EdgeChildren holds the string denoting the children edge name in mutations.
 	EdgeChildren = "children"
-	// EdgeParams holds the string denoting the params edge name in mutations.
-	EdgeParams = "params"
 	// Table holds the table name of the menu in the database.
 	Table = "sys_menus"
 	// RolesTable is the table that holds the roles relation/edge. The primary key declared below.
@@ -84,21 +78,12 @@ const (
 	ChildrenTable = "sys_menus"
 	// ChildrenColumn is the table column denoting the children relation/edge.
 	ChildrenColumn = "parent_id"
-	// ParamsTable is the table that holds the params relation/edge.
-	ParamsTable = "sys_menu_params"
-	// ParamsInverseTable is the table name for the MenuParam entity.
-	// It exists in this package in order to avoid circular dependency with the "menuparam" package.
-	ParamsInverseTable = "sys_menu_params"
-	// ParamsColumn is the table column denoting the params relation/edge.
-	ParamsColumn = "menu_id"
 )
 
 // Columns holds all SQL columns for menu fields.
 var Columns = []string{
 	FieldID,
-	FieldCreatedBy,
 	FieldCreatedAt,
-	FieldUpdatedBy,
 	FieldUpdatedAt,
 	FieldSort,
 	FieldParentID,

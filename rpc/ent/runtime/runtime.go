@@ -2,7 +2,7 @@
 
 package runtime
 
-// The schema-stitching logic is generated in github.com/huuhoait/zero-admin-core/rpc/ent/runtime.go
+// The schema-stitching logic is generated in github.com/suyuan32/simple-admin-core/rpc/ent/runtime.go
 
 const (
 	Version = "v0.11.10"                                        // Version of ent codegen.

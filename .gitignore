@@ -1,29 +1,35 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
-node_modules/
+# Ignore all
+*
 
+# Unignore all with extensions
+!*.*
+!**/Dockerfile
+!**/Makefile
 
-# Other files and folders
-.settings/
-.idea/
-.vscode/
+# Unignore all dirs
+!*/
+!api
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# ignore
+**/.idea
+**/.DS_Store
+**/logs
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
-cusCMD
+# for test purpose
+**/adhoc
+go.work
+go.work.sum
 
-# config file avoid exposing private data
-*_dev.yaml
+# gitlab ci
+.cache
+.golangci.yml
 
-core_api
-core_rpc
+# vim auto backup file
+*~
+!OWNERS
+
+.github
+
+coverage.txt
+
+*.log

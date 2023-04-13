@@ -11,8 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/department"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
 )
 
 // DepartmentCreate is the builder for creating a Department entity.
@@ -20,20 +20,6 @@ type DepartmentCreate struct {
 	config
 	mutation *DepartmentMutation
 	hooks    []Hook
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (dc *DepartmentCreate) SetCreatedBy(s string) *DepartmentCreate {
-	dc.mutation.SetCreatedBy(s)
-	return dc
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (dc *DepartmentCreate) SetNillableCreatedBy(s *string) *DepartmentCreate {
-	if s != nil {
-		dc.SetCreatedBy(*s)
-	}
-	return dc
 }
 
 // SetCreatedAt sets the "created_at" field.
@@ -46,20 +32,6 @@ func (dc *DepartmentCreate) SetCreatedAt(t time.Time) *DepartmentCreate {
 func (dc *DepartmentCreate) SetNillableCreatedAt(t *time.Time) *DepartmentCreate {
 	if t != nil {
 		dc.SetCreatedAt(*t)
-	}
-	return dc
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (dc *DepartmentCreate) SetUpdatedBy(s string) *DepartmentCreate {
-	dc.mutation.SetUpdatedBy(s)
-	return dc
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (dc *DepartmentCreate) SetNillableUpdatedBy(s *string) *DepartmentCreate {
-	if s != nil {
-		dc.SetUpdatedBy(*s)
 	}
 	return dc
 }
@@ -315,17 +287,9 @@ func (dc *DepartmentCreate) createSpec() (*Department, *sqlgraph.CreateSpec) {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := dc.mutation.CreatedBy(); ok {
-		_spec.SetField(department.FieldCreatedBy, field.TypeString, value)
-		_node.CreatedBy = value
-	}
 	if value, ok := dc.mutation.CreatedAt(); ok {
 		_spec.SetField(department.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
-	}
-	if value, ok := dc.mutation.UpdatedBy(); ok {
-		_spec.SetField(department.FieldUpdatedBy, field.TypeString, value)
-		_node.UpdatedBy = value
 	}
 	if value, ok := dc.mutation.UpdatedAt(); ok {
 		_spec.SetField(department.FieldUpdatedAt, field.TypeTime, value)

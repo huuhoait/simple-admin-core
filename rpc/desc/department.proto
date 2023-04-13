@@ -15,8 +15,6 @@ message DepartmentInfo {
   string email = 10;
   string remark = 11;
   uint64 parent_id = 12;
-  string created_by = 13;
-  string updated_by = 14;
 }
 
 message DepartmentListResp {

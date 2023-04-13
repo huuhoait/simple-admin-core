@@ -14,8 +14,6 @@ type Tx struct {
 	config
 	// API is the client for interacting with the API builders.
 	API *APIClient
-	// Audit is the client for interacting with the Audit builders.
-	Audit *AuditClient
 	// Department is the client for interacting with the Department builders.
 	Department *DepartmentClient
 	// Dictionary is the client for interacting with the Dictionary builders.
@@ -24,12 +22,6 @@ type Tx struct {
 	DictionaryDetail *DictionaryDetailClient
 	// Menu is the client for interacting with the Menu builders.
 	Menu *MenuClient
-	// MenuParam is the client for interacting with the MenuParam builders.
-	MenuParam *MenuParamClient
-	// Merchant is the client for interacting with the Merchant builders.
-	Merchant *MerchantClient
-	// MerchantMeta is the client for interacting with the MerchantMeta builders.
-	MerchantMeta *MerchantMetaClient
 	// OauthProvider is the client for interacting with the OauthProvider builders.
 	OauthProvider *OauthProviderClient
 	// Position is the client for interacting with the Position builders.
@@ -172,14 +164,10 @@ func (tx *Tx) Client() *Client {
 
 func (tx *Tx) init() {
 	tx.API = NewAPIClient(tx.config)
-	tx.Audit = NewAuditClient(tx.config)
 	tx.Department = NewDepartmentClient(tx.config)
 	tx.Dictionary = NewDictionaryClient(tx.config)
 	tx.DictionaryDetail = NewDictionaryDetailClient(tx.config)
 	tx.Menu = NewMenuClient(tx.config)
-	tx.MenuParam = NewMenuParamClient(tx.config)
-	tx.Merchant = NewMerchantClient(tx.config)
-	tx.MerchantMeta = NewMerchantMetaClient(tx.config)
 	tx.OauthProvider = NewOauthProviderClient(tx.config)
 	tx.Position = NewPositionClient(tx.config)
 	tx.Role = NewRoleClient(tx.config)

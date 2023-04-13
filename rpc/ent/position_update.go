@@ -12,9 +12,9 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/position"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/predicate"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/user"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/position"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/user"
 )
 
 // PositionUpdate is the builder for updating Position entities.
@@ -27,46 +27,6 @@ type PositionUpdate struct {
 // Where appends a list predicates to the PositionUpdate builder.
 func (pu *PositionUpdate) Where(ps ...predicate.Position) *PositionUpdate {
 	pu.mutation.Where(ps...)
-	return pu
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (pu *PositionUpdate) SetCreatedBy(s string) *PositionUpdate {
-	pu.mutation.SetCreatedBy(s)
-	return pu
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (pu *PositionUpdate) SetNillableCreatedBy(s *string) *PositionUpdate {
-	if s != nil {
-		pu.SetCreatedBy(*s)
-	}
-	return pu
-}
-
-// ClearCreatedBy clears the value of the "created_by" field.
-func (pu *PositionUpdate) ClearCreatedBy() *PositionUpdate {
-	pu.mutation.ClearCreatedBy()
-	return pu
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (pu *PositionUpdate) SetUpdatedBy(s string) *PositionUpdate {
-	pu.mutation.SetUpdatedBy(s)
-	return pu
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (pu *PositionUpdate) SetNillableUpdatedBy(s *string) *PositionUpdate {
-	if s != nil {
-		pu.SetUpdatedBy(*s)
-	}
-	return pu
-}
-
-// ClearUpdatedBy clears the value of the "updated_by" field.
-func (pu *PositionUpdate) ClearUpdatedBy() *PositionUpdate {
-	pu.mutation.ClearUpdatedBy()
 	return pu
 }
 
@@ -228,18 +188,6 @@ func (pu *PositionUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			}
 		}
 	}
-	if value, ok := pu.mutation.CreatedBy(); ok {
-		_spec.SetField(position.FieldCreatedBy, field.TypeString, value)
-	}
-	if pu.mutation.CreatedByCleared() {
-		_spec.ClearField(position.FieldCreatedBy, field.TypeString)
-	}
-	if value, ok := pu.mutation.UpdatedBy(); ok {
-		_spec.SetField(position.FieldUpdatedBy, field.TypeString, value)
-	}
-	if pu.mutation.UpdatedByCleared() {
-		_spec.ClearField(position.FieldUpdatedBy, field.TypeString)
-	}
 	if value, ok := pu.mutation.UpdatedAt(); ok {
 		_spec.SetField(position.FieldUpdatedAt, field.TypeTime, value)
 	}
@@ -321,7 +269,6 @@ func (pu *PositionUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		return 0, err
 	}
 	pu.mutation.done = true
-
 	return n, nil
 }
 
@@ -331,46 +278,6 @@ type PositionUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *PositionMutation
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (puo *PositionUpdateOne) SetCreatedBy(s string) *PositionUpdateOne {
-	puo.mutation.SetCreatedBy(s)
-	return puo
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (puo *PositionUpdateOne) SetNillableCreatedBy(s *string) *PositionUpdateOne {
-	if s != nil {
-		puo.SetCreatedBy(*s)
-	}
-	return puo
-}
-
-// ClearCreatedBy clears the value of the "created_by" field.
-func (puo *PositionUpdateOne) ClearCreatedBy() *PositionUpdateOne {
-	puo.mutation.ClearCreatedBy()
-	return puo
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (puo *PositionUpdateOne) SetUpdatedBy(s string) *PositionUpdateOne {
-	puo.mutation.SetUpdatedBy(s)
-	return puo
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (puo *PositionUpdateOne) SetNillableUpdatedBy(s *string) *PositionUpdateOne {
-	if s != nil {
-		puo.SetUpdatedBy(*s)
-	}
-	return puo
-}
-
-// ClearUpdatedBy clears the value of the "updated_by" field.
-func (puo *PositionUpdateOne) ClearUpdatedBy() *PositionUpdateOne {
-	puo.mutation.ClearUpdatedBy()
-	return puo
 }
 
 // SetUpdatedAt sets the "updated_at" field.
@@ -541,13 +448,6 @@ func (puo *PositionUpdateOne) sqlSave(ctx context.Context) (_node *Position, err
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Position.id" for update`)}
 	}
-
-	//0
-
-	//1
-
-	//2
-
 	_spec.Node.ID.Value = id
 	if fields := puo.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
@@ -567,18 +467,6 @@ func (puo *PositionUpdateOne) sqlSave(ctx context.Context) (_node *Position, err
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := puo.mutation.CreatedBy(); ok {
-		_spec.SetField(position.FieldCreatedBy, field.TypeString, value)
-	}
-	if puo.mutation.CreatedByCleared() {
-		_spec.ClearField(position.FieldCreatedBy, field.TypeString)
-	}
-	if value, ok := puo.mutation.UpdatedBy(); ok {
-		_spec.SetField(position.FieldUpdatedBy, field.TypeString, value)
-	}
-	if puo.mutation.UpdatedByCleared() {
-		_spec.ClearField(position.FieldUpdatedBy, field.TypeString)
 	}
 	if value, ok := puo.mutation.UpdatedAt(); ok {
 		_spec.SetField(position.FieldUpdatedAt, field.TypeTime, value)
@@ -663,14 +551,6 @@ func (puo *PositionUpdateOne) sqlSave(ctx context.Context) (_node *Position, err
 		}
 		return nil, err
 	}
-
-	//0
-
-	//1
-
-	//2
-
 	puo.mutation.done = true
-
 	return _node, nil
 }

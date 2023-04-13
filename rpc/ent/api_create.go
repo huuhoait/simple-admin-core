@@ -10,7 +10,7 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/huuhoait/zero-admin-core/rpc/ent/api"
+	"github.com/suyuan32/simple-admin-core/rpc/ent/api"
 )
 
 // APICreate is the builder for creating a API entity.
@@ -18,20 +18,6 @@ type APICreate struct {
 	config
 	mutation *APIMutation
 	hooks    []Hook
-}
-
-// SetCreatedBy sets the "created_by" field.
-func (ac *APICreate) SetCreatedBy(s string) *APICreate {
-	ac.mutation.SetCreatedBy(s)
-	return ac
-}
-
-// SetNillableCreatedBy sets the "created_by" field if the given value is not nil.
-func (ac *APICreate) SetNillableCreatedBy(s *string) *APICreate {
-	if s != nil {
-		ac.SetCreatedBy(*s)
-	}
-	return ac
 }
 
 // SetCreatedAt sets the "created_at" field.
@@ -44,20 +30,6 @@ func (ac *APICreate) SetCreatedAt(t time.Time) *APICreate {
 func (ac *APICreate) SetNillableCreatedAt(t *time.Time) *APICreate {
 	if t != nil {
 		ac.SetCreatedAt(*t)
-	}
-	return ac
-}
-
-// SetUpdatedBy sets the "updated_by" field.
-func (ac *APICreate) SetUpdatedBy(s string) *APICreate {
-	ac.mutation.SetUpdatedBy(s)
-	return ac
-}
-
-// SetNillableUpdatedBy sets the "updated_by" field if the given value is not nil.
-func (ac *APICreate) SetNillableUpdatedBy(s *string) *APICreate {
-	if s != nil {
-		ac.SetUpdatedBy(*s)
 	}
 	return ac
 }
@@ -215,17 +187,9 @@ func (ac *APICreate) createSpec() (*API, *sqlgraph.CreateSpec) {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := ac.mutation.CreatedBy(); ok {
-		_spec.SetField(api.FieldCreatedBy, field.TypeString, value)
-		_node.CreatedBy = value
-	}
 	if value, ok := ac.mutation.CreatedAt(); ok {
 		_spec.SetField(api.FieldCreatedAt, field.TypeTime, value)
 		_node.CreatedAt = value
-	}
-	if value, ok := ac.mutation.UpdatedBy(); ok {
-		_spec.SetField(api.FieldUpdatedBy, field.TypeString, value)
-		_node.UpdatedBy = value
 	}
 	if value, ok := ac.mutation.UpdatedAt(); ok {
 		_spec.SetField(api.FieldUpdatedAt, field.TypeTime, value)
