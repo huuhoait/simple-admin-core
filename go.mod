@@ -1,4 +1,5 @@
-module github.com/suyuan32/simple-admin-core
+//module github.com/suyuan32/simple-admin-core
+module github.com/huuhoait/zero-admin-core
 
 go 1.20
 
