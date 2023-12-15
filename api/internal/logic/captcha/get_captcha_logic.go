@@ -27,13 +27,16 @@ func NewGetCaptchaLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetCap
 }
 
 func (l *GetCaptchaLogic) GetCaptcha() (resp *types.CaptchaResp, err error) {
-	if id, b64s, err := l.svcCtx.Captcha.Generate(); err != nil {
+	//(id, b64s, answer string, err error)
+	if id, b64s, _, err := l.svcCtx.Captcha.Generate(); err != nil {
 		logx.Errorw("fail to generate captcha", logx.Field("detail", err.Error()))
 		return &types.CaptchaResp{
 			BaseDataInfo: types.BaseDataInfo{Code: errorcode.Internal, Msg: l.svcCtx.Trans.Trans(l.ctx, i18n.Failed)},
 			Data:         types.CaptchaInfo{},
 		}, nil
+
 	} else {
+		//ßlogx.Info("out:" + ans)
 		resp = &types.CaptchaResp{
 			BaseDataInfo: types.BaseDataInfo{Msg: l.svcCtx.Trans.Trans(l.ctx, i18n.Success)},
 			Data: types.CaptchaInfo{
