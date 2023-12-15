@@ -2,14 +2,15 @@ package task
 
 import (
 	"context"
+
 	"github.com/zeromicro/go-zero/core/errorx"
 
-	"github.com/suyuan32/simple-admin-job/types/job"
+	"github.com/huuhoait/simple-admin-job/types/job"
 
-	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	"github.com/huuhoait/simple-admin-core/api/internal/svc"
+	"github.com/huuhoait/simple-admin-core/api/internal/types"
 
-	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/huuhoait/simple-admin-common/i18n"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 

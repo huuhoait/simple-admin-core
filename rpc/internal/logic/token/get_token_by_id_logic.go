@@ -3,12 +3,12 @@ package token
 import (
 	"context"
 
-	"github.com/suyuan32/simple-admin-common/utils/pointy"
-	"github.com/suyuan32/simple-admin-common/utils/uuidx"
+	"github.com/huuhoait/simple-admin-common/utils/pointy"
+	"github.com/huuhoait/simple-admin-common/utils/uuidx"
 
-	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
-	"github.com/suyuan32/simple-admin-core/rpc/internal/utils/errorhandler"
-	"github.com/suyuan32/simple-admin-core/rpc/types/core"
+	"github.com/huuhoait/simple-admin-core/rpc/internal/svc"
+	"github.com/huuhoait/simple-admin-core/rpc/internal/utils/errorhandler"
+	"github.com/huuhoait/simple-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

@@ -2,17 +2,18 @@ package publicuser
 
 import (
 	"context"
-	"github.com/suyuan32/simple-admin-common/enum/common"
-	"github.com/suyuan32/simple-admin-common/i18n"
-	"github.com/suyuan32/simple-admin-common/utils/jwt"
-	"github.com/suyuan32/simple-admin-common/utils/pointy"
-	"github.com/suyuan32/simple-admin-core/rpc/types/core"
-	"github.com/zeromicro/go-zero/core/errorx"
 	"strings"
 	"time"
 
-	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	"github.com/huuhoait/simple-admin-common/enum/common"
+	"github.com/huuhoait/simple-admin-common/i18n"
+	"github.com/huuhoait/simple-admin-common/utils/jwt"
+	"github.com/huuhoait/simple-admin-common/utils/pointy"
+	"github.com/huuhoait/simple-admin-core/rpc/types/core"
+	"github.com/zeromicro/go-zero/core/errorx"
+
+	"github.com/huuhoait/simple-admin-core/api/internal/svc"
+	"github.com/huuhoait/simple-admin-core/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

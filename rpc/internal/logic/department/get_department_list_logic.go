@@ -3,15 +3,15 @@ package department
 import (
 	"context"
 
-	"github.com/suyuan32/simple-admin-common/utils/pointy"
+	"github.com/huuhoait/simple-admin-common/utils/pointy"
 	"github.com/zeromicro/go-zero/core/logx"
 
-	"github.com/suyuan32/simple-admin-core/rpc/ent/department"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
+	"github.com/huuhoait/simple-admin-core/rpc/ent/department"
+	"github.com/huuhoait/simple-admin-core/rpc/ent/predicate"
 
-	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
-	"github.com/suyuan32/simple-admin-core/rpc/internal/utils/errorhandler"
-	"github.com/suyuan32/simple-admin-core/rpc/types/core"
+	"github.com/huuhoait/simple-admin-core/rpc/internal/svc"
+	"github.com/huuhoait/simple-admin-core/rpc/internal/utils/errorhandler"
+	"github.com/huuhoait/simple-admin-core/rpc/types/core"
 )
 
 type GetDepartmentListLogic struct {

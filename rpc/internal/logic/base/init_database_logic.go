@@ -2,20 +2,21 @@ package base
 
 import (
 	"context"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/role"
+
+	"github.com/huuhoait/simple-admin-core/rpc/ent/role"
 
 	"entgo.io/ent/dialect/sql/schema"
-	"github.com/suyuan32/simple-admin-common/enum/common"
-	"github.com/suyuan32/simple-admin-common/msg/logmsg"
-	"github.com/suyuan32/simple-admin-common/utils/encrypt"
+	"github.com/huuhoait/simple-admin-common/enum/common"
+	"github.com/huuhoait/simple-admin-common/msg/logmsg"
+	"github.com/huuhoait/simple-admin-common/utils/encrypt"
 	"github.com/zeromicro/go-zero/core/errorx"
 	"github.com/zeromicro/go-zero/core/stores/redis"
 
-	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/huuhoait/simple-admin-common/i18n"
 
-	"github.com/suyuan32/simple-admin-core/rpc/ent"
-	"github.com/suyuan32/simple-admin-core/rpc/internal/svc"
-	"github.com/suyuan32/simple-admin-core/rpc/types/core"
+	"github.com/huuhoait/simple-admin-core/rpc/ent"
+	"github.com/huuhoait/simple-admin-core/rpc/internal/svc"
+	"github.com/huuhoait/simple-admin-core/rpc/types/core"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

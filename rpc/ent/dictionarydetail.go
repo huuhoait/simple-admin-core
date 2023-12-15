@@ -9,8 +9,8 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionary"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/dictionarydetail"
+	"github.com/huuhoait/simple-admin-core/rpc/ent/dictionary"
+	"github.com/huuhoait/simple-admin-core/rpc/ent/dictionarydetail"
 )
 
 // DictionaryDetail is the model entity for the DictionaryDetail schema.

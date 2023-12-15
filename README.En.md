@@ -9,7 +9,7 @@
 [![Vben Admin](https://img.shields.io/badge/Vben%20Admin-v2.10.1-yellow.svg)](https://vvbin.cn/doc-next/)
 [![Ent](https://img.shields.io/badge/Ent-v0.12.5-blue.svg)](https://entgo.io/)
 [![Casbin](https://img.shields.io/badge/Casbin-v2.79.0-orange.svg)](https://github.com/casbin/casbin)
-[![Release](https://img.shields.io/badge/Release-v1.2.4-green.svg)](https://github.com/suyuan32/simple-admin-core/releases)
+[![Release](https://img.shields.io/badge/Release-v1.2.4-green.svg)](https://github.com/huuhoait/simple-admin-core/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![SimpleAdmin](https://dcbadge.vercel.app/api/server/NDED5p2hJk)](https://discord.gg/NDED5p2hJk)
 ![公众号](https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-%E5%87%A0%E9%A2%97%E9%85%A5-blue)
@@ -26,13 +26,13 @@ iterate quickly. Suitable for microservice learning and commercial use, open sou
 
 ### [Simple Admin](https://www.youtube.com/@yuansu5197)
 
-## [Goctls](https://github.com/suyuan32/goctls)
+## [Goctls](https://github.com/huuhoait/goctls)
 
 Based on the enhanced version of go zero, it provides a lot of optimizations for simple admin, has a lot of additional
 code generation functions,
 fully supports ent, and easily realizes three-terminal code generation, making development easier.
 
-## [Doge](https://github.com/suyuan32/doge)
+## [Doge](https://github.com/huuhoait/doge)
 
 Doge is Simple Admin's command line tool for module download and deployment. It provides module source code download,
 module docker, k8s deployment, server maintenance and other functions. Users can upload their own paid modules to earn
@@ -64,7 +64,7 @@ revenue, and now 10+ modules are included.
 
 ## Project Planning Progress
 
-[RoadMap](https://github.com/suyuan32/simple-admin-core/issues/63)
+[RoadMap](https://github.com/huuhoait/simple-admin-core/issues/63)
 
 ## Preview
 
@@ -104,20 +104,20 @@ Password:  simple-admin
 
 ## Relative Project
 
-- [Simple Admin](https://github.com/suyuan32/simple-admin-core)
-- [Simple Admin Backend UI](https://github.com/suyuan32/simple-admin-backend-ui)
+- [Simple Admin](https://github.com/huuhoait/simple-admin-core)
+- [Simple Admin Backend UI](https://github.com/huuhoait/simple-admin-backend-ui)
 
 ## Optional Components
 
-- [File Management](https://github.com/suyuan32/simple-admin-file)
-- [Scheduled Task](https://github.com/suyuan32/simple-admin-job)
-- [Member Management](https://github.com/suyuan32/simple-admin-member-api)
-- [Message Center](https://github.com/suyuan32/simple-admin-message-center)
+- [File Management](https://github.com/huuhoait/simple-admin-file)
+- [Scheduled Task](https://github.com/huuhoait/simple-admin-job)
+- [Member Management](https://github.com/huuhoait/simple-admin-member-api)
+- [Message Center](https://github.com/huuhoait/simple-admin-message-center)
 
 
 ## How to contribute
 
-You are very welcome to join！[Raise an issue](https://github.com/suyuan32/simple-admin-core/issues/new) Or submit a Pull Request。
+You are very welcome to join！[Raise an issue](https://github.com/huuhoait/simple-admin-core/issues/new) Or submit a Pull Request。
 
 **Pull Request:**
 
@@ -149,16 +149,16 @@ You are very welcome to join！[Raise an issue](https://github.com/suyuan32/simp
 
 > [Discard](https://discord.gg/NDED5p2hJk)
 
-> [Discussion](https://github.com/suyuan32/simple-admin-core/discussions)
+> [Discussion](https://github.com/huuhoait/simple-admin-core/discussions)
 
 ## Stars
 
-[![Star History Chart](https://api.star-history.com/svg?repos=suyuan32/simple-admin-core&type=Date)](https://github.com/suyuan32/simple-admin-core)
+[![Star History Chart](https://api.star-history.com/svg?repos=suyuan32/simple-admin-core&type=Date)](https://github.com/huuhoait/simple-admin-core)
 
 
 ## Maintainer
 
-[@Ryan Su](https://github.com/suyuan32)
+[@Ryan Su](https://github.com/huuhoait)
 
 ## License
 

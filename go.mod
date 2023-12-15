@@ -1,4 +1,4 @@
-module github.com/suyuan32/simple-admin-core
+module github.com/huuhoait/zero-admin-core
 
 go 1.20
 
@@ -8,9 +8,9 @@ require (
 	github.com/duke-git/lancet/v2 v2.2.7
 	github.com/gofrs/uuid/v5 v5.0.0
 	github.com/mojocn/base64Captcha v1.3.5
-	github.com/suyuan32/simple-admin-common v1.2.4
-	github.com/suyuan32/simple-admin-job v1.2.4
-	github.com/suyuan32/simple-admin-message-center v1.2.4
+	github.com/huuhoait/simple-admin-common v1.4.2
+	github.com/huuhoait/simple-admin-job v1.4.2
+	github.com/huuhoait/simple-admin-message-center v1.4.2
 	github.com/zeromicro/go-zero v1.6.0
 	golang.org/x/oauth2 v0.14.0
 	google.golang.org/grpc v1.59.0
@@ -135,4 +135,5 @@ require (
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
 
-replace github.com/zeromicro/go-zero v1.6.0 => github.com/suyuan32/simple-admin-tools v1.6.0
+replace github.com/zeromicro/go-zero v1.6.0 => github.com/huuhoait/simple-admin-tools v1.4.2
+//replace github.com/huuhoait/-admin-common v1.2.4 => github.com/huuhoait/ç-admin-common v1.4.0

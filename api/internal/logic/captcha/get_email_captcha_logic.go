@@ -3,13 +3,14 @@ package captcha
 import (
 	"context"
 	"fmt"
-	"github.com/duke-git/lancet/v2/random"
-	"github.com/suyuan32/simple-admin-common/i18n"
-	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-	"github.com/suyuan32/simple-admin-core/api/internal/types"
-	"github.com/suyuan32/simple-admin-message-center/types/mcms"
-	"github.com/zeromicro/go-zero/core/errorx"
 	"strconv"
+
+	"github.com/duke-git/lancet/v2/random"
+	"github.com/huuhoait/simple-admin-common/i18n"
+	"github.com/huuhoait/simple-admin-core/api/internal/svc"
+	"github.com/huuhoait/simple-admin-core/api/internal/types"
+	"github.com/huuhoait/simple-admin-message-center/types/mcms"
+	"github.com/zeromicro/go-zero/core/errorx"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

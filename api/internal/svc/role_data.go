@@ -2,12 +2,13 @@ package svc
 
 import (
 	"context"
-	"github.com/suyuan32/simple-admin-common/enum/common"
-	"github.com/suyuan32/simple-admin-common/i18n"
-	"github.com/suyuan32/simple-admin-core/rpc/types/core"
+	"strings"
+
+	"github.com/huuhoait/simple-admin-common/enum/common"
+	"github.com/huuhoait/simple-admin-common/i18n"
+	"github.com/huuhoait/simple-admin-core/rpc/types/core"
 	"github.com/zeromicro/go-zero/core/errorx"
 	"github.com/zeromicro/go-zero/core/logx"
-	"strings"
 )
 
 func (l *ServiceContext) LoadBanRoleData() error {

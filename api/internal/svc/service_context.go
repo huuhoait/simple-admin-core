@@ -1,17 +1,17 @@
 package svc
 
 import (
+	"github.com/huuhoait/simple-admin-common/i18n"
+	"github.com/huuhoait/simple-admin-common/utils/captcha"
+	i18n2 "github.com/huuhoait/simple-admin-core/api/internal/i18n"
+	"github.com/huuhoait/simple-admin-core/api/internal/middleware"
+	"github.com/huuhoait/simple-admin-job/jobclient"
+	"github.com/huuhoait/simple-admin-message-center/mcmsclient"
 	"github.com/mojocn/base64Captcha"
-	"github.com/suyuan32/simple-admin-common/i18n"
-	"github.com/suyuan32/simple-admin-common/utils/captcha"
-	i18n2 "github.com/suyuan32/simple-admin-core/api/internal/i18n"
-	"github.com/suyuan32/simple-admin-core/api/internal/middleware"
-	"github.com/suyuan32/simple-admin-job/jobclient"
-	"github.com/suyuan32/simple-admin-message-center/mcmsclient"
 	"github.com/zeromicro/go-zero/core/logx"
 
-	"github.com/suyuan32/simple-admin-core/api/internal/config"
-	"github.com/suyuan32/simple-admin-core/rpc/coreclient"
+	"github.com/huuhoait/simple-admin-core/api/internal/config"
+	"github.com/huuhoait/simple-admin-core/rpc/coreclient"
 
 	"github.com/casbin/casbin/v2"
 	"github.com/zeromicro/go-zero/core/stores/redis"

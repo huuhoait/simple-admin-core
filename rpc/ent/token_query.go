@@ -11,8 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	uuid "github.com/gofrs/uuid/v5"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/predicate"
-	"github.com/suyuan32/simple-admin-core/rpc/ent/token"
+	"github.com/huuhoait/simple-admin-core/rpc/ent/predicate"
+	"github.com/huuhoait/simple-admin-core/rpc/ent/token"
 )
 
 // TokenQuery is the builder for querying Token entities.
