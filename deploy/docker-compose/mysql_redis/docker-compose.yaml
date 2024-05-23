@@ -1,4 +1,7 @@
 version: '3'
+#GRANT ALL ON *.* TO 'root'@'%'
+#flush privileges; 
+#platform: linux/amd64
 
 volumes:
   mysql:
